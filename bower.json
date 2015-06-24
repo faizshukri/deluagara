@@ -1,0 +1,21 @@
+{
+  "name": "deluagara",
+  "version": "0.0.0",
+  "homepage": "https://github.com/faizshukri/deluagara",
+  "authors": [
+    "Faiz Shukri <faizshukri90@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "/resources/components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.5",
+    "fontawesome": "~4.3.0"
+  }
+}

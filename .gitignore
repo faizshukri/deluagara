@@ -4,3 +4,9 @@ Homestead.yaml
 .env
 _ide_helper.php
 /.idea
+/resources/components
+/public/build
+/public/css/app.*
+/public/js/app.*
+/public/fonts/fontawesome*
+/public/fonts/glyphicons*
