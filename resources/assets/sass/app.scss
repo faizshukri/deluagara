@@ -1,1 +1,20 @@
-// @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+@import '../../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/variables';
+
+* {
+  border-radius: 0px !important;
+}
+
+.navbar {
+  margin-bottom: 0px;
+  border-bottom: 1px solid #ccc;
+  @media (min-width: $screen-sm-min){
+    padding-right: 30px;
+    padding-left: 30px;
+  }
+}
+
+#map-front { height: 640px; width:100%; background-color: #E5E3DF; }
+
+#deluagara {
+
+}

@@ -9,6 +9,7 @@ _ide_helper.php
 /public/css/app.*
 /public/css/vendor.*
 /public/js/app.*
+/public/js/vendor.*
 /public/fonts/fontawesome*
 /public/fonts/glyphicons*
 /public/vendor
