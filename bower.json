@@ -16,6 +16,7 @@
   ],
   "dependencies": {
     "bootstrap": "~3.3.5",
-    "fontawesome": "~4.3.0"
+    "fontawesome": "~4.3.0",
+    "mapbox.js": "~2.2.1"
   }
 }

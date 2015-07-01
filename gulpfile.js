@@ -12,33 +12,35 @@ var elixir = require('laravel-elixir');
  */
 
 var paths = {
-    'jquery':      './resources/components/jquery',
-    'bootstrap':   './resources/components/bootstrap',
-    'fontawesome': './resources/components/fontawesome'
-}
+    'jquery':      './public/vendor/jquery',
+    'bootstrap':   './public/vendor/bootstrap',
+    'fontawesome': './public/vendor/fontawesome',
+    'mapbox': './public/vendor/mapbox.js'
+};
 
 elixir(function(mix) {
     mix
         .sass('app.scss')
         .styles(
             [
-                '../public/css/app.css',
                 paths.bootstrap + '/dist/css/bootstrap.min.css',
-                paths.fontawesome + '/css/font-awesome.min.css'
+                paths.fontawesome + '/css/font-awesome.min.css',
+                paths.mapbox + '/mapbox.css'
             ],
-            'public/css/app.css',
-            './resources'
+            'public/css/vendor.css',
+            './public'
         )
         .scripts(
             [
                 paths.jquery + '/dist/jquery.min.js',
                 paths.bootstrap + '/dist/js/bootstrap.min.js',
+                paths.mapbox + '/mapbox.js',
                 '/assets/js/*'
             ],
-            'public/js/app.js',
-            './resources'
+            'public/js/vendor.js',
+            './public'
         )
-        .version(['css/app.css', 'js/app.js'])
+        .version(['css/app.css', 'css/vendor.css', 'js/vendor.js'])
 
         .copy(paths.fontawesome + '/fonts', 'public/fonts')
         .copy(paths.bootstrap + '/fonts', 'public/fonts')
