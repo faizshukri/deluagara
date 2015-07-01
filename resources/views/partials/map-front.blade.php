@@ -14,7 +14,7 @@
             function initMap() {
                 L.mapbox.accessToken = "{{ env('MAPBOX_ACCESSTOKEN')  }}";
                 var map = L.mapbox.map('map-front', 'mapbox.streets')
-                        .setView([ {{ $location[0] }}, {{ $location[1] }} ], 14);
+                        .setView([ {{ $location['latitude'] }}, {{ $location['longitude'] }} ], 14);
             };
         })();
 
