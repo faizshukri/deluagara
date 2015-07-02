@@ -25,6 +25,8 @@
                             clusterGroup.addLayer(layer);
                         });
                         map.addLayer(clusterGroup);
+                    }).on('click', function(e) {
+                        map.panTo(e.layer.getLatLng());
                     });
             };
         })();
