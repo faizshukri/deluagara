@@ -25,6 +25,7 @@ $factory->define(App\Location::class, function($faker) {
         'address' => $faker->address,
         'postcode' => $faker->postcode,
         'latitude' => $faker->randomFloat(NULL, 53.424331,53.356356),
-        'longitude' => $faker->randomFloat(NULL, -1.561901,-1.366207)
+        'longitude' => $faker->randomFloat(NULL, -1.561901,-1.366207),
+        'lastDate' => $faker->dateTimeBetween('+1 year', '+3 years')->format('Y-m-d')
     ];
 });
