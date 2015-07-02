@@ -19,3 +19,12 @@ $factory->define(App\User::class, function ($faker) {
         'remember_token' => str_random(10),
     ];
 });
+
+$factory->define(App\Location::class, function($faker) {
+    return [
+        'address' => $faker->address,
+        'postcode' => $faker->postcode,
+        'latitude' => $faker->randomFloat(NULL, 53.424331,53.356356),
+        'longitude' => $faker->randomFloat(NULL, -1.561901,-1.366207)
+    ];
+});
