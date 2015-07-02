@@ -12,10 +12,11 @@ var elixir = require('laravel-elixir');
  */
 
 var paths = {
-    'jquery':      './public/vendor/jquery',
-    'bootstrap':   './public/vendor/bootstrap',
-    'fontawesome': './public/vendor/fontawesome',
-    'mapbox': './public/vendor/mapbox.js'
+    'jquery'        : './public/vendor/jquery',
+    'bootstrap'     : './public/vendor/bootstrap',
+    'fontawesome'   : './public/vendor/fontawesome',
+    'mapbox'        : './public/vendor/mapbox.js',
+    'markercluster' : './public/vendor/leaflet.markercluster'
 };
 
 elixir(function(mix) {
@@ -25,7 +26,8 @@ elixir(function(mix) {
             [
                 paths.bootstrap + '/dist/css/bootstrap.min.css',
                 paths.fontawesome + '/css/font-awesome.min.css',
-                paths.mapbox + '/mapbox.css'
+                paths.markercluster + '/dist/MarkerCluster.css',
+                paths.markercluster + '/dist/MarkerCluster.Default.css'
             ],
             'public/css/vendor.css',
             './public'
@@ -35,6 +37,7 @@ elixir(function(mix) {
                 paths.jquery + '/dist/jquery.min.js',
                 paths.bootstrap + '/dist/js/bootstrap.min.js',
                 paths.mapbox + '/mapbox.js',
+                paths.markercluster + '/dist/leaflet.markercluster.js',
                 '/assets/js/*'
             ],
             'public/js/vendor.js',

@@ -5,7 +5,6 @@
 @endsection
 
 @section('footer')
-    <script src="/vendor/mapbox.js/mapbox.js"></script>
     <script>
         (function(){
 
