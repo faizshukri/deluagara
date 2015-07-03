@@ -22,6 +22,12 @@ Route::get('logout', [ 'as' => 'auth.logout', 'uses' => 'Auth\AuthController@get
 Route::get('register', [ 'as' => 'auth.register', 'uses' => 'Auth\AuthController@getRegister']);
 Route::post('register', 'Auth\AuthController@postRegister');
 
+// Account
+Route::group(['middleware' => 'auth'], function(){
+    Route::get('account', [ 'as' => 'account.index', 'uses' => 'AccountController@index' ]);
+    Route::get('account/edit', [ 'as' => 'account.edit', 'uses' => 'AccountController@edit' ]);
+});
+
 Route::group(['prefix'=>'api/v1'], function(){
     Route::get('locations', 'Api\V1\LocationController@locations');
     Route::get('locations.geojson', 'Api\V1\LocationController@geolocations');
@@ -29,3 +35,5 @@ Route::group(['prefix'=>'api/v1'], function(){
     // Get institutes list
     Route::get('institutes/{name}', 'Api\V1\InstituteController@institutes');
 });
+
+Route::get('{username}', 'AccountController@user');
