@@ -19,6 +19,8 @@ class DatabaseSeeder extends Seeder
             factory('App\Location')->create([ 'user_id' => $u->id ]);
         });
 
+        factory('App\User')->create(['email' => 'faiz@example.com', 'name' => 'Faiz Shukri', 'username' => 'faiz', 'password' => bcrypt('password')]);
+
         $this->call(InstituteSeeder::class);
 
         Model::reguard();
