@@ -1,4 +1,5 @@
 var elixir = require('laravel-elixir');
+require("./resources/assets/js/elixir-ext");
 
 /*
  |--------------------------------------------------------------------------
@@ -16,15 +17,21 @@ var paths = {
     'bootstrap'     : './public/vendor/bootstrap',
     'fontawesome'   : './public/vendor/fontawesome',
     'mapbox'        : './public/vendor/mapbox.js',
-    'markercluster' : './public/vendor/leaflet.markercluster'
+    'markercluster' : './public/vendor/leaflet.markercluster',
+    'others'        : './public/vendor/others'
+};
+
+var urls = {
+    'bootstrap_yeti': 'https://bootswatch.com/yeti/bootstrap.min.css'
 };
 
 elixir(function(mix) {
     mix
         .sass('app.scss')
+        .download(urls.bootstrap_yeti, paths.others)
         .styles(
             [
-                paths.bootstrap + '/dist/css/bootstrap.min.css',
+                paths.others + '/bootstrap.min.css',
                 paths.fontawesome + '/css/font-awesome.min.css',
                 paths.markercluster + '/dist/MarkerCluster.css',
                 paths.markercluster + '/dist/MarkerCluster.Default.css'
