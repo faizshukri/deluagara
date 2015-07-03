@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Illuminate\Auth\Guard;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -11,9 +12,11 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
+    public function boot(Guard $auth)
     {
-        //
+        view()->composer('layouts.navbar', function($view) use ($auth){
+            $view->with('user', $auth->user());
+        });
     }
 
     /**

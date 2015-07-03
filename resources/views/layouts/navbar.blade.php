@@ -14,8 +14,17 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="{{ route('auth.login') }}">Login</a></li>
-                <li><a href="{{ route('auth.register') }}">Register</a></li>
+                @if ($user )
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ strtoupper($user->name) }} <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="{{ route('auth.logout') }}">Logout</a></li>
+                        </ul>
+                    </li>
+                @else
+                    <li><a href="{{ route('auth.login') }}">Login</a></li>
+                    <li><a href="{{ route('auth.register') }}">Register</a></li>
+                @endif
             </ul>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
