@@ -35,7 +35,6 @@
                 <hr class="colorgraph">
                 <div class="row">
                     <div class="col-xs-12 col-md-6"><input type="submit" value="Register" class="btn btn-primary btn-block btn-lg" tabindex="5"></div>
-                    <div class="col-xs-12 col-md-6"><a href="{{ route('auth.login') }}" class="btn btn-success btn-block btn-lg">Sign In</a></div>
                 </div>
             </form>
         </div>
