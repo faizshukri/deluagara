@@ -11,7 +11,7 @@
                 <h2>Please Sign Up <small>It's free and always will be.</small></h2>
                 <hr class="colorgraph">
                 <div class="form-group @if ($errors->has('name')) has-error @endif">
-                    <input type="text" name="name" value="{{ old('name') }}" id="name" class="form-control input-lg" placeholder="Full Name" tabindex="1">
+                    <input autofocus type="text" name="name" value="{{ old('name') }}" id="name" class="form-control input-lg" placeholder="Full Name" tabindex="1">
                     @if ($errors->has('name')) <p class="help-block">{{ $errors->first('name') }}</p> @endif
                 </div>
                 <div class="form-group @if ($errors->has('email')) has-error @endif">
