@@ -29,3 +29,9 @@ $factory->define(App\Location::class, function($faker) {
         'lastDate' => $faker->dateTimeBetween('+1 year', '+3 years')->format('Y-m-d')
     ];
 });
+
+$factory->define(App\Institute::class, function($faker){
+    return [
+        'name' => $faker->company
+    ];
+});

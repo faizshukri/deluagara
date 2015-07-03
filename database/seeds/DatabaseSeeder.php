@@ -19,6 +19,8 @@ class DatabaseSeeder extends Seeder
             factory('App\Location')->create([ 'user_id' => $u->id ]);
         });
 
+        $this->call(InstituteSeeder::class);
+
         Model::reguard();
     }
 }
