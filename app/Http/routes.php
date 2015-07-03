@@ -25,4 +25,7 @@ Route::post('register', 'Auth\AuthController@postRegister');
 Route::group(['prefix'=>'api/v1'], function(){
     Route::get('locations', 'Api\V1\LocationController@locations');
     Route::get('locations.geojson', 'Api\V1\LocationController@geolocations');
+
+    // Get institutes list
+    Route::get('institutes/{name}', 'Api\V1\InstituteController@institutes');
 });
