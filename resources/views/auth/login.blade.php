@@ -5,7 +5,7 @@
 
     <div class="row">
         <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
-            <form role="form" method="POST" action="/auth/login">
+            <form role="form" method="POST" action="/login">
                 {!! csrf_field() !!}
 
                 <h2>Login</h2>
