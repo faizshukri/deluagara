@@ -3,6 +3,7 @@
 .navbar {
   margin-bottom: 0px;
   border-bottom: 1px solid #ccc;
+  text-transform: uppercase;
   @media (min-width: $screen-sm-min){
     padding-right: 30px;
     padding-left: 30px;
