@@ -19,6 +19,7 @@ class CreateLocationsTable extends Migration
             $table->integer('latitude');
             $table->integer('longitude');
             $table->date('lastDate');
+            $table->integer('city_id');
             $table->integer('user_id');
             $table->timestamps();
         });

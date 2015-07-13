@@ -19,8 +19,8 @@ $factory->define(App\User::class, function ($faker) {
         'password' => str_random(10),
         'remember_token' => str_random(10),
         'gender' => $faker->randomElement(['male', 'female']),
-        'user_status_id' => $faker->sentence( 2 ),
-        'scholarship_id' => $faker->sentence( 2 ),
+        'user_status_id' => 1,
+        'scholarship_id' => 1,
     ];
 });
 
@@ -43,6 +43,8 @@ $factory->define(App\Location::class, function($faker) {
         'latitude' => $faker->randomFloat(NULL, 53.424331,53.356356),
         'longitude' => $faker->randomFloat(NULL, -1.561901,-1.366207),
         'lastDate' => $faker->dateTimeBetween('+1 year', '+3 years')->format('Y-m-d'),
+        'user_id' => 1,
+        'city_id' => 1
     ];
 });
 
