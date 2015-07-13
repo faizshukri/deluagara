@@ -58,7 +58,19 @@
             </form>
         </div>
         <div class="col-md-9">
-            content
+            <div class="row">
+                <div class="col-md-12">
+                    <ul>
+                        @foreach($users as $user)
+                            <li>{{ $user->name }} - {{ $user->location->city->name }}</li>
+                        @endforeach
+                    </ul>
+                    @if(sizeof($users) == 0)
+                        <h2>No result found</h2>
+                    @endif
+                </div>
+                {!! $users->appends($request)->render() !!}
+            </div>
         </div>
     </div>
 @endsection
