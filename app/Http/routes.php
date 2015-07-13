@@ -30,6 +30,9 @@ Route::group(['middleware' => 'auth'], function(){
 
     // People
     Route::get('people', [ 'as' => 'people.index', 'uses' => 'PeopleController@index' ]);
+
+    // Events
+    Route::get('event', [ 'as' => 'event.index', 'uses' => 'EventController@index' ]);
 });
 
 Route::group(['prefix'=>'api/v1'], function(){

@@ -15,7 +15,7 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li class="{{ set_active('people') }}"><a href="{{ route('people.index') }}">People</a></li>
-                <li class="{{ set_active('event') }}"><a href="#">Event</a></li>
+                <li class="{{ set_active('event') }}"><a href="{{ route('event.index') }}">Event</a></li>
                 <li class="{{ set_active('host') }}"><a href="#">Accomodation</a></li>
                 <li class="{{ set_active('mybay') }}"><a href="#">MyBay</a></li>
                 <li class="{{ set_active('blog') }}"><a href="#">Blog</a></li>
