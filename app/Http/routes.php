@@ -22,10 +22,14 @@ Route::get('logout', [ 'as' => 'auth.logout', 'uses' => 'Auth\AuthController@get
 Route::get('register', [ 'as' => 'auth.register', 'uses' => 'Auth\AuthController@getRegister']);
 Route::post('register', 'Auth\AuthController@postRegister');
 
-// Account
 Route::group(['middleware' => 'auth'], function(){
+
+    // Account
     Route::get('account', [ 'as' => 'account.index', 'uses' => 'AccountController@index' ]);
     Route::get('account/edit', [ 'as' => 'account.edit', 'uses' => 'AccountController@edit' ]);
+
+    // People
+    Route::get('people', [ 'as' => 'people.index', 'uses' => 'PeopleController@index' ]);
 });
 
 Route::group(['prefix'=>'api/v1'], function(){
