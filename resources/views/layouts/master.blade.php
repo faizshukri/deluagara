@@ -19,7 +19,6 @@
         @yield('content')
     </div>
 
-    <script src="{{ elixir('js/vendor.js') }}"></script>
-    @yield('footer')
+    @include('layouts.footer')
 </body>
 </html>

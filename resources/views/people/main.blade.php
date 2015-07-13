@@ -54,7 +54,7 @@
 
                 {{-- Submit --}}
                 <button type="submit" class="btn btn-primary btn-block">Search</button>
-                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                {{--<input type="hidden" name="_token" value="{{ csrf_token() }}">--}}
             </form>
         </div>
         <div class="col-md-9">
