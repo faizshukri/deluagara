@@ -37,6 +37,9 @@ $factory->define(App\Scholarship::class, function($faker){
 });
 
 $factory->define(App\Location::class, function($faker) {
+
+    $faker->addProvider(new Faker\Provider\en_GB\Address($faker));
+
     return [
         'address' => $faker->address,
         'postcode' => $faker->postcode,
