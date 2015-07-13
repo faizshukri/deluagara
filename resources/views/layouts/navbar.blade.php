@@ -30,8 +30,8 @@
                         </ul>
                     </li>
                 @else
-                    <li><a href="{{ route('auth.login') }}">Login</a></li>
-                    <li><a href="{{ route('auth.register') }}">Register</a></li>
+                    <li class="{{ set_active('login') }}"><a href="{{ route('auth.login') }}">Login</a></li>
+                    <li class="{{ set_active('register') }}"><a href="{{ route('auth.register') }}">Register</a></li>
                 @endif
             </ul>
         </div><!-- /.navbar-collapse -->
