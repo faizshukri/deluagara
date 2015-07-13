@@ -14,10 +14,11 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li><a href="{{ route('people.index') }}">People</a></li>
-                <li><a href="#">Accomodation</a></li>
-                <li><a href="#">Event</a></li>
-                <li><a href="#">MyBay</a></li>
+                <li class="{{ set_active('people') }}"><a href="{{ route('people.index') }}">People</a></li>
+                <li class="{{ set_active('event') }}"><a href="#">Event</a></li>
+                <li class="{{ set_active('host') }}"><a href="#">Accomodation</a></li>
+                <li class="{{ set_active('mybay') }}"><a href="#">MyBay</a></li>
+                <li class="{{ set_active('blog') }}"><a href="#">Blog</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 @if ($user )
