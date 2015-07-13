@@ -10,8 +10,15 @@
 | database. Just tell the factory how a default model should look.
 |
 */
+$statuses = false;
+$scholarship = false;
+$cities = false;
 
-$factory->define(App\User::class, function ($faker) {
+$factory->define(App\User::class, function ($faker) use (&$statuses, &$scholarship) {
+
+    if(!$statuses) $statuses = App\UserStatus::all()->lists('id')->toArray();
+    if(!$scholarship) $scholarship = App\Scholarship::all()->lists('id')->toArray();
+
     return [
         'name' => $faker->name,
         'username' => $faker->userName,
@@ -19,8 +26,8 @@ $factory->define(App\User::class, function ($faker) {
         'password' => str_random(10),
         'remember_token' => str_random(10),
         'gender' => $faker->randomElement(['male', 'female']),
-        'user_status_id' => 1,
-        'scholarship_id' => 1,
+        'user_status_id' => $faker->randomElement($statuses),
+        'scholarship_id' => $faker->randomElement($scholarship),
     ];
 });
 
@@ -36,7 +43,9 @@ $factory->define(App\Scholarship::class, function($faker){
     ];
 });
 
-$factory->define(App\Location::class, function($faker) {
+$factory->define(App\Location::class, function($faker) use (&$cities) {
+
+    if(!$cities) $cities = App\City::all()->lists('id')->toArray();
 
     $faker->addProvider(new Faker\Provider\en_GB\Address($faker));
 
@@ -47,7 +56,7 @@ $factory->define(App\Location::class, function($faker) {
         'longitude' => $faker->randomFloat(NULL, -1.561901,-1.366207),
         'lastDate' => $faker->dateTimeBetween('+1 year', '+3 years')->format('Y-m-d'),
         'user_id' => 1,
-        'city_id' => 1
+        'city_id' => $faker->randomElement($cities)
     ];
 });
 
