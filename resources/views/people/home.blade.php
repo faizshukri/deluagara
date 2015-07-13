@@ -15,7 +15,7 @@
                 {{-- City --}}
                 <div class="form-group">
                     <label for="city">City (e.g Manchester)</label>
-                    <input type="text" class="form-control" id="city" name="city" placeholder="City (e.g Manchester)">
+                    <input type="text" class="form-control" id="city" name="city">
                 </div>
 
                 {{-- Gender --}}
@@ -60,4 +60,28 @@
             content
         </div>
     </div>
+@endsection
+
+@section('footer')
+    <script>
+        $('#city').select2({
+            placeholder: "Select a city",
+            allowClear: true,
+            ajax: {
+                url: function(city){
+                    console.log(city);
+                    return '/api/v1/cities/'+city;
+                },
+                results: function (data, page) {
+                    return {
+                        results: data
+                    };
+                },
+                quietMillis: 250,
+                dataType: 'json',
+                cache: true
+            },
+            minimumInputLength: 3,
+        });
+    </script>
 @endsection

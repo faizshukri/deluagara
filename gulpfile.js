@@ -18,7 +18,8 @@ var paths = {
     'fontawesome'   : './public/vendor/fontawesome',
     'mapbox'        : './public/vendor/mapbox.js',
     'markercluster' : './public/vendor/leaflet.markercluster',
-    'others'        : './public/vendor/others'
+    'others'        : './public/vendor/others',
+    'select2'       : './public/vendor/select2'
 };
 
 var urls = {
@@ -34,7 +35,9 @@ elixir(function(mix) {
                 paths.others + '/bootstrap.min.css',
                 paths.fontawesome + '/css/font-awesome.min.css',
                 paths.markercluster + '/dist/MarkerCluster.css',
-                paths.markercluster + '/dist/MarkerCluster.Default.css'
+                paths.markercluster + '/dist/MarkerCluster.Default.css',
+                paths.select2 + '/select2.css',
+                paths.select2 + '/select2-bootstrap.css'
             ],
             'public/css/vendor.css',
             './public'
@@ -45,6 +48,7 @@ elixir(function(mix) {
                 paths.bootstrap + '/dist/js/bootstrap.min.js',
                 paths.mapbox + '/mapbox.js',
                 paths.markercluster + '/dist/leaflet.markercluster.js',
+                paths.select2 + '/select2.min.js',
                 '/assets/js/*'
             ],
             'public/js/vendor.js',
@@ -54,4 +58,6 @@ elixir(function(mix) {
 
         .copy(paths.fontawesome + '/fonts', 'public/fonts')
         .copy(paths.bootstrap + '/fonts', 'public/fonts')
+        .copy(paths.select2 + '/*.png', 'public/build/css')
+        .copy(paths.select2 + '/*.gif', 'public/build/css')
 });
