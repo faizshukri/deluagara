@@ -31,33 +31,28 @@
                 {{-- Status --}}
                 <div class="form-group">
                     <label>Status</label>
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox" value=""> Undergraduate Student
-                        </label>
-                    </div>
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox" value=""> Postgraduate Student
-                        </label>
-                    </div>
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox" value=""> Working
-                        </label>
-                    </div>
+                    @foreach($statuses as $status)
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="status[]" value="{{ $status->id }}"> {{ $status->title }}
+                            </label>
+                        </div>
+                    @endforeach
                 </div>
 
                 {{-- Scholarship --}}
                 <div class="form-group">
-                    <label for="gender">Gender</label>
-                    <select type="text" class="form-control" id="gender" name="gender">
+                    <label for="scholarship">Scholarship</label>
+                    <select type="text" class="form-control" id="scholarship" name="scholarship">
                         <option value="">Select scholarship</option>
-                        <option value="mara">MARA</option>
-                        <option value="jpa">JPA</option>
-                        <option value="ptptn">PTPTN</option>
+                        @foreach($scholarship as $scholar)
+                            <option value="{{ $scholar->id }}">{{ $scholar->title }}</option>
+                        @endforeach
                     </select>
                 </div>
+
+                {{-- Submit --}}
+                <button type="submit" class="btn btn-primary btn-block">Search</button>
 
             </form>
         </div>

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Scholarship;
+use App\UserStatus;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -12,7 +14,9 @@ class PeopleController extends Controller
     //
     public function index()
     {
+        $statuses = UserStatus::all();
+        $scholarship = Scholarship::all();
 
-        return view('people.home');
+        return view('people.home', compact('statuses', 'scholarship'));
     }
 }
