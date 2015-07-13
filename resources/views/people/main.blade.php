@@ -4,18 +4,18 @@
     <p class="clearfix">&nbsp;</p>
     <div class="row">
         <div class="col-md-3">
-            <form action="">
+            <form method="get" action="{{ route('people.index') }}">
 
                 {{-- Name --}}
                 <div class="form-group">
                     <label for="name">Name</label>
-                    <input type="text" class="form-control" id="name" name="name" placeholder="Name">
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Name" value="{{ $request['name'] or '' }}">
                 </div>
 
                 {{-- City --}}
                 <div class="form-group">
                     <label for="city">City (e.g Manchester)</label>
-                    <input type="text" class="form-control" id="city" name="city">
+                    <input type="text" class="form-control" id="city" name="city" value="{{ $request['city'] or '' }}" data-option="{{ $city }}">
                 </div>
 
                 {{-- Gender --}}
@@ -23,8 +23,8 @@
                     <label for="gender">Gender</label>
                     <select type="text" class="form-control" id="gender" name="gender">
                         <option value="">Select gender</option>
-                        <option value="male">Male</option>
-                        <option value="female">Female</option>
+                        <option value="male" {{ isset($request['gender']) && $request['gender'] == 'male' ? 'selected' : '' }}>Male</option>
+                        <option value="female" {{ isset($request['gender']) && $request['gender'] == 'female' ? 'selected' : '' }}>Female</option>
                     </select>
                 </div>
 
@@ -34,7 +34,8 @@
                     @foreach($statuses as $status)
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox" name="status[]" value="{{ $status->id }}"> {{ $status->title }}
+                                <input type="checkbox" name="status[]" value="{{ $status->id }}" {{ isset($request['status']) && in_array( $status->id, $request['status']  ) ? 'checked' : '' }}>
+                                    {{ $status->title }}
                             </label>
                         </div>
                     @endforeach
@@ -46,14 +47,14 @@
                     <select type="text" class="form-control" id="scholarship" name="scholarship">
                         <option value="">Select scholarship</option>
                         @foreach($scholarship as $scholar)
-                            <option value="{{ $scholar->id }}">{{ $scholar->title }}</option>
+                            <option value="{{ $scholar->id }}" {{ isset($request['scholarship']) && $request['scholarship'] == $scholar->id ? 'selected' : '' }}>{{ $scholar->title }}</option>
                         @endforeach
                     </select>
                 </div>
 
                 {{-- Submit --}}
                 <button type="submit" class="btn btn-primary btn-block">Search</button>
-
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
             </form>
         </div>
         <div class="col-md-9">
@@ -82,6 +83,12 @@
                 cache: true
             },
             minimumInputLength: 3,
+            initSelection: function (item, callback) {
+                var id = item.val();
+                var text = item.data('option');
+                var data = { id: id, text: text };
+                callback(data);
+            }
         });
     </script>
 @endsection
