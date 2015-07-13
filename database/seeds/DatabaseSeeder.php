@@ -14,14 +14,10 @@ class DatabaseSeeder extends Seeder
     {
         Model::unguard();
 
-        // $this->call(UserTableSeeder::class);
-        factory('App\User', 50)->create()->each(function($u){
-            factory('App\Location')->create([ 'user_id' => $u->id ]);
-        });
-
-        factory('App\User')->create(['email' => 'faiz@example.com', 'name' => 'Faiz Shukri', 'username' => 'faiz', 'password' => bcrypt('password')]);
-
-        $this->call(InstituteSeeder::class);
+        $this->call(ScholarshipTableSeeder::class);
+        $this->call(UserStatusTableSeeder::class);
+        $this->call(UserTableSeeder::class);
+        $this->call(InstituteTableSeeder::class);
 
         Model::reguard();
     }
