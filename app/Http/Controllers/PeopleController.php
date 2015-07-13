@@ -17,6 +17,6 @@ class PeopleController extends Controller
         $statuses = UserStatus::all();
         $scholarship = Scholarship::all();
 
-        return view('people.home', compact('statuses', 'scholarship'));
+        return view('people.main', compact('statuses', 'scholarship'));
     }
 }
