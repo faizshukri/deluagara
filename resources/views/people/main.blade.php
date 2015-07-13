@@ -60,6 +60,7 @@
         <div class="col-md-9">
             <div class="row">
                 <div class="col-md-12">
+                    @include('partials/map-result')
                     <ul>
                         @foreach($users as $user)
                             <li>{{ $user->name }} - {{ $user->location->city->name }}</li>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Contracts\GeoIP;
 use App\Scholarship;
 use App\User;
 use App\Location;
@@ -16,7 +17,7 @@ use App\Http\Controllers\Controller;
 class PeopleController extends Controller
 {
     //
-    public function index(Request $request)
+    public function index(Request $request, GeoIP $geoip)
     {
 
         if($request->input('name') !== NULL) $users = $this->search($request)->paginate(15);
@@ -26,8 +27,9 @@ class PeopleController extends Controller
         $scholarship = Scholarship::all();
         $request = $request->all();
         $city = !empty($request['city']) ? City::find(intval($request['city']))->name : '' ;
+        $user_coord = $geoip->getLocation();
 
-        return view('people.main', compact('statuses', 'scholarship', 'users', 'request', 'city'));
+        return view('people.main', compact('statuses', 'scholarship', 'users', 'request', 'city', 'user_coord'));
     }
 
     private function search($request){

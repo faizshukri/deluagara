@@ -1,10 +1,13 @@
 <div id='map-front'></div>
 
 @section('header')
+    @parent
     <link rel="stylesheet" href="/vendor/mapbox.js/mapbox.css"/>
 @endsection
 
 @section('footer')
+    @parent
+
     <script>
         (function(){
 
