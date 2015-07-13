@@ -51,3 +51,9 @@ $factory->define(App\Institute::class, function($faker){
         'name' => $faker->company
     ];
 });
+
+$factory->define(App\City::class, function($faker){
+    return [
+        'name' => $faker->city
+    ];
+});

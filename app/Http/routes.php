@@ -36,8 +36,12 @@ Route::group(['prefix'=>'api/v1'], function(){
     Route::get('locations', 'Api\V1\LocationController@locations');
     Route::get('locations.geojson', 'Api\V1\LocationController@geolocations');
 
-    // Get institutes list
-    Route::get('institutes/{name}', 'Api\V1\InstituteController@institutes');
+    // Select2 list path
+    $select2path = [ 'institutes', 'cities' ];
+
+    // Get select2 list
+    Route::get('{category}/{name}', 'Api\V1\Select2SourceController@query')
+        ->where('category', '(' . implode('|', $select2path) . ')');
 });
 
 Route::get('{username}', 'AccountController@user');
