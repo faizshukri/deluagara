@@ -3,74 +3,79 @@
 @section('content')
     <p class="clearfix">&nbsp;</p>
     <div class="row">
-        <div class="col-md-3">
-            <form method="get" action="{{ route('people.index') }}">
+        <div class="col-sm-3">
+            <div class="panel-wrapper">
 
-                {{-- Name --}}
-                <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="text" class="form-control" id="name" name="name" placeholder="Name" value="{{ $request['name'] or '' }}">
-                </div>
+                <form method="get" action="{{ route('people.index') }}">
 
-                {{-- City --}}
-                <div class="form-group">
-                    <label for="city">City (e.g Manchester)</label>
-                    <input type="text" class="form-control" id="city" name="city" value="{{ $request['city'] or '' }}" data-option="{{ $city }}">
-                </div>
+                    {{-- Name --}}
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Name" value="{{ $request['name'] or '' }}">
+                    </div>
 
-                {{-- Gender --}}
-                <div class="form-group">
-                    <label for="gender">Gender</label>
-                    <select type="text" class="form-control" id="gender" name="gender">
-                        <option value="">Select gender</option>
-                        <option value="male" {{ isset($request['gender']) && $request['gender'] == 'male' ? 'selected' : '' }}>Male</option>
-                        <option value="female" {{ isset($request['gender']) && $request['gender'] == 'female' ? 'selected' : '' }}>Female</option>
-                    </select>
-                </div>
+                    {{-- City --}}
+                    <div class="form-group">
+                        <label for="city">City (e.g Manchester)</label>
+                        <input type="text" class="form-control" id="city" name="city" value="{{ $request['city'] or '' }}" data-option="{{ $city }}">
+                    </div>
 
-                {{-- Status --}}
-                <div class="form-group">
-                    <label>Status</label>
-                    @foreach($statuses as $status)
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" name="status[]" value="{{ $status->id }}" {{ isset($request['status']) && in_array( $status->id, $request['status']  ) ? 'checked' : '' }}>
-                                    {{ $status->title }}
-                            </label>
-                        </div>
-                    @endforeach
-                </div>
+                    {{-- Gender --}}
+                    <div class="form-group">
+                        <label for="gender">Gender</label>
+                        <select type="text" class="form-control" id="gender" name="gender">
+                            <option value="">Select gender</option>
+                            <option value="male" {{ isset($request['gender']) && $request['gender'] == 'male' ? 'selected' : '' }}>Male</option>
+                            <option value="female" {{ isset($request['gender']) && $request['gender'] == 'female' ? 'selected' : '' }}>Female</option>
+                        </select>
+                    </div>
 
-                {{-- Scholarship --}}
-                <div class="form-group">
-                    <label for="scholarship">Scholarship</label>
-                    <select type="text" class="form-control" id="scholarship" name="scholarship">
-                        <option value="">Select scholarship</option>
-                        @foreach($scholarship as $scholar)
-                            <option value="{{ $scholar->id }}" {{ isset($request['scholarship']) && $request['scholarship'] == $scholar->id ? 'selected' : '' }}>{{ $scholar->title }}</option>
+                    {{-- Status --}}
+                    <div class="form-group">
+                        <label>Status</label>
+                        @foreach($statuses as $status)
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" name="status[]" value="{{ $status->id }}" {{ isset($request['status']) && in_array( $status->id, $request['status']  ) ? 'checked' : '' }}>
+                                        {{ $status->title }}
+                                </label>
+                            </div>
                         @endforeach
-                    </select>
-                </div>
+                    </div>
 
-                {{-- Submit --}}
-                <button type="submit" class="btn btn-primary btn-block">Search</button>
-                {{--<input type="hidden" name="_token" value="{{ csrf_token() }}">--}}
-            </form>
+                    {{-- Scholarship --}}
+                    <div class="form-group">
+                        <label for="scholarship">Scholarship</label>
+                        <select type="text" class="form-control" id="scholarship" name="scholarship">
+                            <option value="">Select scholarship</option>
+                            @foreach($scholarship as $scholar)
+                                <option value="{{ $scholar->id }}" {{ isset($request['scholarship']) && $request['scholarship'] == $scholar->id ? 'selected' : '' }}>{{ $scholar->title }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    {{-- Submit --}}
+                    <button type="submit" class="btn btn-primary btn-block">Search</button>
+                    {{--<input type="hidden" name="_token" value="{{ csrf_token() }}">--}}
+                </form>
+            </div>
         </div>
-        <div class="col-md-9">
-            <div class="row">
-                <div class="col-md-12">
-                    @include('partials/map-result')
-                    <ul>
-                        @foreach($users as $user)
-                            <li>{{ $user->name }} - {{ $user->location->city->name }}</li>
-                        @endforeach
-                    </ul>
-                    @if(sizeof($users) == 0)
-                        <h2>No result found</h2>
-                    @endif
+        <div class="col-sm-9">
+            <div class="panel-wrapper">
+                <div class="row">
+                    <div class="col-sm-12">
+                        @include('partials/map-result')
+                        <ul>
+                            @foreach($users as $user)
+                                <li><a href="{{ url($user->username) }}">{{ $user->name }}</a> - {{ $user->location->city->name }}</li>
+                            @endforeach
+                        </ul>
+                        @if(sizeof($users) == 0)
+                            <h2>No result found</h2>
+                        @endif
+                    </div>
+                    {!! $users->appends($request)->render() !!}
                 </div>
-                {!! $users->appends($request)->render() !!}
             </div>
         </div>
     </div>

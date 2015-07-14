@@ -20,6 +20,8 @@
                 var map = L.mapbox.map('map-front', 'mapbox.streets')
                         .setView([ {{ $user_coord['latitude'] }}, {{ $user_coord['longitude'] }} ], 13);
 
+                map.scrollWheelZoom.disable();
+
                 var featureLayer = L.mapbox.featureLayer()
                     .loadURL('/api/v1/locations.geojson')
                     .on('ready', function(e) {

@@ -56,8 +56,8 @@ elixir(function(mix) {
         )
         .version(['css/app.css', 'css/vendor.css', 'js/vendor.js'])
 
-        .copy(paths.fontawesome + '/fonts', 'public/fonts')
-        .copy(paths.bootstrap + '/fonts', 'public/fonts')
+        .copy(paths.fontawesome + '/fonts', 'public/build/fonts')
+        .copy(paths.bootstrap + '/fonts', 'public/build/fonts')
         .copy(paths.select2 + '/*.png', 'public/build/css')
         .copy(paths.select2 + '/*.gif', 'public/build/css')
 });

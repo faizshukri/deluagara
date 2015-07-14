@@ -11,14 +11,16 @@
     @yield('header')
 </head>
 <body>
-    @include('layouts.navbar')
+    <div class="main-wrapper">
+        @include('layouts.navbar')
 
-    @yield('map-front')
+        @yield('map-front')
 
-    <div class="container" id="deluagara">
-        @yield('content')
+        <div class="container" id="deluagara">
+            @yield('content')
+        </div>
+
+        @include('layouts.footer')
     </div>
-
-    @include('layouts.footer')
 </body>
 </html>
