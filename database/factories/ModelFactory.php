@@ -28,6 +28,11 @@ $factory->define(App\User::class, function ($faker) use (&$statuses, &$scholarsh
         'gender' => $faker->randomElement(['male', 'female']),
         'user_status_id' => $faker->randomElement($statuses),
         'scholarship_id' => $faker->randomElement($scholarship),
+        'about_me' => $faker->realText($maxNbChars = 200, $indexSize = 2),
+        'website' => $faker->url(),
+        'facebook_url' => 'http://facebook.com/'.$faker->userName(),
+        'twitter_url' => 'http://facebook.com/'.$faker->userName(),
+        'profile_image' => $faker->imageUrl(300, 225, 'people')
     ];
 });
 

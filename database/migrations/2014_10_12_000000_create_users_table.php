@@ -21,6 +21,11 @@ class CreateUsersTable extends Migration
             $table->string('gender', 7);
             $table->integer('user_status_id');
             $table->integer('scholarship_id');
+            $table->text('about_me');
+            $table->string('website');
+            $table->string('facebook_url');
+            $table->string('twitter_url');
+            $table->string('profile_image');
             $table->rememberToken();
             $table->timestamps();
         });
