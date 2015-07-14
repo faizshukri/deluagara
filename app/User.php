@@ -45,7 +45,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 
     public function sponsor()
     {
-        return $this->belongsTo('App\Sponsor');
+        return $this->belongsTo('App\Sponsor', 'sponsor_id');
     }
 
 }

@@ -5,7 +5,8 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <h2>Edit Profile</h2>
-            <form class="form-horizontal" action="{{ route('account.update', $user->id) }}" method="post">
+            {!! Form::model($user, ['route' => ['account.update'], 'class' => 'form-horizontal' ]) !!}
+                {!! Form::token() !!}
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h3 class="panel-title">Basic Information</h3>
@@ -13,73 +14,80 @@
                     <div class="panel-body">
 
                         {{-- Name --}}
-                        <div class="form-group">
-                            <label class="control-label col-sm-2" for="name">Name</label>
+                        <div class="form-group @if ($errors->has('name')) has-error @endif">
+                            {!! Form::label('name', 'Name', ['class'=>'control-label col-sm-2']) !!}
                             <div class="col-sm-10">
-                                <input class="form-control" type="text" name="name" id="name" value="{{ $user->name or '' }}"/>
+                                {!! Form::text('name', null, ['class'=>'form-control']) !!}
+                                @if ($errors->has('name')) <p class="help-block">{{ $errors->first('name') }}</p> @endif
                             </div>
                         </div>
 
                         {{-- Username --}}
-                        <div class="form-group">
-                            <label class="control-label col-sm-2" for="username">Username</label>
+                        <div class="form-group @if ($errors->has('username')) has-error @endif">
+                            {!! Form::label('username', 'Username', ['class'=>'control-label col-sm-2']) !!}
                             <div class="col-sm-10">
-                                <input class="form-control" type="text" name="username" id="username" value="{{ $user->username or '' }}"/>
+                                {!! Form::text('username', null, ['class'=>'form-control']) !!}
+                                @if ($errors->has('username')) <p class="help-block">{{ $errors->first('username') }}</p> @endif
                             </div>
                         </div>
 
                         {{-- Email --}}
-                        <div class="form-group">
-                            <label class="control-label col-sm-2" for="email">Email</label>
+                        <div class="form-group @if ($errors->has('email')) has-error @endif">
+                            {!! Form::label('email', 'Email', ['class'=>'control-label col-sm-2']) !!}
                             <div class="col-sm-10">
-                                <input class="form-control" type="text" name="email" id="email" value="{{ $user->email or '' }}"/>
+                                {!! Form::text('email', null, ['class'=>'form-control']) !!}
+                                @if ($errors->has('email')) <p class="help-block">{{ $errors->first('email') }}</p> @endif
                             </div>
                         </div>
 
                         {{-- About Me --}}
-                        <div class="form-group">
-                            <label class="control-label col-sm-2" for="about_me">About Me</label>
+                        <div class="form-group @if ($errors->has('about_me')) has-error @endif">
+                            {!! Form::label('about_me', 'About Me', ['class'=>'control-label col-sm-2']) !!}
                             <div class="col-sm-10">
-                                <textarea class="form-control" name="about_me" id="about_me" rows="3" style="resize: none;">{{ $user->about_me or '' }}</textarea>
+                                {!! Form::textarea('about_me', null, ['class'=>'form-control', 'rows' => 3, 'style' => 'resize: none;']) !!}
+                                @if ($errors->has('about_me')) <p class="help-block">{{ $errors->first('about_me') }}</p> @endif
                             </div>
                         </div>
 
                         {{-- Gender --}}
-                        <div class="form-group">
-                            <label class="control-label col-sm-2" for="gender">Gender</label>
+                        <div class="form-group @if ($errors->has('gender')) has-error @endif">
+                            {!! Form::label('gender', 'Gender', ['class'=>'control-label col-sm-2']) !!}
                             <div class="col-sm-10">
                                 <label class="radio-inline">
-                                    <input type="radio" name="gender" value="male" {{ $user->gender == 'male' ? 'checked' : '' }}> Male
+                                    {!! Form::radio('gender', 'male') !!} Male
                                 </label>
                                 <label class="radio-inline">
-                                    <input type="radio" name="gender" value="female" {{ $user->gender == 'female' ? 'checked' : '' }}> Female
+                                    {!! Form::radio('gender', 'female') !!} Female
                                 </label>
+                                @if ($errors->has('gender')) <p class="help-block">{{ $errors->first('gender') }}</p> @endif
                             </div>
                         </div>
 
                         {{-- Status --}}
-                        @inject('statuses', 'App\UserStatus')
-                        <div class="form-group">
-                            <label class="control-label col-sm-2" for="status">Status</label>
+                        <div class="form-group @if ($errors->has('status')) has-error @endif">
+                            {!! Form::label('status', 'Status', ['class'=>'control-label col-sm-2']) !!}
                             <div class="col-sm-10">
-                                @foreach( $statuses->all() as $status )
+
+                                @foreach( $statuses as $status )
                                     <label class="radio-inline">
-                                        <input type="radio" name="status" value="{{ $status->id }}" {{ $user->user_status_id == $status->id ? 'checked' : '' }}> {{ $status->title }}
+                                        {!! Form::radio('status[id]', $status->id) !!} {{ $status->title }}
                                     </label>
                                 @endforeach
+                                @if ($errors->has('status')) <p class="help-block">{{ $errors->first('status') }}</p> @endif
                             </div>
                         </div>
 
                         {{-- Sponsor --}}
-                        @inject('sponsors', 'App\Sponsor')
-                        <div class="form-group">
-                            <label class="control-label col-sm-2" for="sponsor">Sponsor</label>
+                        <div class="form-group @if ($errors->has('sponsor')) has-error @endif">
+                            {!! Form::label('sponsor', 'Sponsor', ['class'=>'control-label col-sm-2']) !!}
                             <div class="col-sm-10">
-                                @foreach( $sponsors->all() as $sponsor )
+
+                                @foreach( $sponsors as $sponsor )
                                     <label class="radio-inline">
-                                        <input type="radio" name="sponsor" value="{{ $sponsor->id }}" {{ $user->sponsor_id == $sponsor->id ? 'checked' : '' }}> {{ $sponsor->title }}
+                                        {!! Form::radio('sponsor[id]', $sponsor->id) !!} {{ $sponsor->title }}
                                     </label>
                                 @endforeach
+                                @if ($errors->has('sponsor')) <p class="help-block">{{ $errors->first('sponsor') }}</p> @endif
                             </div>
                         </div>
 
@@ -100,26 +108,30 @@
                     <div class="panel-body">
 
                         {{-- Address --}}
-                        <div class="form-group">
-                            <label class="control-label col-sm-2" for="location.address">Address</label>
+                        <div class="form-group @if ($errors->has('location.address')) has-error @endif">
+                            {!! Form::label('location[address]', 'Address', ['class'=>'control-label col-sm-2']) !!}
                             <div class="col-sm-10">
-                                <input class="form-control" type="text" name="location.address" id="location.address" value="{{ $user->location->address or '' }}"/>
+                                {!! Form::text('location[address]', null, ['class'=>'form-control']) !!}
+                                @if ($errors->has('location.address')) <p class="help-block">{{ $errors->first('location.address') }}</p> @endif
                             </div>
                         </div>
 
                         {{-- Postcode --}}
-                        <div class="form-group">
-                            <label class="control-label col-sm-2" for="location.postcode">Postcode</label>
+                        <div class="form-group @if ($errors->has('location.postcode')) has-error @endif">
+                            {!! Form::label('location[postcode]', 'Postcode', ['class'=>'control-label col-sm-2']) !!}
                             <div class="col-sm-10">
-                                <input class="form-control" type="text" name="location.postcode" id="location.postcode" value="{{ $user->location->postcode or '' }}"/>
+                                {!! Form::text('location[postcode]', null, ['class'=>'form-control']) !!}
+                                @if ($errors->has('location.postcode')) <p class="help-block">{{ $errors->first('location.postcode') }}</p> @endif
                             </div>
                         </div>
 
                         {{-- City --}}
-                        <div class="form-group">
-                            <label class="control-label col-sm-2" for="city">City (e.g Manchester)</label>
+                        <div class="form-group @if ($errors->has('location.city.id')) has-error @endif">
+                            {!! Form::label('location[city][id]', 'City (e.g Manchester)', ['class'=>'control-label col-sm-2']) !!}
                             <div class="col-sm-10">
-                                <input class="form-control" type="text" name="city" id="city" value="{{ $user->location->city->id or '' }}" data-option="{{ $user->location->city->name or '' }}">
+                                {!! Form::text('location[city][id]', null, ['class'=>'form-control']) !!}
+                                {!! Form::hidden('location[city][name]') !!}
+                                @if ($errors->has('location.city.id')) <p class="help-block">{{ $errors->first('location.city.id') }}</p> @endif
                             </div>
                         </div>
 
@@ -132,26 +144,29 @@
                     <div class="panel-body">
 
                         {{-- Website --}}
-                        <div class="form-group">
-                            <label class="control-label col-sm-2" for="website">Website</label>
+                        <div class="form-group @if ($errors->has('website')) has-error @endif">
+                            {!! Form::label('website', 'Website', ['class'=>'control-label col-sm-2']) !!}
                             <div class="col-sm-10">
-                                <input class="form-control" type="text" name="website" id="website" value="{{ $user->website or '' }}"/>
+                                {!! Form::text('website', null, ['class'=>'form-control']) !!}
+                                @if ($errors->has('website')) <p class="help-block">{{ $errors->first('website') }}</p> @endif
                             </div>
                         </div>
 
                         {{-- Facebook URL --}}
-                        <div class="form-group">
-                            <label class="control-label col-sm-2" for="facebook_url">Facebook URL</label>
+                        <div class="form-group @if ($errors->has('facebook_url')) has-error @endif">
+                            {!! Form::label('facebook_url', 'Facebook URL', ['class'=>'control-label col-sm-2']) !!}
                             <div class="col-sm-10">
-                                <input class="form-control" type="text" name="facebook_url" id="facebook_url" value="{{ $user->facebook_url or '' }}"/>
+                                {!! Form::text('facebook_url', null, ['class'=>'form-control']) !!}
+                                @if ($errors->has('facebook_url')) <p class="help-block">{{ $errors->first('facebook_url') }}</p> @endif
                             </div>
                         </div>
 
                         {{-- Twitter URL --}}
-                        <div class="form-group">
-                            <label class="control-label col-sm-2" for="twitter_url">Twitter URL</label>
+                        <div class="form-group @if ($errors->has('twitter_url')) has-error @endif">
+                            {!! Form::label('twitter_url', 'Twitter URL', ['class'=>'control-label col-sm-2']) !!}
                             <div class="col-sm-10">
-                                <input class="form-control" type="text" name="twitter_url" id="twitter_url" value="{{ $user->twitter_url or '' }}"/>
+                                {!! Form::text('twitter_url', null, ['class'=>'form-control']) !!}
+                                @if ($errors->has('twitter_url')) <p class="help-block">{{ $errors->first('twitter_url') }}</p> @endif
                             </div>
                         </div>
 
@@ -162,36 +177,44 @@
                         <input type="submit" class="btn btn-primary" value="Save" />
                     </div>
                 </div>
-            </form>
+            {!! Form::close() !!}
         </div>
     </div>
 @endsection
 
 @section('footer')
+    @parent
     <script>
-        $('#city').select2({
-            placeholder: "Select a city",
-            allowClear: true,
-            ajax: {
-                url: function(city){
-                    return '/api/v1/cities/'+city;
+
+        (function(){
+            var select2Selector = $('[id="location[city][id]"]');
+
+            select2Selector.select2({
+                placeholder: "Select a city",
+                allowClear: true,
+                ajax: {
+                    url: function(city){
+                        return '/api/v1/cities/'+city;
+                    },
+                    results: function (data, page) {
+                        return {
+                            results: data
+                        };
+                    },
+                    quietMillis: 250,
+                    dataType: 'json',
+                    cache: true
                 },
-                results: function (data, page) {
-                    return {
-                        results: data
-                    };
-                },
-                quietMillis: 250,
-                dataType: 'json',
-                cache: true
-            },
-            minimumInputLength: 3,
-            initSelection: function (item, callback) {
-                var id = item.val();
-                var text = item.data('option');
-                var data = { id: id, text: text };
-                callback(data);
-            }
-        });
+                minimumInputLength: 3,
+                initSelection: function (item, callback) {
+                    var id = item.val();
+                    var text = $('[name="location[city][name]"]').val();
+                    var data = { id: id, text: text };
+                    callback(data);
+                }
+            }).on('select2-selecting', function(val){
+                $('[name="location[city][name]"]').val(val.choice.text);
+            });
+        })();
     </script>
 @endsection
