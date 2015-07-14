@@ -40,6 +40,15 @@
                             </div>
                         </div>
 
+                        {{-- Phone --}}
+                        <div class="form-group @if ($errors->has('phone')) has-error @endif">
+                            {!! Form::label('phone', 'Phone', ['class'=>'control-label col-sm-2']) !!}
+                            <div class="col-sm-10">
+                                {!! Form::text('phone', null, ['class'=>'form-control']) !!}
+                                @if ($errors->has('phone')) <p class="help-block">{{ $errors->first('phone') }}</p> @endif
+                            </div>
+                        </div>
+
                         {{-- About Me --}}
                         <div class="form-group @if ($errors->has('about_me')) has-error @endif">
                             {!! Form::label('about_me', 'About Me', ['class'=>'control-label col-sm-2']) !!}
@@ -107,12 +116,12 @@
                     </div>
                     <div class="panel-body">
 
-                        {{-- Address --}}
-                        <div class="form-group @if ($errors->has('location.address')) has-error @endif">
-                            {!! Form::label('location[address]', 'Address', ['class'=>'control-label col-sm-2']) !!}
+                        {{-- Street --}}
+                        <div class="form-group @if ($errors->has('location.street')) has-error @endif">
+                            {!! Form::label('location[street]', 'Street', ['class'=>'control-label col-sm-2']) !!}
                             <div class="col-sm-10">
-                                {!! Form::text('location[address]', null, ['class'=>'form-control']) !!}
-                                @if ($errors->has('location.address')) <p class="help-block">{{ $errors->first('location.address') }}</p> @endif
+                                {!! Form::text('location[street]', null, ['class'=>'form-control']) !!}
+                                @if ($errors->has('location.street')) <p class="help-block">{{ $errors->first('location.street') }}</p> @endif
                             </div>
                         </div>
 

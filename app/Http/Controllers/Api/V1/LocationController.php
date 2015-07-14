@@ -37,7 +37,7 @@ class LocationController extends Controller
                         'marker-color' => '#548cba',
                         'marker-symbol' => 'building',
                         'title' => $loc->user->name,
-                        'description' => $loc->address
+                        'description' => $loc->street
                     ]
                 ];
             })

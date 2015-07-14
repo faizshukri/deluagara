@@ -18,10 +18,10 @@
                         <p><i>{{ $user->about_me }}</i></p>
                         <p style="font-size: 1.7em;">
                             @if($user->facebook_url)
-                                <a href="{{ $user->facebook_url }}" target="_blank"><i class="fa fa-facebook-official" style="color: #45609d;"></i></a>&nbsp;
+                                <a href="{{ url('http://facebook.com/') . $user->facebook_url }}" target="_blank"><i class="fa fa-facebook-official" style="color: #45609d;"></i></a>&nbsp;
                             @endif
                             @if($user->twitter_url)
-                                <a href="{{ $user->twitter_url }}" target="_blank"><i class="fa fa-twitter" style="color: #22c7ff;"></i></a>&nbsp;
+                                <a href="{{ url('http://twitter.com/') . $user->twitter_url }}" target="_blank"><i class="fa fa-twitter" style="color: #22c7ff;"></i></a>&nbsp;
                             @endif
                             @if($user->website)
                                 <a href="{{ $user->website }}" target="_blank"><i class="fa fa-external-link"></i></a>
