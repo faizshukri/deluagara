@@ -17,6 +17,8 @@ class AppServiceProvider extends ServiceProvider
         view()->composer('*', function($view) use ($auth){
             $view->with('currentUser', $auth->user());
         });
+
+        view()->share('hideNavbar', false);
     }
 
     /**

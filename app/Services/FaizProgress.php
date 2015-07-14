@@ -15,7 +15,8 @@ class FaizProgress implements Progress{
     public function __construct(Request $request)
     {
         $this->request = $request;
-        $this->percentage = $request->user()->progress;
+        $user = $this->request->user();
+        $this->percentage = $user ? intval($user->progress) : 0;
     }
 
     public function getProgress()

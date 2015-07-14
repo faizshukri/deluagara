@@ -12,7 +12,10 @@
 </head>
 <body>
     <div class="main-wrapper">
-        @include('layouts.navbar')
+
+        @unless($hideNavbar)
+            @include('layouts.navbar')
+        @endunless
 
         @yield('map-front')
 
