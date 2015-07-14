@@ -30,9 +30,8 @@ class AccountController extends Controller
         return $this->index($request);
     }
 
-    public function user($username)
+    public function user(User $user)
     {
-        $user = $this->user->where('username', $username)->firstOrFail();
         return view('accounts/main', compact('user'));
     }
 }
