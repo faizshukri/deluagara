@@ -14,8 +14,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(Guard $auth)
     {
-        view()->composer('layouts.navbar', function($view) use ($auth){
-            $view->with('user', $auth->user());
+        view()->composer('*', function($view) use ($auth){
+            $view->with('currentUser', $auth->user());
         });
     }
 
@@ -27,5 +27,6 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->bind(\App\Contracts\GeoIP::class, \App\Services\FaizGeoIP::class);
+        $this->app->bind(\App\Contracts\Progress::class, \App\Services\FaizProgress::class);
     }
 }

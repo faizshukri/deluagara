@@ -26,6 +26,8 @@ class CreateUsersTable extends Migration
             $table->string('facebook_url')->nullable();
             $table->string('twitter_url')->nullable();
             $table->string('profile_image')->nullable();
+            $table->tinyInteger('email_verified')->default(0);
+            $table->smallInteger('progress')->default(10);
             $table->rememberToken();
             $table->timestamps();
         });

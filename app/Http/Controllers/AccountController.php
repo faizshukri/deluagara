@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Contracts\GeoIP;
+use App\Contracts\Progress;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -16,10 +17,13 @@ class AccountController extends Controller
 
     private $geoip;
 
-    public function __construct(User $user, GeoIP $geoip)
+    private $progress;
+
+    public function __construct(User $user, GeoIP $geoip, Progress $progress)
     {
         $this->user = $user;
         $this->geoip = $geoip;
+        $this->progress = $progress;
     }
 
     // Handle /account
@@ -27,8 +31,9 @@ class AccountController extends Controller
     {
         if( !$user->exists ) $user = $request->user();
         $user_coord = $this->geoip->getLocation();
+        $progress = $this->progress->getProgress();
 
-        return view('accounts/main', compact('user', 'user_coord'));
+        return view('accounts/main', compact('user', 'user_coord', 'progress'));
     }
 
     public function edit(Request $request)

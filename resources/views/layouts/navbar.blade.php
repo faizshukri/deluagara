@@ -14,7 +14,7 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                @if ( $user )
+                @if ( $currentUser )
                     <li class="{{ set_active('people') }}"><a href="{{ route('people.index') }}">People</a></li>
                     <li class="{{ set_active('event') }}"><a href="{{ route('event.index') }}">Event</a></li>
                     <li class="{{ set_active('host') }}"><a href="#">Accomodation</a></li>
@@ -23,11 +23,11 @@
                 @endif
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                @if ( $user )
+                @if ( $currentUser )
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ $user->name }} <span class="caret"></span></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ $currentUser->name }} <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="{{ route('account.index') }}">My Profile</a></li>
+                            <li><a href="{{ url($currentUser->username) }}">My Profile</a></li>
                             <li><a href="{{ route('auth.logout') }}">Logout</a></li>
                         </ul>
                     </li>

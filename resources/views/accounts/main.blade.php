@@ -35,6 +35,26 @@
                         @include('partials.map-account')
                     </div>
                 </div>
+                @if( $currentUser->id == $user->id )
+                    <p class="clearfix">&nbsp;</p>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">Your profile</h3>
+                                </div>
+                                <div class="panel-body">
+                                    <div class="progress" style="height: 25px; margin-bottom: 5px;">
+                                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{ $progress }}" aria-valuemin="0" aria-valuemax="100" style="width:{{ $progress }}%; min-width: 2em;">
+                                            {{ $progress }}%
+                                        </div>
+                                    </div>
+                                    <a href="{{ route('account.edit') }}">Complete your Profile &gt;</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endif
             </div>
         </div>
     </div>
