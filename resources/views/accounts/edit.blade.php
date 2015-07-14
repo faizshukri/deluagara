@@ -156,7 +156,10 @@
                         <div class="form-group @if ($errors->has('facebook_url')) has-error @endif">
                             {!! Form::label('facebook_url', 'Facebook URL', ['class'=>'control-label col-sm-2']) !!}
                             <div class="col-sm-10">
-                                {!! Form::text('facebook_url', null, ['class'=>'form-control']) !!}
+                                <div class="input-group">
+                                    <span class="input-group-addon">http://facebook.com/</span>
+                                    {!! Form::text('facebook_url', null, ['class'=>'form-control']) !!}
+                                </div>
                                 @if ($errors->has('facebook_url')) <p class="help-block">{{ $errors->first('facebook_url') }}</p> @endif
                             </div>
                         </div>
@@ -165,7 +168,10 @@
                         <div class="form-group @if ($errors->has('twitter_url')) has-error @endif">
                             {!! Form::label('twitter_url', 'Twitter URL', ['class'=>'control-label col-sm-2']) !!}
                             <div class="col-sm-10">
-                                {!! Form::text('twitter_url', null, ['class'=>'form-control']) !!}
+                                <div class="input-group">
+                                    <span class="input-group-addon">http://twitter.com/</span>
+                                    {!! Form::text('twitter_url', null, ['class'=>'form-control']) !!}
+                                </div>
                                 @if ($errors->has('twitter_url')) <p class="help-block">{{ $errors->first('twitter_url') }}</p> @endif
                             </div>
                         </div>
