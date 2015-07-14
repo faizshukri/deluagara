@@ -14,14 +14,16 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li class="{{ set_active('people') }}"><a href="{{ route('people.index') }}">People</a></li>
-                <li class="{{ set_active('event') }}"><a href="{{ route('event.index') }}">Event</a></li>
-                <li class="{{ set_active('host') }}"><a href="#">Accomodation</a></li>
-                <li class="{{ set_active('mybay') }}"><a href="#">MyBay</a></li>
-                <li class="{{ set_active('blog') }}"><a href="#">Blog</a></li>
+                @if ( $user )
+                    <li class="{{ set_active('people') }}"><a href="{{ route('people.index') }}">People</a></li>
+                    <li class="{{ set_active('event') }}"><a href="{{ route('event.index') }}">Event</a></li>
+                    <li class="{{ set_active('host') }}"><a href="#">Accomodation</a></li>
+                    <li class="{{ set_active('mybay') }}"><a href="#">MyBay</a></li>
+                    <li class="{{ set_active('blog') }}"><a href="#">Blog</a></li>
+                @endif
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                @if ($user )
+                @if ( $user )
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ $user->name }} <span class="caret"></span></a>
                         <ul class="dropdown-menu">

@@ -5,7 +5,7 @@
 @section('content')
     <p class="clearfix">&nbsp;</p>
     <div class="row">
-        <div class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2">
+        <div class="col-md-8 col-md-offset-2">
             <div class="panel-wrapper">
                 <div class="row">
                     <div class="col-xs-3">
