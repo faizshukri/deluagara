@@ -25,6 +25,7 @@
                 var markers = new L.MarkerClusterGroup();
 
                 users.forEach(function(user, index){
+                    if(!user.location) return;
                     var marker = L.marker(new L.LatLng(user.location.latitude, user.location.longitude), {
                         icon: L.mapbox.marker.icon({'marker-symbol': 'building', 'marker-color': '#548cba'})
                     });

@@ -67,7 +67,7 @@
                         @include('partials/map-result')
                         <ul>
                             @foreach($users as $user)
-                                <li><a href="{{ url($user->username) }}">{{ $user->name }}</a> - {{ $user->location->city->name }}</li>
+                                <li><a href="{{ url($user->username) }}">{{ $user->name }}</a> - {{ $user->location->city->name or '' }}</li>
                             @endforeach
                         </ul>
                         @if(sizeof($users) == 0)
