@@ -34,7 +34,22 @@ footer {
   }
 }
 
-#map-front { height: 640px; width:100%; background-color: #efece2; }
+#map-front {
+  height: 640px;
+  width:100%;
+  background-color: #efece2;
+
+  @media (max-width: $screen-lg-min) {
+    height: 580px;
+  }
+
+  @media (max-width: $screen-sm-max) {
+    height: 480px;
+  }
+  @media (max-width: $screen-xs-max) {
+    height: 350px;
+  }
+}
 
 #deluagara {
   .colorgraph {
