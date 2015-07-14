@@ -27,6 +27,7 @@ Route::group(['middleware' => 'auth'], function(){
     // Account
     Route::get('account', [ 'as' => 'account.index', 'uses' => 'AccountController@index' ]);
     Route::get('account/edit', [ 'as' => 'account.edit', 'uses' => 'AccountController@edit' ]);
+    Route::post('account/update/{user}', [ 'as' => 'account.update', 'uses' => 'AccountController@update' ]);
 
     // People
     Route::get('people', [ 'as' => 'people.index', 'uses' => 'PeopleController@index' ]);

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Contracts\GeoIP;
-use App\Scholarship;
+use App\Sponsor;
 use App\User;
 use App\Location;
 use App\City;
@@ -24,12 +24,12 @@ class PeopleController extends Controller
         else $users = User::paginate(15);
 
         $statuses = UserStatus::all();
-        $scholarship = Scholarship::all();
+        $sponsors = Sponsor::all();
         $request = $request->all();
         $city = !empty($request['city']) ? City::find(intval($request['city']))->name : '' ;
         $user_coord = $geoip->getLocation();
 
-        return view('people.main', compact('statuses', 'scholarship', 'users', 'request', 'city', 'user_coord'));
+        return view('people.main', compact('statuses', 'sponsors', 'users', 'request', 'city', 'user_coord'));
     }
 
     private function search($request){
@@ -38,7 +38,7 @@ class PeopleController extends Controller
         $name = $request->input('name');
         $gender = $request->input('gender');
         $status = $request->input('status');
-        $scholarship = $request->input('scholarship');
+        $sponsor = $request->input('sponsor');
 
         $user_table = with(new User)->getTable();
         $location_table = with(new Location)->getTable();
@@ -62,8 +62,8 @@ class PeopleController extends Controller
             $users = $users->whereIn($user_table.'.user_status_id', $status);
         }
 
-        if ($scholarship != NULL) {
-            $users = $users->where($user_table.'.scholarship_id', $scholarship);
+        if ($sponsor != NULL) {
+            $users = $users->where($user_table.'.sponsor_id', $sponsor);
         }
 
         return User::whereIn('id', $users->lists('id'));

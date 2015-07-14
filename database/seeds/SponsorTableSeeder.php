@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class ScholarshipTableSeeder extends Seeder
+class SponsorTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,8 +12,8 @@ class ScholarshipTableSeeder extends Seeder
     public function run()
     {
         // Scholarship
-        foreach(['MARA', 'JPA', 'PTPTN'] as $scholarship) {
-            factory('App\Scholarship')->create([ 'title' => $scholarship ]);
+        foreach(['MARA', 'JPA', 'PTPTN'] as $sponsor) {
+            factory('App\Sponsor')->create([ 'title' => $sponsor ]);
         }
     }
 }

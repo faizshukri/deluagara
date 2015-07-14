@@ -24,7 +24,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
      *
      * @var array
      */
-    protected $fillable = ['name', 'username', 'email', 'password', 'gender', 'user_status_id', 'scholarship_id'];
+    protected $fillable = ['name', 'username', 'email', 'password', 'gender', 'user_status_id', 'sponsor_id'];
 
     /**
      * The attributes excluded from the model's JSON form.
@@ -43,9 +43,9 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         return $this->belongsTo('App\UserStatus', 'user_status_id');
     }
 
-    public function scholarship()
+    public function sponsor()
     {
-        return $this->belongsTo('App\Scholarship');
+        return $this->belongsTo('App\Sponsor');
     }
 
 }

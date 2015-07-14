@@ -20,7 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('password', 60);
             $table->string('gender', 7)->nullable();
             $table->integer('user_status_id')->nullable();
-            $table->integer('scholarship_id')->nullable();
+            $table->integer('sponsor_id')->nullable();
             $table->text('about_me')->nullable();
             $table->string('website')->nullable();
             $table->string('facebook_url')->nullable();

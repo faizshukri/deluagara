@@ -19,32 +19,38 @@ class AccountController extends Controller
 
     private $progress;
 
-    public function __construct(User $user, GeoIP $geoip, Progress $progress)
+    public function __construct(Request $request, GeoIP $geoip, Progress $progress)
     {
-        $this->user = $user;
+        $this->user = $request->user();
         $this->geoip = $geoip;
         $this->progress = $progress;
     }
 
     // Handle /account
-    public function index(Request $request, User $user = null)
+    public function index( User $user = null )
     {
-        if( !$user->exists ) $user = $request->user();
+        if( !$user->exists ) $user = $this->user;
         $user_coord = $this->geoip->getLocation();
         $progress = $this->progress->getProgress();
 
         return view('accounts/main', compact('user', 'user_coord', 'progress'));
     }
 
-    public function edit(Request $request)
+    public function edit()
     {
-        //@TODO Implement this
-        return $this->index($request);
+        $user = $this->user->load('location');
+        return view('accounts/edit', compact('user'));
+    }
+
+    public function update( User $user )
+    {
+//        dd($user);
+        return redirect()->route('account.index');
     }
 
     // Handle /{username}
-    public function user(Request $request, User $user)
+    public function user( User $user )
     {
-        return $this->index($request, $user);
+        return $this->index($user);
     }
 }

@@ -34,6 +34,8 @@ class RouteServiceProvider extends ServiceProvider
             if(!$user) abort(404);
             return $user;
         });
+
+        $router->model('user', 'App\User');
     }
 
     /**

@@ -43,13 +43,13 @@
                         @endforeach
                     </div>
 
-                    {{-- Scholarship --}}
+                    {{-- Sponsor --}}
                     <div class="form-group">
-                        <label for="scholarship">Scholarship</label>
-                        <select type="text" class="form-control" id="scholarship" name="scholarship">
-                            <option value="">Select scholarship</option>
-                            @foreach($scholarship as $scholar)
-                                <option value="{{ $scholar->id }}" {{ isset($request['scholarship']) && $request['scholarship'] == $scholar->id ? 'selected' : '' }}>{{ $scholar->title }}</option>
+                        <label for="sponsor">Sponsor</label>
+                        <select type="text" class="form-control" id="sponsor" name="sponsor">
+                            <option value="">Select sponsor</option>
+                            @foreach($sponsors as $sponsor)
+                                <option value="{{ $sponsor->id }}" {{ isset($request['sponsor']) && $request['sponsor'] == $sponsor->id ? 'selected' : '' }}>{{ $sponsor->title }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -88,7 +88,6 @@
             allowClear: true,
             ajax: {
                 url: function(city){
-                    console.log(city);
                     return '/api/v1/cities/'+city;
                 },
                 results: function (data, page) {

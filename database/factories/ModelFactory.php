@@ -11,13 +11,13 @@
 |
 */
 $statuses = false;
-$scholarship = false;
+$sponsors = false;
 $cities = false;
 
-$factory->define(App\User::class, function ($faker) use (&$statuses, &$scholarship) {
+$factory->define(App\User::class, function ($faker) use (&$statuses, &$sponsors) {
 
     if(!$statuses) $statuses = App\UserStatus::all()->lists('id')->toArray();
-    if(!$scholarship) $scholarship = App\Scholarship::all()->lists('id')->toArray();
+    if(!$sponsors) $sponsors = App\Sponsor::all()->lists('id')->toArray();
 
     return [
         'name' => $faker->name,
@@ -27,7 +27,7 @@ $factory->define(App\User::class, function ($faker) use (&$statuses, &$scholarsh
         'remember_token' => str_random(10),
         'gender' => $faker->randomElement(['male', 'female']),
         'user_status_id' => $faker->randomElement($statuses),
-        'scholarship_id' => $faker->randomElement($scholarship),
+        'sponsor_id' => $faker->randomElement($sponsors),
         'about_me' => $faker->realText($maxNbChars = 200, $indexSize = 2),
         'website' => $faker->url(),
         'facebook_url' => 'http://facebook.com/'.$faker->userName(),
@@ -42,7 +42,7 @@ $factory->define(App\UserStatus::class, function($faker){
     ];
 });
 
-$factory->define(App\Scholarship::class, function($faker){
+$factory->define(App\Sponsor::class, function($faker){
     return [
         'title' => $faker->sentence(2),
     ];
