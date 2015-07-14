@@ -43,7 +43,7 @@ class FaizGeoIP implements GeoIP
 
     private function checkLocalIp()
     {
-        if (!in_array(substr($this->request->getClientIp(), 0, 7), ['::1', '192.168'])) {
+        if (!in_array(substr($this->request->getClientIp(), 0, 7), ['::1', '192.168', '127.0.0'])) {
             $this->serviceUrl .= '/'. $this->request->getClientIp();
         }
     }
