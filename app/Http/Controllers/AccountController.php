@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Contracts\GeoIP;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -13,15 +14,21 @@ class AccountController extends Controller
 
     private $user;
 
-    public function __construct(User $user)
+    private $geoip;
+
+    public function __construct(User $user, GeoIP $geoip)
     {
         $this->user = $user;
+        $this->geoip = $geoip;
     }
 
-    public function index(Request $request)
+    // Handle /account
+    public function index(Request $request, User $user = null)
     {
-        $user = $request->user();
-        return view('accounts/main', compact('user'));
+        if( !$user->exists ) $user = $request->user();
+        $user_coord = $this->geoip->getLocation();
+
+        return view('accounts/main', compact('user', 'user_coord'));
     }
 
     public function edit(Request $request)
@@ -30,8 +37,9 @@ class AccountController extends Controller
         return $this->index($request);
     }
 
-    public function user(User $user)
+    // Handle /{username}
+    public function user(Request $request, User $user)
     {
-        return view('accounts/main', compact('user'));
+        return $this->index($request, $user);
     }
 }

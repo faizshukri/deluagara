@@ -9,11 +9,11 @@
             <div class="panel-wrapper">
                 <div class="row">
                     <div class="col-xs-3">
-                        <img src="{{ $user->profile_image }}" alt="{{ $user->name }}" style="width: 100%; padding: 3px; border: 1px solid #ddd;"/>
+                        <img src="{{ $user->profile_image or 'http://www.gravatar.com/avatar/' . md5(strtolower(trim( $user->email ))) . '?d=monsterid&s=250' }}" alt="{{ $user->name }}" style="width: 100%; padding: 3px; border: 1px solid #ddd;"/>
                     </div>
                     <div class="col-xs-9">
                         <h1 style="font-weight: normal; margin-bottom: 0px; margin-top: 0px;">{{ $user->name }}</h1>
-                        <h3 style="margin-top: 0px;">{{ $user->location->city->name }}</h3>
+                        <h3 style="margin-top: 0px;">{{ $user->location->city->name or '' }}</h3>
 
                         <p><i>{{ $user->about_me }}</i></p>
                         <p style="font-size: 1.7em;">
