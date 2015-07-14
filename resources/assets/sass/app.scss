@@ -69,9 +69,23 @@ footer {
     outline: 1px solid #ccc;
     padding: 15px;
     background-color: #fff;
+    position: relative;
     @media (min-width: $screen-sm-min){
       margin-left: -8px;
       margin-right: -8px;
     }
+
+    .button-edit {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 50px;
+      width: 50px;
+      text-align: center;
+      font-size: 2em;
+      padding: 5px;
+      z-index: 2;
+    }
+
   }
 }

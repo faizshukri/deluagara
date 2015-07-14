@@ -7,6 +7,11 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel-wrapper">
+
+                @if( $currentUser !== null && $currentUser->id == $user->id )
+                    <a class="button-edit btn btn-primary" href="{{ route('account.edit') }}"><i class="fa fa-pencil-square-o"></i></a>
+                @endif
+                
                 <div class="row">
                     <div class="col-xs-3">
                         <img src="{{ $user->profile_image or 'http://www.gravatar.com/avatar/' . md5(strtolower(trim( $user->email ))) . '?d=monsterid&s=250' }}" alt="{{ $user->name }}" style="width: 100%; padding: 3px; border: 1px solid #ddd;"/>
@@ -35,7 +40,7 @@
                         @include('partials.map-account')
                     </div>
                 </div>
-                @if( $currentUser->id == $user->id )
+                @if( $currentUser !== null && $currentUser->id == $user->id )
                     <p class="clearfix">&nbsp;</p>
                     <div class="row">
                         <div class="col-sm-6">
