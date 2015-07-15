@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <h2>Edit Profile</h2>
-            {!! Form::model($user, ['route' => ['account.update'], 'class' => 'form-horizontal' ]) !!}
+            {!! Form::model($user, ['route' => ['account.update'], 'class' => 'form-horizontal', 'files' => 'true' ]) !!}
                 {!! Form::token() !!}
                 <div class="panel panel-default">
                     <div class="panel-heading">
@@ -102,9 +102,9 @@
 
                         {{-- Profile Image --}}
                         <div class="form-group">
-                            <label class="control-label col-sm-2" for="profile_image">Profile Image</label>
+                            {!! Form::label('profile_image', 'Profile Image', ['class'=>'control-label col-sm-2']) !!}
                             <div class="col-sm-10">
-                                <input class="form-control" type="file" name="profile_image" id="profile_image">
+                                {!! Form::file('profile_image', ['class'=>'form-control']) !!}
                             </div>
                         </div>
 

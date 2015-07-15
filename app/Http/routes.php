@@ -22,6 +22,11 @@ Route::get('logout', [ 'as' => 'auth.logout', 'uses' => 'Auth\AuthController@get
 Route::get('register', [ 'as' => 'auth.register', 'uses' => 'Auth\AuthController@getRegister']);
 Route::post('register', 'Auth\AuthController@postRegister');
 
+// Profile images
+Route::get('profile_image/{profile_image}', function($profile_image, \App\Contracts\ImageHandler $imageHandler){
+    return $imageHandler->make( storage_path('app/profile_images/' . $profile_image) )->response();
+});
+
 Route::group(['middleware' => 'auth'], function(){
 
     // Account

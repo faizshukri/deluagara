@@ -3,11 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Contracts\GeoIP;
+use App\Contracts\HashID;
+use App\Contracts\ImageHandler;
 use App\Contracts\Progress;
 use App\Sponsor;
 use App\User;
 use App\UserStatus;
 use Illuminate\Http\Request;
+use Storage;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -50,10 +53,50 @@ class AccountController extends Controller
         return view('accounts/edit', compact('user', 'sponsors', 'statuses'));
     }
 
-    public function update( Requests\EditAccountRequest $request )
+    public function update( Requests\EditAccountRequest $request, HashID $hashID, ImageHandler $image )
     {
         $data = $request->all();
-        dd($data);
+
+        if ($request->hasFile('profile_image')) {
+
+            // Construct the image name
+            $image_name = $hashID->encode($this->user->id) . '-' .
+                substr(md5($data['profile_image']->getClientOriginalName() . $data['profile_image']->getClientSize()), 0, 6) . '.' .
+                $data['profile_image']->guessExtension();
+
+            // Move the image to storage folder
+            $data['profile_image']->move(
+                storage_path('app/profile_images'),
+                $image_name
+            );
+
+            // Resize image
+            $image->make(storage_path('app/profile_images/'.$image_name))
+                  ->fit(250)
+                  ->save();
+
+            // Update the image path
+            $prefix = config('app.profile_image_prefix_url');
+            $data['profile_image'] = $prefix . $image_name;
+
+            // Remove the current image
+            if (substr($this->user->profile_image, 0, strlen($prefix)) == $prefix) {
+                $old_image_name = substr($this->user->profile_image, strlen($prefix));
+                $old_image_path = 'profile_images' . '/' . $old_image_name;
+
+                if($old_image_name != $image_name && Storage::exists($old_image_path)) {
+                    Storage::delete($old_image_path);
+                }
+            }
+        }
+
+        $this->user->fill($data)->save();
+        $this->user->location->fill( $data['location'] )->save();
+        $this->user->location->city->fill( $data['location']['city'] )->save();
+
+        $this->user->status()->associate($this->user->status->find($data['status']['id']))->save();
+        $this->user->sponsor()->associate($this->user->sponsor->find($data['sponsor']['id']))->save();
+
         return redirect()->route('account.index');
     }
 

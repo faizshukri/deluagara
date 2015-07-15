@@ -30,5 +30,6 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->app->bind(\App\Contracts\GeoIP::class, \App\Services\FaizGeoIP::class);
         $this->app->bind(\App\Contracts\Progress::class, \App\Services\FaizProgress::class);
+        $this->app->bind(\App\Contracts\ImageHandler::class, \App\Services\InterventionImageHandler::class);
     }
 }
