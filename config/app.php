@@ -147,8 +147,6 @@ return [
 
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
-        Spatie\Tail\TailServiceProvider::class,
-
     ],
 
     /*
