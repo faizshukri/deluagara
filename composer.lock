@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "9131ba6f8e5d01fc423ac97451b42daf",
+    "hash": "e1270861e155551ec7f64cd6bb515fef",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -302,6 +302,59 @@
                 }
             ],
             "time": "2015-04-20 18:58:01"
+        },
+        {
+            "name": "jenssegers/optimus",
+            "version": "v0.1.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jenssegers/optimus.git",
+                "reference": "5e8b7473c57375322e7a56f51c0bc4821459143e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jenssegers/optimus/zipball/5e8b7473c57375322e7a56f51c0bc4821459143e",
+                "reference": "5e8b7473c57375322e7a56f51c0bc4821459143e",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "phpseclib/phpseclib": "~2.0@dev",
+                "phpunit/phpunit": "~4.6",
+                "satooshi/php-coveralls": "0.6.*",
+                "symfony/console": "~2.6"
+            },
+            "bin": [
+                "optimus"
+            ],
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Jenssegers\\Optimus\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jens Segers",
+                    "homepage": "http://jenssegers.be"
+                }
+            ],
+            "description": "Id obfuscation based on Knuth's integer hash method",
+            "homepage": "https://github.com/jenssegers/optimus",
+            "keywords": [
+                "hashids",
+                "id obfuscation",
+                "ids",
+                "obfuscation",
+                "optimus"
+            ],
+            "time": "2015-07-12 10:03:35"
         },
         {
             "name": "jeremeamia/SuperClosure",
@@ -789,16 +842,16 @@
         },
         {
             "name": "nikic/php-parser",
-            "version": "v1.3.0",
+            "version": "v1.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nikic/PHP-Parser.git",
-                "reference": "dff239267fd1befa1cd40430c9ed12591aa720ca"
+                "reference": "196f177cfefa0f1f7166c0a05d8255889be12418"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/dff239267fd1befa1cd40430c9ed12591aa720ca",
-                "reference": "dff239267fd1befa1cd40430c9ed12591aa720ca",
+                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/196f177cfefa0f1f7166c0a05d8255889be12418",
+                "reference": "196f177cfefa0f1f7166c0a05d8255889be12418",
                 "shasum": ""
             },
             "require": {
@@ -808,7 +861,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.3-dev"
+                    "dev-master": "1.4-dev"
                 }
             },
             "autoload": {
@@ -830,7 +883,7 @@
                 "parser",
                 "php"
             ],
-            "time": "2015-05-02 15:40:40"
+            "time": "2015-07-14 17:31:05"
         },
         {
             "name": "psr/log",
@@ -941,53 +994,6 @@
                 "shell"
             ],
             "time": "2015-07-03 16:48:00"
-        },
-        {
-            "name": "spatie/laravel-tail",
-            "version": "1.1.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/spatie/laravel-tail.git",
-                "reference": "b0a3b5c1b183da2fe0f1bd47671c94c01a3ffd23"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-tail/zipball/b0a3b5c1b183da2fe0f1bd47671c94c01a3ffd23",
-                "reference": "b0a3b5c1b183da2fe0f1bd47671c94c01a3ffd23",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/console": "~5.0",
-                "illuminate/support": "~5.0",
-                "php": ">=5.4.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Spatie\\Tail\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Freek Van der Herten",
-                    "email": "freek@spatie.be",
-                    "homepage": "https://murze.be",
-                    "role": "Developer"
-                }
-            ],
-            "description": "The missing tail command for Laravel 5",
-            "homepage": "https://github.com/spatie/laravel-tail",
-            "keywords": [
-                "laravel 5",
-                "laravel-tail",
-                "log",
-                "tail"
-            ],
-            "time": "2015-05-22 21:08:39"
         },
         {
             "name": "swiftmailer/swiftmailer",
