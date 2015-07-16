@@ -14,9 +14,12 @@ class FaizProgressTest extends \Codeception\TestCase\Test
     protected function _before()
     {
         $request = m::mock('\Illuminate\Http\Request');
-        $request->shouldReceive('user')->andReturn((object)[ 'activity' => serialize([ 'register' ]) ]);
+        $request->shouldReceive('user')->andReturn((object)[ 'id' => '1', 'activity' => serialize([ 'register' ]) ]);
 
-        $this->progress = new \App\Services\FaizProgress($request, new \App\Services\OptimusHashID);
+        $hashid = m::mock('App\Services\OptimusHashID');
+        $hashid->shouldReceive('encode')->with(m::any())->andReturn(278840911);
+
+        $this->progress = new \App\Services\FaizProgress($request, $hashid);
     }
 
     protected function _after()
@@ -28,6 +31,7 @@ class FaizProgressTest extends \Codeception\TestCase\Test
     public function test_initial_progress()
     {
         $this->assertEquals($this->progress->getProgress(), $this->progress->distribution('register'));
+        $this->assertEquals($this->progress->distribution('notexist'), 0);
     }
 
 }
