@@ -29,16 +29,16 @@ class EditAccountRequest extends Request
             'name' => 'required',
             'username' => 'required|min:3|unique:users,username,'.$user->id,
             'email' => 'required|email|unique:users,email,'.$user->id,
-            'phone' => 'required',
+//            'phone' => 'required',
             'gender' => 'required',
-            'status' => 'required',
-            'sponsor' => 'required',
-            'location.street' => 'required',
-            'location.postcode' => 'required|max:10',
-            'location.city.id' => 'required',
-            'website' => 'required',
-            'facebook_url' => 'required',
-            'twitter_url' => 'required'
+//            'status' => 'required',
+//            'sponsor' => 'required',
+//            'location.street' => 'required',
+//            'location.postcode' => 'required|max:10',
+//            'location.city.id' => 'required',
+//            'website' => 'required',
+//            'facebook_url' => 'required',
+//            'twitter_url' => 'required'
         ];
     }
 }

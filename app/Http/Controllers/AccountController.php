@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\City;
 use App\Contracts\GeoIP;
 use App\Contracts\HashID;
 use App\Contracts\ImageHandler;
@@ -53,7 +54,8 @@ class AccountController extends Controller
         return view('accounts/edit', compact('user', 'sponsors', 'statuses'));
     }
 
-    public function update( Requests\EditAccountRequest $request, HashID $hashID, ImageHandler $image )
+    public function update( Requests\EditAccountRequest $request, HashID $hashID, ImageHandler $image,
+                            UserStatus $status, Sponsor $sponsor, City $city )
     {
         $data = $request->all();
 
@@ -90,13 +92,21 @@ class AccountController extends Controller
             }
         }
 
-        $this->user->fill($data)->save();
-        $this->user->location->fill( $data['location'] )->save();
-        $this->user->location->city->fill( $data['location']['city'] )->save();
+        $this->user->fill($data);
 
-        $this->user->status()->associate($this->user->status->find($data['status']['id']))->save();
-        $this->user->sponsor()->associate($this->user->sponsor->find($data['sponsor']['id']))->save();
+        if(!$this->user->location) {
+            $location = $this->user->location()->create( $data['location'] );
+            $location->city()->associate( $city->find( array_get($data, 'location.city.id') ))->save();
+        } else {
+            $this->user->location->update( $data['location'] );
+            $this->user->location->city()->associate( $city->find( array_get($data, 'location.city.id') ))->save();
+        }
 
+        $this->user->status()->associate( $status->find($data['status']['id']) );
+        $this->user->sponsor()->associate( $sponsor->find($data['sponsor']['id']) );
+
+        $this->user->save();
+        $this->progress->updateProgress();
         return redirect()->route('account.index');
     }
 
