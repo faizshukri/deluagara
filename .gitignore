@@ -14,3 +14,5 @@ _ide_helper.php
 /public/fonts/fontawesome*
 /public/fonts/glyphicons*
 /public/vendor
+tests/_output/*
+tests/_output/*
