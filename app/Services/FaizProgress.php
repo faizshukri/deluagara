@@ -5,7 +5,9 @@ namespace App\Services;
 
 use App\Contracts\HashID;
 use App\Contracts\Progress;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class FaizProgress implements Progress{
 
@@ -34,39 +36,74 @@ class FaizProgress implements Progress{
         return $this->progress;
     }
 
-    public function updateProgress()
+    public function updateProgress(User $user = null)
     {
-        if (strpos($this->user->profile_image, strval($this->hashid->encode($this->user->id)) ) !== false) {
-
-            // Only add to activity if this not exist
-            if (array_search('profile_image', $this->activity) === false) {
-                $this->addActivity('profile_image');
-            }
+        foreach($this->distribution() as $name => $distribution) {
+            if ($distribution['condition']() && !in_array($name, $this->activity, true))
+                $this->addActivity($name);
         }
     }
 
-    public function addActivity($name, $user = null)
+    public function addActivity($name)
     {
-        if(!$user) $user = $this->user;
         $this->progress += $this->distribution($name);
         $this->activity[] = $name;
 
-        $user->progress = $this->progress;
-        $user->activity = serialize($this->activity);
-        $user->save();
+        $this->user->progress = $this->progress;
+        $this->user->activity = serialize($this->activity);
+        $this->user->save();
     }
 
-    private function distribution($name)
+    public function distribution($name = null)
     {
-        return [
-            'register'       => 10,
-            'profile_image'  => 20,
-            'address'        => 10,
-            'about_me'       => 10,
-            'url'            => 20,
-            'validate_email' => 20,
-            'share'          => 10
-        ][$name];
+        $activities = [
+            'register'       => [
+                'point' => 10,
+                'condition' => function() {
+                    return true;
+                }
+            ],
+            'profile_image'  => [
+                'point' => 20,
+                'condition' => function() {
+                    return strpos($this->user->profile_image, strval($this->hashid->encode($this->user->id))) !== false;
+                }
+            ],
+            'address'        => [
+                'point' => 20,
+                'condition' => function() {
+                    return isset($this->user->location) && isset($this->user->location->city);
+                }
+            ],
+            'about_me'       => [
+                'point' => 10,
+                'condition' => function() {
+                    return $this->user->about_me;
+                }
+            ],
+            'url'            => [
+                'point' => 20,
+                'condition' => function() {
+                    return true;
+                }
+            ],
+            'validate_email' => [
+                'point' => 10,
+                'condition' => function() {
+                    return true;
+                }
+            ],
+            'share'          => [
+                'point' => 10,
+                'condition' => function() {
+                    return true;
+                }
+            ]
+        ];
+
+        if (!$name) return $activities;
+
+        return isset($activities[$name]) ? $activities[$name]['point'] : 0;
     }
 
     private function calculate()

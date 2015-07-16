@@ -30,6 +30,7 @@ class EditAccountRequest extends Request
             'username' => 'required|min:3|unique:users,username,'.$user->id,
             'email' => 'required|email|unique:users,email,'.$user->id,
 //            'phone' => 'required',
+            'about_me' => 'min:20',
             'gender' => 'required',
 //            'status' => 'required',
 //            'sponsor' => 'required',

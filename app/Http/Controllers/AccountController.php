@@ -102,8 +102,8 @@ class AccountController extends Controller
             $this->user->location->city()->associate( $city->find( array_get($data, 'location.city.id') ))->save();
         }
 
-        $this->user->status()->associate( $status->find($data['status']['id']) );
-        $this->user->sponsor()->associate( $sponsor->find($data['sponsor']['id']) );
+        $this->user->status()->associate( $status->find( array_get($data, 'status.id') ) );
+        $this->user->sponsor()->associate( $sponsor->find( array_get($data, 'sponsor.id') ) );
 
         $this->user->save();
         $this->progress->updateProgress();
