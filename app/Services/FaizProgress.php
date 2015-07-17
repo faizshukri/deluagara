@@ -7,7 +7,6 @@ use App\Contracts\HashID;
 use App\Contracts\Progress;
 use App\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
 
 class FaizProgress implements Progress{
 
@@ -19,7 +18,9 @@ class FaizProgress implements Progress{
 
     private $hashid;
 
-    private $activity = [];
+    public $activity = [];
+
+    public $distribution;
 
     public function __construct(Request $request, HashID $hashid)
     {
@@ -27,36 +28,51 @@ class FaizProgress implements Progress{
         $this->hashid = $hashid;
         $this->user = $this->request->user();
         $this->activity = $this->user->activity ? unserialize($this->user->activity) : [];
-
-        $this->calculate();
+        $this->initDistribution();
     }
 
     public function getProgress()
     {
-        return $this->progress;
+        $progress = 0;
+        foreach ($this->activity as $activity) {
+            $progress += $this->getPoint($activity);
+        }
+
+        $total = 0;
+        foreach($this->distribution as $distribution){
+            $total += $distribution['point'];
+        }
+
+        return $progress / $total * 100;
     }
 
     public function updateProgress(User $user = null)
     {
-        foreach($this->distribution() as $name => $distribution) {
-            if ($distribution['condition']() && !in_array($name, $this->activity, true))
-                $this->addActivity($name);
+        foreach($this->distribution as $name => $distribution) {
+            $this->addActivity($name);
         }
     }
 
     public function addActivity($name)
     {
-        $this->progress += $this->distribution($name);
-        $this->activity[] = $name;
+        if ($this->distribution[$name]['condition']() && !in_array($name, $this->activity, true)) {
+            $this->progress += $this->getPoint($name);
+            $this->activity[] = $name;
 
-        $this->user->progress = $this->progress;
-        $this->user->activity = serialize($this->activity);
-        $this->user->save();
+            $this->user->progress = $this->progress;
+            $this->user->activity = serialize($this->activity);
+            $this->user->save();
+        }
     }
 
-    public function distribution($name = null)
+    public function getPoint($name)
     {
-        $activities = [
+        return isset($this->distribution[$name]) ? $this->distribution[$name]['point'] : 0;
+    }
+
+    protected function initDistribution()
+    {
+        $this->distribution = [
             'register'       => [
                 'point' => 10,
                 'condition' => function() {
@@ -100,18 +116,5 @@ class FaizProgress implements Progress{
                 }
             ]
         ];
-
-        if (!$name) return $activities;
-
-        return isset($activities[$name]) ? $activities[$name]['point'] : 0;
     }
-
-    private function calculate()
-    {
-        $this->progress = 0;
-        foreach ($this->activity as $activity) {
-            $this->progress += $this->distribution($activity);
-        }
-    }
-
 }

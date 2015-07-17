@@ -11,7 +11,9 @@
                 {!! Form::token() !!}
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Basic Information <span class="badge distribution-count">+{{ $progress->distribution('about_me') }}</span></h3>
+                        <h3 class="panel-title">Basic Information
+                            <span class="badge distribution-count">+{{ $progress->getPoint('about_me') }}</span>
+                        </h3>
                     </div>
                     <div class="panel-body">
 
@@ -109,7 +111,7 @@
                                 {!! Form::file('profile_image', ['class'=>'form-control']) !!}
                                 <br/>
                                 <img src="{{ $user->profile_image or 'http://www.gravatar.com/avatar/' . md5(strtolower(trim( $user->email ))) . '?d=monsterid&s=250' }}" style="width: 150px; border: 1px solid #ddd; padding: 2px;" />
-                                <span class="badge distribution-count">+{{ $progress->distribution('profile_image') }}</span>
+                                <span class="badge distribution-count">+{{ $progress->getPoint('profile_image') }}</span>
                             </div>
                         </div>
 
@@ -117,7 +119,7 @@
                 </div>
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Address Information <span class="badge distribution-count">+{{ $progress->distribution('address') }}</span></h3>
+                        <h3 class="panel-title">Address Information <span class="badge distribution-count">+{{ $progress->getPoint('address') }}</span></h3>
                     </div>
                     <div class="panel-body">
 
@@ -153,7 +155,7 @@
                 </div>
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Social Media Information <span class="badge distribution-count">+{{ $progress->distribution('url') }}</span></h3>
+                        <h3 class="panel-title">Social Media Information <span class="badge distribution-count">+{{ $progress->getPoint('url') }}</span></h3>
                     </div>
                     <div class="panel-body">
 
