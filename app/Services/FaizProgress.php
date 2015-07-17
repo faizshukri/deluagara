@@ -43,7 +43,7 @@ class FaizProgress implements Progress{
             $total += $distribution['point'];
         }
 
-        return $progress / $total * 100;
+        return round($progress / $total * 100);
     }
 
     public function updateProgress(User $user = null)
@@ -55,13 +55,24 @@ class FaizProgress implements Progress{
 
     public function addActivity($name)
     {
+        $fill_and_save = function(){
+            $this->user->progress = $this->getProgress();
+            $this->user->activity = serialize($this->activity);
+            $this->user->save();
+        };
+
         if ($this->distribution[$name]['condition']() && !in_array($name, $this->activity, true)) {
             $this->progress += $this->getPoint($name);
             $this->activity[] = $name;
+            $fill_and_save();
 
-            $this->user->progress = $this->progress;
-            $this->user->activity = serialize($this->activity);
-            $this->user->save();
+        } else if ($name != 'register' && !$this->distribution[$name]['condition']() && in_array($name, $this->activity, true)) {
+
+            // Remove the entry in $register
+            if(($key = array_search($name, $this->activity)) !== false) {
+                unset($this->activity[$key]);
+            }
+            $fill_and_save();
         }
     }
 
@@ -100,7 +111,7 @@ class FaizProgress implements Progress{
             'url'            => [
                 'point' => 20,
                 'condition' => function() {
-                    return false;
+                    return !empty($this->user->website) && !empty($this->user->facebook_url) && !empty($this->user->twitter_url);
                 }
             ],
             'validate_email' => [

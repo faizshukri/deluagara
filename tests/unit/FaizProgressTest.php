@@ -29,21 +29,21 @@ class FaizProgressTest extends \Codeception\TestCase\Test
 
         $this->progress->distribution = [
             'register' => [
-                'point' => 30,
+                'point' => 20,
                 'condition' => function() {
                     return false;
                 }
             ],
             'about_us' => [
-                'point' => 40,
+                'point' => 30,
                 'condition' => function() {
                     return false;
                 }
             ],
             'profile_image' => [
-                'point' => 30,
+                'point' => 50,
                 'condition' => function() {
-                    return false;
+                    return true;
                 }
             ]
         ];
@@ -56,7 +56,7 @@ class FaizProgressTest extends \Codeception\TestCase\Test
 
     public function test_initial_progress()
     {
-        $this->assertEquals(30, $this->progress->getProgress());
+        $this->assertEquals(20, $this->progress->getProgress());
         $this->assertEquals(0, $this->progress->getPoint('notexist'));
     }
 
@@ -114,5 +114,21 @@ class FaizProgressTest extends \Codeception\TestCase\Test
         $this->progress->activity = ['activity2'];
 
         $this->assertEquals(54, $this->progress->getProgress());
+    }
+
+    public function test_if_user_unset_data()
+    {
+        $this->assertEquals(20, $this->progress->getProgress());
+
+        $this->progress->updateProgress();
+        $this->assertEquals(70, $this->progress->getProgress());
+
+        $this->progress->distribution['profile_image']['condition'] = function(){ return false; };
+        $this->progress->updateProgress();
+        $this->assertEquals(20, $this->progress->getProgress());
+
+        $this->progress->distribution['profile_image']['condition'] = function(){ return true; };
+        $this->progress->updateProgress();
+        $this->assertEquals(70, $this->progress->getProgress());
     }
 }
