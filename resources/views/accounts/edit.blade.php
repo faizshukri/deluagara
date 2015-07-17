@@ -110,7 +110,7 @@
                             <div class="col-sm-10">
                                 {!! Form::file('profile_image', ['class'=>'form-control']) !!}
                                 <br/>
-                                <img src="{{ $user->profile_image or 'http://www.gravatar.com/avatar/' . md5(strtolower(trim( $user->email ))) . '?d=monsterid&s=250' }}" style="width: 150px; border: 1px solid #ddd; padding: 2px;" />
+                                <img id="profile_image_preview" src="{{ $user->profile_image or 'http://www.gravatar.com/avatar/' . md5(strtolower(trim( $user->email ))) . '?d=monsterid&s=250' }}" style="width: 150px; border: 1px solid #ddd; padding: 2px; cursor: pointer;" />
                                 <span class="badge distribution-count">+{{ $progress->getPoint('profile_image') }}</span>
                             </div>
                         </div>
@@ -236,6 +236,10 @@
                 }
             }).on('select2-selecting', function(val){
                 $('[name="location[city][name]"]').val(val.choice.text);
+            });
+
+            $('#profile_image_preview').on('click', function(){
+                $('#profile_image').trigger('click');
             });
         })();
     </script>
