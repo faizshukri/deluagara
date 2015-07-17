@@ -31,7 +31,7 @@ class FaizProgressTest extends \Codeception\TestCase\Test
             'register' => [
                 'point' => 20,
                 'condition' => function() {
-                    return false;
+                    return true;
                 }
             ],
             'about_us' => [

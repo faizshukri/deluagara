@@ -66,7 +66,7 @@ class FaizProgress implements Progress{
             $this->activity[] = $name;
             $fill_and_save();
 
-        } else if ($name != 'register' && !$this->distribution[$name]['condition']() && in_array($name, $this->activity, true)) {
+        } else if (!$this->distribution[$name]['condition']() && in_array($name, $this->activity, true)) {
 
             // Remove the entry in $register
             if(($key = array_search($name, $this->activity)) !== false) {
