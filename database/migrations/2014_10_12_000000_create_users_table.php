@@ -29,7 +29,6 @@ class CreateUsersTable extends Migration
             $table->string('profile_image')->nullable();
             $table->tinyInteger('email_verified')->default(0);
             $table->string('activity')->nullable();
-            $table->smallInteger('progress')->default(0);
             $table->rememberToken();
             $table->dateTime('last_login')->nullable();
             $table->timestamps();

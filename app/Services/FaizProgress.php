@@ -14,8 +14,6 @@ class FaizProgress implements Progress{
 
     private $user;
 
-    private $progress;
-
     private $hashid;
 
     public $activity = [];
@@ -56,13 +54,11 @@ class FaizProgress implements Progress{
     public function addActivity($name)
     {
         $fill_and_save = function(){
-            $this->user->progress = $this->getProgress();
             $this->user->activity = serialize($this->activity);
             $this->user->save();
         };
 
         if ($this->distribution[$name]['condition']() && !in_array($name, $this->activity, true)) {
-            $this->progress += $this->getPoint($name);
             $this->activity[] = $name;
             $fill_and_save();
 
