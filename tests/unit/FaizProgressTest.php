@@ -16,6 +16,7 @@ class FaizProgressTest extends \Codeception\TestCase\Test
         $user = m::mock('StdClass');
         $user->id = 1;
         $user->activity = serialize([ 'register' ]);
+
         $user->shouldReceive('save')->andReturn(true);
 
         $request = m::mock('\Illuminate\Http\Request');
@@ -25,6 +26,27 @@ class FaizProgressTest extends \Codeception\TestCase\Test
         $hashid->shouldReceive('encode')->with(m::any())->andReturn(278840911);
 
         $this->progress = new \App\Services\FaizProgress($request, $hashid);
+
+        $this->progress->distribution = [
+            'register' => [
+                'point' => 30,
+                'condition' => function() {
+                    return false;
+                }
+            ],
+            'about_us' => [
+                'point' => 40,
+                'condition' => function() {
+                    return false;
+                }
+            ],
+            'profile_image' => [
+                'point' => 30,
+                'condition' => function() {
+                    return false;
+                }
+            ]
+        ];
     }
 
     protected function _after()
@@ -34,8 +56,8 @@ class FaizProgressTest extends \Codeception\TestCase\Test
 
     public function test_initial_progress()
     {
-        $this->assertEquals($this->progress->getProgress(), $this->progress->getPoint('register'));
-        $this->assertEquals($this->progress->getPoint('notexist'), 0);
+        $this->assertEquals(30, $this->progress->getProgress());
+        $this->assertEquals(0, $this->progress->getPoint('notexist'));
     }
 
     public function test_more_initial_progress()
@@ -47,15 +69,15 @@ class FaizProgressTest extends \Codeception\TestCase\Test
             $point += $this->progress->getPoint($activity);
         }
 
-        $this->assertEquals($this->progress->getProgress(), $point);
+        $this->assertEquals($point, $this->progress->getProgress());
     }
 
     public function test_if_activity_point_exceed_100()
     {
         $this->progress->distribution = [
-            'activity2' => ['point'=>80, 'condition'=> function(){ return true; }],
-            'activity3' => ['point'=>50, 'condition'=> function(){ return true; }],
-            'activity4' => ['point'=>70, 'condition'=> function(){ return true; }]
+            'activity2' => ['point'=>80, 'condition'=> function(){ return false; }],
+            'activity3' => ['point'=>50, 'condition'=> function(){ return false; }],
+            'activity4' => ['point'=>70, 'condition'=> function(){ return false; }]
         ];
 
         $this->progress->activity = ['activity2', 'activity3'];
@@ -80,5 +102,17 @@ class FaizProgressTest extends \Codeception\TestCase\Test
         $this->progress->addActivity('activity3');
         $this->assertNotContains('activity2', $this->progress->activity);
         $this->assertContains('activity3', $this->progress->activity);
+    }
+
+    public function test_percentage_is_rounded_value()
+    {
+        $this->progress->distribution = [
+            'activity2' => ['point'=>70, 'condition'=> function(){ return false; }],
+            'activity3' => ['point'=>60, 'condition'=> function(){ return false; }],
+        ];
+
+        $this->progress->activity = ['activity2'];
+
+        $this->assertEquals(54, $this->progress->getProgress());
     }
 }

@@ -100,19 +100,19 @@ class FaizProgress implements Progress{
             'url'            => [
                 'point' => 20,
                 'condition' => function() {
-                    return true;
+                    return false;
                 }
             ],
             'validate_email' => [
                 'point' => 10,
                 'condition' => function() {
-                    return true;
+                    return false;
                 }
             ],
             'share'          => [
                 'point' => 10,
                 'condition' => function() {
-                    return true;
+                    return false;
                 }
             ]
         ];
