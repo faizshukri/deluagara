@@ -44,4 +44,13 @@ class EditAccountRequest extends Request
 //            'twitter_url' => 'required'
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'location.street.required_with' => 'Street field is required when Postcode / City is present',
+            'location.postcode.required_with' => 'Postcode field is required when Street / City is present',
+            'location.city.id.required_with' => 'City field is required when Street / Postcode is present'
+        ];
+    }
 }
