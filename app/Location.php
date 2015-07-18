@@ -8,7 +8,7 @@ class Location extends Model
 {
     protected $fillable = [ 'street', 'postcode', 'latitude', 'longitude' ];
 
-    protected $guarded = [ ];
+    protected $hidden = [ 'user_id' ];
 
     public function user()
     {

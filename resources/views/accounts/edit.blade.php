@@ -110,7 +110,7 @@
                             <div class="col-sm-10">
                                 {!! Form::file('profile_image', ['class'=>'form-control']) !!}
                                 <br/>
-                                <img id="profile_image_preview" src="{{ $user->profile_image or 'http://www.gravatar.com/avatar/' . md5(strtolower(trim( $user->email ))) . '?d=monsterid&s=250' }}" style="width: 150px; border: 1px solid #ddd; padding: 2px; cursor: pointer;" />
+                                <img id="profile_image_preview" src="{{ $user->profile_image or 'http://www.gravatar.com/avatar/' . md5(strtolower(trim( $user->email ))) . '?d=monsterid&s=250' }}" style="width: 150px; height: 150px; border: 1px solid #ddd; padding: 2px; cursor: pointer;" />
                                 <span class="badge distribution-count">+{{ $progress->getPoint('profile_image') }}</span>
                             </div>
                         </div>
@@ -151,6 +151,14 @@
                             </div>
                         </div>
 
+                        {{-- Map --}}
+                        <div class="form-group">
+                            <div class="col-sm-10 col-sm-offset-2">
+                                @include('partials/map-edit')
+                                {!! Form::hidden('location[latitude]') !!}
+                                {!! Form::hidden('location[longitude]') !!}
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="panel panel-default">
@@ -238,8 +246,22 @@
                 $('[name="location[city][name]"]').val(val.choice.text);
             });
 
+            // Make image preview clickable
             $('#profile_image_preview').on('click', function(){
                 $('#profile_image').trigger('click');
+            });
+
+            // Preview image before it's been uploaded
+            $("#profile_image").change(function(){
+                if (this.files && this.files[0]) {
+                    var reader = new FileReader();
+
+                    reader.onload = function (e) {
+                        $('#profile_image_preview').attr('src', e.target.result);
+                    };
+
+                    reader.readAsDataURL(this.files[0]);
+                }
             });
         })();
     </script>
