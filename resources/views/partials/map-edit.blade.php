@@ -1,4 +1,5 @@
 <div id='map-edit' style="width: 100%; height: 200px; border: 1px solid #aaa;"></div>
+<div align="center"><i>You can drag marker to a precise location.</i></div>
 
 @section('header')
     @parent

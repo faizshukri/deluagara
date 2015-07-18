@@ -20,7 +20,7 @@
                 L.mapbox.accessToken = "{{ env('MAPBOX_ACCESSTOKEN')  }}";
 
                 var coord = user.location && user.location.latitude ? [ user.location.latitude, user.location.longitude ] : [ user_coord.latitude, user_coord.longitude ] ;
-                var map = L.mapbox.map('map-account', 'mapbox.streets').setView(coord, 13);
+                var map = L.mapbox.map('map-account', 'mapbox.streets').setView(coord, 14);
 
                 if(!user.location) return;
 
