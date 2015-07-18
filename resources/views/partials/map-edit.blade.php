@@ -35,7 +35,8 @@
                 }
                 map.addLayer(marker);
 
-                var address_elems = ['input[name="location[street]"]', 'input[name="location[postcode]"]', 'input[name="location[city][name]"]'];
+                var address_elems = ['input[name="location[street]"]', 'input[name="location[postcode]"]', 'input[name="location[city][id]"]'];
+                var city_name_elem = 'input[name="location[city][name]"]';
                 address_elems.forEach(function (elem) {
                     var elem = $(elem);
 
@@ -43,7 +44,7 @@
                     elem.change(function (e) {
 
                         // Search by concatenating value of street, postcode, and city name
-                        geocoder.query($(address_elems[0]).val() + ', ' + $(address_elems[1]).val() + ', ' + $(address_elems[2]).val(), function(err, data){
+                        geocoder.query($(address_elems[0]).val() + ', ' + $(address_elems[1]).val() + ', ' + $(city_name_elem).val(), function(err, data){
                             if (data.lbounds) {
                                 map.fitBounds(data.lbounds);
                             } else if (data.latlng) {
