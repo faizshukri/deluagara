@@ -45,14 +45,12 @@
 
                         // Search by concatenating value of street, postcode, and city name
                         geocoder.query($(address_elems[0]).val() + ', ' + $(address_elems[1]).val() + ', ' + $(city_name_elem).val(), function(err, data){
-                            if (data.lbounds) {
-                                map.fitBounds(data.lbounds);
-                            } else if (data.latlng) {
-                                map.setView([data.latlng[0], data.latlng[1]], 18);
-                            }
                             if (data.latlng) {
+                                map.setView(data.latlng, 18);
                                 marker.setLatLng( data.latlng );
                                 addLatLng();
+                            } else if (data.lbounds) {
+                                map.fitBounds(data.lbounds);
                             }
                         });
                     });
@@ -60,6 +58,7 @@
 
                 marker.on('dragend', function(e){
                     addLatLng();
+                    map.panTo(marker.getLatLng());
                 });
 
                 function addLatLng(){
