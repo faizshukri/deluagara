@@ -51,8 +51,7 @@ class AccountController extends Controller
         $statuses = $user->status ? $user->status->all() : $status->all();
         $sponsors =  $user->sponsor ? $user->sponsor->all() : $sponsor->all();
         $user_coord = $this->geoip->getLocation();
-        $city_id = $this->request->old('location.city.id');
-
+        $city_id = $user->location ? $user->location->city->id : $this->request->old('location.city.id') ?: null;
         return view('accounts/edit', compact('user', 'sponsors', 'statuses', 'user_coord', 'city_id'));
     }
 
