@@ -145,8 +145,7 @@
                         <div class="form-group @if ($errors->has('location.city.id')) has-error @endif">
                             {!! Form::label('location[city][id]', 'City (e.g Manchester)', ['class'=>'control-label col-sm-2']) !!}
                             <div class="col-sm-10">
-                                {!! Form::text('location[city][id]', null, ['class'=>'form-control']) !!}
-                                {!! Form::hidden('location[city][name]') !!}
+                                {!! Form::select('location[city][id]', [], null, ['class'=>'form-control']) !!}
                                 @if ($errors->has('location.city.id')) <p class="help-block">{{ $errors->first('location.city.id') }}</p> @endif
                             </div>
                         </div>
@@ -219,32 +218,41 @@
         (function(){
             var select2Selector = $('[id="location[city][id]"]');
 
-            select2Selector.select2({
+            var $element = select2Selector.select2({
+                theme: "bootstrap",
                 placeholder: "Select a city",
                 allowClear: true,
                 ajax: {
                     url: function(city){
-                        return '/api/v1/cities/'+city;
+                        return '/api/v1/cities/' + city.term;
                     },
-                    results: function (data, page) {
+                    processResults: function (data, page) {
                         return {
                             results: data
                         };
                     },
-                    quietMillis: 250,
+                    data: false,
+                    delay: 250,
                     dataType: 'json',
                     cache: true
                 },
                 minimumInputLength: 3,
-                initSelection: function (item, callback) {
-                    var id = item.val();
-                    var text = $('[name="location[city][name]"]').val();
-                    var data = { id: id, text: text };
-                    callback(data);
-                }
-            }).on('select2-selecting', function(val){
-                $('[name="location[city][name]"]').val(val.choice.text);
             });
+
+            // Check if city id is set. If so, auto populate it
+            var city_id = "{{ $city_id or '' }}";
+
+            if(city_id) {
+
+                var $request = $.ajax({
+                    url: '/api/v1/city/' + city_id
+                });
+                $request.then(function (data) {
+                    var option = new Option(data.text, data.id, true, true);
+                    $element.append(option);
+                    $element.trigger('change');
+                });
+            }
 
             // Make image preview clickable
             $('#profile_image_preview').on('click', function(){

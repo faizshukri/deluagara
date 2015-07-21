@@ -17,7 +17,7 @@
                     {{-- City --}}
                     <div class="form-group">
                         <label for="city">City (e.g Manchester)</label>
-                        <input type="text" class="form-control" id="city" name="city" value="{{ $request['city'] or '' }}" data-option="{{ $city }}">
+                        <select name="city" id="city" class="form-control"></select>
                     </div>
 
                     {{-- Gender --}}
@@ -83,29 +83,41 @@
 
 @section('footer')
     <script>
-        $('#city').select2({
+        $element = $('#city').select2({
+            theme: "bootstrap",
             placeholder: "Select a city",
             allowClear: true,
             ajax: {
                 url: function(city){
-                    return '/api/v1/cities/'+city;
+                    return '/api/v1/cities/' + city.term;
                 },
-                results: function (data, page) {
+                processResults: function (data, page) {
                     return {
                         results: data
                     };
                 },
-                quietMillis: 250,
+                data: false,
+                delay: 250,
                 dataType: 'json',
                 cache: true
             },
             minimumInputLength: 3,
-            initSelection: function (item, callback) {
-                var id = item.val();
-                var text = item.data('option');
-                var data = { id: id, text: text };
-                callback(data);
-            }
         });
+
+        // Check if city id is set. If so, auto populate it
+        var city_id = "{{ $request['city'] or '' }}";
+
+        if(city_id) {
+
+            var $request = $.ajax({
+                url: '/api/v1/city/' + city_id
+            });
+            $request.then(function (data) {
+                var option = new Option(data.text, data.id, true, true);
+                $element.append(option);
+                $element.trigger('change');
+            });
+        }
+
     </script>
 @endsection

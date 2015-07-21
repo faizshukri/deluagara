@@ -51,8 +51,9 @@ class AccountController extends Controller
         $statuses = $user->status ? $user->status->all() : $status->all();
         $sponsors =  $user->sponsor ? $user->sponsor->all() : $sponsor->all();
         $user_coord = $this->geoip->getLocation();
+        $city_id = $this->request->old('location.city.id');
 
-        return view('accounts/edit', compact('user', 'sponsors', 'statuses', 'user_coord'));
+        return view('accounts/edit', compact('user', 'sponsors', 'statuses', 'user_coord', 'city_id'));
     }
 
     public function update( Requests\EditAccountRequest $request, HashID $hashID, ImageHandler $image,

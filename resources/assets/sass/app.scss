@@ -86,8 +86,6 @@ footer {
       padding: 5px;
       z-index: 2;
     }
-
-
   }
 
   .distribution-count {
@@ -95,4 +93,12 @@ footer {
     font-weight: normal;
     background-color: white;
   }
+
+  .select2-selection {
+    height: 39px;
+    padding: 8px 24px 8px 12px;
+    font-size: 15px;
+    font-family: inherit;
+  }
+
 }

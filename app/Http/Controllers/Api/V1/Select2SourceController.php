@@ -18,8 +18,7 @@ class Select2SourceController extends Controller
             return [ 'error' => $model_name . ' name must be consist of 3 characters or more.' ];
         }
 
-        $model_name = 'App\\' . $model_name;
-        $model = new $model_name;
+        $model = $this->getModelInstance($model_name);
 
         return $model->where('name', 'like', "%$name%")->get()->map(function($row){
             return [
@@ -29,4 +28,21 @@ class Select2SourceController extends Controller
         });
     }
 
+    public function single($category, $id)
+    {
+        $model_name = studly_case(str_singular($category));
+
+        $model = $this->getModelInstance($model_name)->find($id);
+        return [
+                'id' => intval($model->id),
+                'text' => $model->name
+            ];
+    }
+
+    private function getModelInstance($model_name)
+    {
+        $model_name = 'App\\' . $model_name;
+        return new $model_name;
+
+    }
 }

@@ -19,7 +19,8 @@ var paths = {
     'mapbox'        : './public/vendor/mapbox.js',
     'markercluster' : './public/vendor/leaflet.markercluster',
     'others'        : './public/vendor/others',
-    'select2'       : './public/vendor/select2'
+    'select2'       : './public/vendor/select2',
+    'select2_bootstrap_theme' : './public/vendor/select2-bootstrap-theme'
 };
 
 var urls = {
@@ -36,8 +37,8 @@ elixir(function(mix) {
                 paths.fontawesome + '/css/font-awesome.min.css',
                 paths.markercluster + '/dist/MarkerCluster.css',
                 paths.markercluster + '/dist/MarkerCluster.Default.css',
-                paths.select2 + '/select2.css',
-                paths.select2 + '/select2-bootstrap.css'
+                paths.select2 + '/dist/css/select2.min.css',
+                paths.select2_bootstrap_theme + '/dist/select2-bootstrap.min.css'
             ],
             'public/css/vendor.css',
             './public'
@@ -48,7 +49,7 @@ elixir(function(mix) {
                 paths.bootstrap + '/dist/js/bootstrap.min.js',
                 paths.mapbox + '/mapbox.js',
                 paths.markercluster + '/dist/leaflet.markercluster.js',
-                paths.select2 + '/select2.min.js',
+                paths.select2 + '/dist/js/select2.min.js',
                 '/assets/js/*'
             ],
             'public/js/vendor.js',

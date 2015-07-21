@@ -51,6 +51,10 @@ Route::group(['prefix'=>'api/v1'], function(){
     // Get select2 list
     Route::get('{category}/{name}', 'Api\V1\Select2SourceController@query')
         ->where('category', '(' . implode('|', $select2path) . ')');
+
+    Route::get('{category}/{id}', 'Api\V1\Select2SourceController@single')
+        ->where('category', '(' . implode('|', array_map(function($val){ return str_singular($val); }, $select2path)) . ')');
+
 });
 
 Route::get('{username}', 'AccountController@user');
