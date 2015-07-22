@@ -31,7 +31,6 @@ class AuthLoginListener
      */
     public function handle(User $user, $remember)
     {
-        //
-        $this->progress->updateProgress();
+        $this->progress->updateProgress($user);
     }
 }

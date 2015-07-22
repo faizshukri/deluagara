@@ -25,9 +25,9 @@ class FaizProgress implements Progress{
         $this->request = $request;
         $this->hashid = $hashid;
         $this->user = $this->request->user();
+        $this->initDistribution();
         if($this->user){
             $this->activity = $this->user->activity ? unserialize($this->user->activity) : [];
-            $this->initDistribution();
         }
     }
 
@@ -48,6 +48,8 @@ class FaizProgress implements Progress{
 
     public function updateProgress(User $user = null)
     {
+        if($user) $this->user = $user;
+        if(!$this->user) return;
         foreach($this->distribution as $name => $distribution) {
             $this->addActivity($name);
         }

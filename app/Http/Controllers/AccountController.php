@@ -96,19 +96,32 @@ class AccountController extends Controller
 
         $this->user->fill($data);
 
+        // If user location is not set
         if(!$this->user->location) {
-            $location = $this->user->location()->create( $data['location'] );
-            $location->city()->associate( $city->find( array_get($data, 'location.city.id') ))->save();
+
+            // If form is submitted with address
+            if(isset($data['location']['city'])){
+                $location = $this->user->location()->create( $data['location'] );
+                $location->city()->associate( $city->find( array_get($data, 'location.city.id') ))->save();
+            }
+
+        // If user location is set
         } else {
-            $this->user->location->update( $data['location'] );
-            $this->user->location->city()->associate( $city->find( array_get($data, 'location.city.id') ))->save();
+
+            // But form is submitted without address
+            if(!isset($data['location']['city'])){
+                $this->user->location->delete();
+            } else {
+                $this->user->location->update( $data['location'] );
+                $this->user->location->city()->associate( $city->find( array_get($data, 'location.city.id') ))->save();
+            }
         }
 
         $this->user->status()->associate( $status->find( array_get($data, 'status.id') ) );
         $this->user->sponsor()->associate( $sponsor->find( array_get($data, 'sponsor.id') ) );
 
         $this->user->save();
-        $this->progress->updateProgress();
+        $this->progress->updateProgress($this->user->fresh());
         return redirect()->route('account.index');
     }
 
