@@ -1,9 +1,13 @@
 @import '../../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/variables';
 
 html, body { margin: 0; padding: 0; height: 100%; }
+html {
+  background: url('/images/bg.jpg') no-repeat center center fixed #efece2;
+  background-size: cover;
+}
 
 body {
-  background-color: #efece2;
+  background-color: transparent;
 }
 
 .main-wrapper {
@@ -13,7 +17,6 @@ body {
 }
 
 footer {
-  background-color: #fff;
   margin-top: 20px;
   padding: 15px;
   text-align: center;
