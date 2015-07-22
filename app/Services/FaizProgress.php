@@ -25,8 +25,10 @@ class FaizProgress implements Progress{
         $this->request = $request;
         $this->hashid = $hashid;
         $this->user = $this->request->user();
-        $this->activity = $this->user->activity ? unserialize($this->user->activity) : [];
-        $this->initDistribution();
+        if($this->user){
+            $this->activity = $this->user->activity ? unserialize($this->user->activity) : [];
+            $this->initDistribution();
+        }
     }
 
     public function getProgress()
@@ -95,7 +97,7 @@ class FaizProgress implements Progress{
             'address'        => [
                 'point' => 20,
                 'condition' => function() {
-                    return isset($this->user->location) && isset($this->user->location->city);
+                    return $this->user->location && $this->user->location->city;
                 }
             ],
             'about_me'       => [

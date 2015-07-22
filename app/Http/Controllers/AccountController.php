@@ -40,7 +40,7 @@ class AccountController extends Controller
     {
         if( !$user->exists ) $user = $this->user;
         $user_coord = $this->geoip->getLocation();
-        $progress = $this->progress->getProgress();
+        $progress = $this->user ? $this->progress->getProgress() : null;
 
         return view('accounts/main', compact('user', 'user_coord', 'progress'));
     }
