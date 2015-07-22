@@ -51,7 +51,8 @@ class AccountController extends Controller
         $statuses = $user->status ? $user->status->all() : $status->all();
         $sponsors =  $user->sponsor ? $user->sponsor->all() : $sponsor->all();
         $user_coord = $this->geoip->getLocation();
-        $city_id = $user->location ? $user->location->city->id : $this->request->old('location.city.id') ?: null;
+        $city_id = $this->get_city_id($user);
+
         return view('accounts/edit', compact('user', 'sponsors', 'statuses', 'user_coord', 'city_id'));
     }
 
@@ -115,5 +116,25 @@ class AccountController extends Controller
     public function user( User $user )
     {
         return $this->index($user);
+    }
+
+    private function get_city_id($user)
+    {
+        $old_city_id = $this->request->old('location.city.id');
+        $city_id = null;
+
+        if(!$old_city_id && sizeof($this->request->old()) > 0 && $user->location) {
+            $city_id = null;
+        } elseif(!$old_city_id  && $user->location) {
+            $city_id = $user->location->city->id;
+        } elseif(!$old_city_id && !$user->location) {
+            $city_id = null;
+        } elseif($old_city_id && $user->location) {
+            $city_id = $old_city_id;
+        } elseif($old_city_id && !$user->location) {
+            $city_id = $old_city_id;
+        }
+
+        return $city_id;
     }
 }
