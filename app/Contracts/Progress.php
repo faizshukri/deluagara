@@ -9,4 +9,5 @@ interface Progress {
     public function updateProgress();
     public function addActivity($activity_name);
     public function getPoint($activity_name);
+    public function getPointPercentage($activity_name);
 }

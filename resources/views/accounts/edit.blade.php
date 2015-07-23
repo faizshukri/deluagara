@@ -12,7 +12,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h3 class="panel-title">Basic Information
-                            <span class="badge distribution-count">+{{ $progress->getPoint('about_me') }}</span>
+                            <span class="badge distribution-count">+{{ $progress->getPointPercentage('about_me') }}</span>
                         </h3>
                     </div>
                     <div class="panel-body">
@@ -76,6 +76,26 @@
                             </div>
                         </div>
 
+                        {{-- Profile Image --}}
+                        <div class="form-group">
+                            {!! Form::label('profile_image', 'Profile Image', ['class'=>'control-label col-sm-2']) !!}
+                            <div class="col-sm-10">
+                                {!! Form::file('profile_image', ['class'=>'form-control']) !!}
+                                <br/>
+                                <img id="profile_image_preview" src="{{ $user->profile_image or 'http://www.gravatar.com/avatar/' . md5(strtolower(trim( $user->email ))) . '?d=monsterid&s=250' }}" style="width: 150px; height: 150px; border: 1px solid #ddd; padding: 2px; cursor: pointer;" />
+                                <span class="badge distribution-count">+{{ $progress->getPointPercentage('profile_image') }}</span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Education / Working Information <span class="badge distribution-count">+{{ $progress->getPointPercentage('education') }}</span></h3>
+                    </div>
+                    <div class="panel-body">
+
                         {{-- Status --}}
                         <div class="form-group @if ($errors->has('status')) has-error @endif">
                             {!! Form::label('status', 'Status', ['class'=>'control-label col-sm-2']) !!}
@@ -104,22 +124,19 @@
                             </div>
                         </div>
 
-                        {{-- Profile Image --}}
-                        <div class="form-group">
-                            {!! Form::label('profile_image', 'Profile Image', ['class'=>'control-label col-sm-2']) !!}
+                        {{-- Course / Work --}}
+                        <div class="form-group @if ($errors->has('course_work')) has-error @endif">
+                            {!! Form::label('course_work', 'Course / Work', ['class'=>'control-label col-sm-2']) !!}
                             <div class="col-sm-10">
-                                {!! Form::file('profile_image', ['class'=>'form-control']) !!}
-                                <br/>
-                                <img id="profile_image_preview" src="{{ $user->profile_image or 'http://www.gravatar.com/avatar/' . md5(strtolower(trim( $user->email ))) . '?d=monsterid&s=250' }}" style="width: 150px; height: 150px; border: 1px solid #ddd; padding: 2px; cursor: pointer;" />
-                                <span class="badge distribution-count">+{{ $progress->getPoint('profile_image') }}</span>
+                                {!! Form::text('course_work', null, ['class'=>'form-control']) !!}
+                                @if ($errors->has('course_work')) <p class="help-block">{{ $errors->first('course_work') }}</p> @endif
                             </div>
                         </div>
-
                     </div>
                 </div>
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Address Information <span class="badge distribution-count">+{{ $progress->getPoint('address') }}</span></h3>
+                        <h3 class="panel-title">Address Information <span class="badge distribution-count">+{{ $progress->getPointPercentage('address') }}</span></h3>
                     </div>
                     <div class="panel-body">
 
@@ -162,7 +179,7 @@
                 </div>
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Social Media Information <span class="badge distribution-count">+{{ $progress->getPoint('url') }}</span></h3>
+                        <h3 class="panel-title">Social Media Information <span class="badge distribution-count">+{{ $progress->getPointPercentage('url') }}</span></h3>
                     </div>
                     <div class="panel-body">
 

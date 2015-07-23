@@ -81,6 +81,18 @@ class FaizProgress implements Progress{
         return isset($this->distribution[$name]) ? $this->distribution[$name]['point'] : 0;
     }
 
+    public function getPointPercentage($name)
+    {
+        $point = $this->getPoint($name);
+
+        $total = 0;
+        foreach($this->distribution as $distribution){
+            $total += $distribution['point'];
+        }
+
+        return round($point / $total * 100);
+    }
+
     protected function initDistribution()
     {
         $this->distribution = [
@@ -124,6 +136,12 @@ class FaizProgress implements Progress{
                 'point' => 10,
                 'condition' => function() {
                     return false;
+                }
+            ],
+            'education' => [
+                'point' => 20,
+                'condition' => function() {
+                    return !empty($this->user->user_status_id) && !empty($this->user->sponsor_id) && !empty($this->user->course_work);
                 }
             ]
         ];
