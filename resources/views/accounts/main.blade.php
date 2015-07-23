@@ -35,6 +35,46 @@
                     </div>
                 </div>
                 <hr />
+                @if(isset($user->gender) || isset($user->status->title) || isset($user->course_work) || isset($user->sponsor->title))
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="well">
+                                <div class="row">
+                                    <div class="col-sm-12">
+
+                                        @if(isset($user->gender) && !empty($user->gender))
+                                            <div style="float: left; margin-right: 8px;"><i style="" class="fa {{ $user->gender == 'male' ? 'fa-mars' : 'fa-venus' }}"></i></div>
+                                            <div style="float: left; margin-right: 20px;">
+                                                {{ studly_case($user->gender) }}
+                                            </div>
+                                        @endif
+
+                                        @if(isset($user->status->title) && !empty($user->status->title))
+                                            <div style="float: left; margin-right: 8px;"><i style="" class="fa fa-user"></i></div>
+                                            <div style="float: left; margin-right: 20px;">
+                                                {{ $user->status->title }}
+                                            </div>
+                                        @endif
+
+                                        @if(isset($user->course_work) && !empty($user->course_work))
+                                            <div style="float: left; margin-right: 8px;"><i style="" class="fa {{ $user->status->title == 'Working' ? 'fa-briefcase' : 'fa-graduation-cap' }}"></i></div>
+                                            <div style="float: left; margin-right: 20px;">
+                                                {{ $user->course_work }}
+                                            </div>
+                                        @endif
+
+                                        @if(isset($user->sponsor->title) && !empty($user->sponsor->title))
+                                            <div style="float: left; margin-right: 8px;"><i style="" class="fa fa-building"></i></div>
+                                            <div style="float: left; margin-right: 20px;">
+                                                {{ $user->sponsor->title }}
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endif
                 <div class="row">
                     <div class="col-sm-12">
                         @include('partials.map-account')
