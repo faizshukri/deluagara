@@ -12,6 +12,11 @@ settings:
 extensions:
     enabled:
         - Codeception\Extension\RunFailed
+        - Codeception\Extension\Phantoman
+        - Codeception\Extension\Recorder
+    config:
+        Codeception\Extension\Phantoman:
+            path: '/usr/local/bin/phantomjs'
 modules:
     config:
         Db:
@@ -19,3 +24,12 @@ modules:
             user: ''
             password: ''
             dump: tests/_data/dump.sql
+coverage:
+    enabled: true
+    include:
+        - app/Http/*
+        - app/Post.php
+        - app/User.php
+    exclude:
+        - app/Http/routes.php
+        - app/Http/Kernel.php

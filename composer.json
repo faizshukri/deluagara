@@ -17,7 +17,9 @@
         "phpunit/phpunit": "~4.0",
         "phpspec/phpspec": "~2.1",
         "barryvdh/laravel-ide-helper": "^2.0",
-        "codeception/codeception": "^2.1"
+        "codeception/codeception": "*",
+        "site5/phantoman": "^1.0",
+        "jakoch/phantomjs-installer": "^2.0"
     },
     "autoload": {
         "classmap": [
@@ -36,13 +38,15 @@
         "post-install-cmd": [
             "php artisan clear-compiled",
             "php artisan ide-helper:generate",
-            "php artisan optimize"
+            "php artisan optimize",
+            "PhantomInstaller\\Installer::installPhantomJS"
         ],
         "pre-update-cmd": [
             "php artisan clear-compiled"
         ],
         "post-update-cmd": [
-            "php artisan optimize"
+            "php artisan optimize",
+            "PhantomInstaller\\Installer::installPhantomJS"
         ],
         "post-root-package-install": [
             "php -r \"copy('.env.example', '.env');\""

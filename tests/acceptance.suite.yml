@@ -10,4 +10,9 @@ modules:
         - PhpBrowser:
             url: http://localhost/myapp
         - \Helper\Acceptance
-        - Laravel5
+        - Laravel5:
+            environment_file: .env.testing
+        - WebDriver:
+            url: 'http://localhost:8000'
+            browser: firefox
+            window_size: maximize

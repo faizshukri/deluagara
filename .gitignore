@@ -1,7 +1,7 @@
 /vendor
 /node_modules
 Homestead.yaml
-.env
+.env*
 _ide_helper.php
 /storage/database.sqlite
 /.idea

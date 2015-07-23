@@ -9,7 +9,7 @@
             <div class="panel-wrapper">
 
                 @if( $currentUser !== null && $currentUser->id == $user->id )
-                    <a class="button-edit btn btn-primary" href="{{ route('account.edit') }}"><i class="fa fa-pencil-square-o"></i></a>
+                    <a id="btnEditAccount" class="button-edit btn btn-primary" href="{{ route('account.edit') }}"><i class="fa fa-pencil-square-o"></i></a>
                 @endif
                 
                 <div class="row">

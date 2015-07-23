@@ -2,7 +2,7 @@
     <div class="container-fluid" style="height: 100%;">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-navbar-collapse" aria-expanded="false">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -12,7 +12,7 @@
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <div class="collapse navbar-collapse" id="main-navbar-collapse">
             <ul class="nav navbar-nav">
                 @if ( $currentUser )
                     <li class="{{ set_active('people') }}"><a href="{{ route('people.index') }}">People</a></li>
@@ -20,6 +20,7 @@
                     <li class="{{ set_active('host') }}"><a href="#">Accomodation</a></li>
                     <li class="{{ set_active('mybay') }}"><a href="#">MyBay</a></li>
                     <li class="{{ set_active('blog') }}"><a href="#">Blog</a></li>
+                    <li class="{{ set_active('Group') }}"><a href="#">Group</a></li>
                 @endif
             </ul>
             <ul class="nav navbar-nav navbar-right">
