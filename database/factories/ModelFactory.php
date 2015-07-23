@@ -36,7 +36,7 @@ $factory->define(App\User::class, function ($faker) use (&$statuses, &$sponsors)
         'website' => $faker->url(),
         'facebook_url' => $faker->userName(),
         'twitter_url' => $faker->userName(),
-        'profile_image' => $faker->imageUrl(225, 300, 'people'),
+        'profile_image' => $faker->imageUrl(200, 200, 'people'),
         'activity' => serialize(['register'])
     ];
 });

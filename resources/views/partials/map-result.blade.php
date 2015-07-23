@@ -30,6 +30,11 @@
                         icon: L.mapbox.marker.icon({'marker-symbol': 'building', 'marker-color': '#548cba'})
                     });
                     marker.bindPopup(user.name);
+
+                    marker.on('click', function(e){
+                        map.panTo(marker.getLatLng());
+                    });
+
                     markers.addLayer(marker);
                 });
 
