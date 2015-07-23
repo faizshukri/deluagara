@@ -17,7 +17,7 @@
                         <img src="{{ $user->profile_image or 'http://www.gravatar.com/avatar/' . md5(strtolower(trim( $user->email ))) . '?d=monsterid&s=250' }}" alt="{{ $user->name }}" style="width: 100%; max-width: 500px; padding: 3px; border: 1px solid #ddd;"/>
                     </div>
                     <div class="col-sm-9">
-                        <h1 style="font-weight: normal; margin-bottom: 0px; margin-top: 0px;">{{ $user->name }}</h1>
+                        <h1 style="font-weight: normal; margin-bottom: 0px; margin-top: 0px;">{{ $user->name }} <i style="font-size: 0.8em; color: gray;" class="fa {{ $user->gender ? ( $user->gender == 'male' ? 'fa-mars' : 'fa-venus') : ('') }}"></i></h1>
                         <h3 style="margin-top: 0px;">{{ $user->location->city->name or '' }}</h3>
 
                         <p><i>{{ $user->about_me }}</i></p>
@@ -35,19 +35,14 @@
                     </div>
                 </div>
                 <hr />
-                @if(isset($user->gender) || isset($user->status->title) || isset($user->course_work) || isset($user->sponsor->title))
+                @if((isset($user->status->title) && !empty($user->status->title)) ||
+                (isset($user->course_work) && !empty($user->course_work)) ||
+                (isset($user->sponsor->title) && !empty($user->sponsor->title)))
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="well">
                                 <div class="row">
                                     <div class="col-sm-12 mini-info">
-
-                                        @if(isset($user->gender) && !empty($user->gender))
-                                            <div style="float: left; margin-right: 8px;"><i style="" class="fa {{ $user->gender == 'male' ? 'fa-mars' : 'fa-venus' }}"></i></div>
-                                            <div style="float: left; margin-right: 20px;">
-                                                {{ studly_case($user->gender) }}
-                                            </div>
-                                        @endif
 
                                         @if(isset($user->status->title) && !empty($user->status->title))
                                             <div style="float: left; margin-right: 8px;"><i style="" class="fa fa-user"></i></div>
