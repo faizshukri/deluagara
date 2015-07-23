@@ -31,5 +31,11 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(\App\Contracts\GeoIP::class, \App\Services\FaizGeoIP::class);
         $this->app->bind(\App\Contracts\Progress::class, \App\Services\FaizProgress::class);
         $this->app->bind(\App\Contracts\ImageHandler::class, \App\Services\InterventionImageHandler::class);
+
+        // Development service provider
+        if($this->app->environment('local'))
+        {
+            $this->app->register('Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider');
+        }
     }
 }

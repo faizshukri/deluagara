@@ -148,7 +148,6 @@ return [
         App\Providers\HelperServiceProvider::class,
         App\Providers\HashIDServiceProvider::class,
 
-        Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
     ],
