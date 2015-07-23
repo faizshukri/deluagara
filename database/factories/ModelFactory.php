@@ -31,6 +31,7 @@ $factory->define(App\User::class, function ($faker) use (&$statuses, &$sponsors)
         'phone' => $faker->phoneNumber(),
         'user_status_id' => $faker->randomElement($statuses),
         'sponsor_id' => $faker->randomElement($sponsors),
+        'course' => $faker->sentence($nbWords = 8),
         'about_me' => $faker->realText($maxNbChars = 200, $indexSize = 2),
         'website' => $faker->url(),
         'facebook_url' => $faker->userName(),
