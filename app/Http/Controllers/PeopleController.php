@@ -32,7 +32,8 @@ class PeopleController extends Controller
         return view('people.main', compact('statuses', 'sponsors', 'users', 'request', 'city', 'user_coord'));
     }
 
-    private function search($request){
+    private function search($request)
+    {
 
         $city = $request->input('city');
         $name = $request->input('name');
@@ -55,7 +56,7 @@ class PeopleController extends Controller
         }
 
         if ($gender != NULL) {
-            $users = $users->where('gender', $gender);
+            $users = $users->whereIn($user_table.'.gender', $gender);
         }
 
         if ($status != NULL) {
@@ -63,7 +64,7 @@ class PeopleController extends Controller
         }
 
         if ($sponsor != NULL) {
-            $users = $users->where($user_table.'.sponsor_id', $sponsor);
+            $users = $users->whereIn($user_table.'.sponsor_id', $sponsor);
         }
 
         return User::whereIn('id', $users->lists('id'));

@@ -23,11 +23,16 @@
                     {{-- Gender --}}
                     <div class="form-group">
                         <label for="gender">Gender</label>
-                        <select type="text" class="form-control" id="gender" name="gender">
-                            <option value="">Select gender</option>
-                            <option value="male" {{ isset($request['gender']) && $request['gender'] == 'male' ? 'selected' : '' }}>Male</option>
-                            <option value="female" {{ isset($request['gender']) && $request['gender'] == 'female' ? 'selected' : '' }}>Female</option>
-                        </select>
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="gender[]" value="male" {{ isset($request['gender']) && in_array( 'male', $request['gender']  ) ? 'checked' : '' }} /> Male
+                            </label>
+                        </div>
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="gender[]" value="female" {{ isset($request['gender']) && in_array( 'female', $request['gender']  ) ? 'checked' : '' }}/> Female
+                            </label>
+                        </div>
                     </div>
 
                     {{-- Status --}}
@@ -45,13 +50,15 @@
 
                     {{-- Sponsor --}}
                     <div class="form-group">
-                        <label for="sponsor">Sponsor</label>
-                        <select type="text" class="form-control" id="sponsor" name="sponsor">
-                            <option value="">Select sponsor</option>
-                            @foreach($sponsors as $sponsor)
-                                <option value="{{ $sponsor->id }}" {{ isset($request['sponsor']) && $request['sponsor'] == $sponsor->id ? 'selected' : '' }}>{{ $sponsor->title }}</option>
-                            @endforeach
-                        </select>
+                        <label>Sponsor</label>
+                        @foreach($sponsors as $sponsor)
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" name="sponsor[]" value="{{ $sponsor->id }}" {{ isset($request['sponsor']) && in_array( $sponsor->id, $request['sponsor']  ) ? 'checked' : '' }}/>
+                                        {{ $sponsor->title }}
+                                </label>
+                            </div>
+                        @endforeach
                     </div>
 
                     {{-- Submit --}}
