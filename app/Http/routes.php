@@ -57,4 +57,4 @@ Route::group(['prefix'=>'api/v1'], function(){
 
 });
 
-Route::get('{username}', 'AccountController@user');
+Route::get('{username}', [ 'as' => 'profile', 'uses' => 'AccountController@user' ]);

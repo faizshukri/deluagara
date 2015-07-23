@@ -122,7 +122,7 @@ class AccountController extends Controller
 
         $this->user->save();
         $this->progress->updateProgress($this->user->fresh());
-        return redirect()->route('account.index');
+        return redirect()->route('profile', [$this->user->username]);
     }
 
     // Handle /{username}
