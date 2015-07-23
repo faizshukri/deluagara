@@ -267,7 +267,7 @@
                 $request.then(function (data) {
                     var option = new Option(data.text, data.id, true, true);
                     $element.append(option);
-                    $element.trigger('change');
+                    $element.trigger('change', [ true ]);
                 });
             }
 

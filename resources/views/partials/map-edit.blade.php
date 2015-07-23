@@ -41,8 +41,9 @@
                     var elem = $(elem);
 
                     // For every input change
-                    elem.change(function (e) {
+                    elem.change(function (e, first) {
 
+                        if(first) return;
                         // Search by concatenating value of street, postcode, and city name
                         geocoder.query($(address_elems[0]).val() + ', ' + $(address_elems[1]).val() + ', ' + $(address_elems[2]).find(':selected').text(), function(err, data){
                             if (data.latlng) {
