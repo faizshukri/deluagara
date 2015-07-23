@@ -20,8 +20,8 @@ class PeopleController extends Controller
     public function index(Request $request, GeoIP $geoip)
     {
 
-        if($request->input('name') !== NULL) $users = $this->search($request)->paginate(15);
-        else $users = User::paginate(15);
+        if($request->input('name') !== NULL) $users = $this->search($request)->paginate(14);
+        else $users = User::paginate(14);
 
         $statuses = UserStatus::all();
         $sponsors = Sponsor::all();

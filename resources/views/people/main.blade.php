@@ -65,16 +65,40 @@
                 <div class="row">
                     <div class="col-sm-12">
                         @include('partials/map-result')
-                        <ul>
-                            @foreach($users as $user)
-                                <li><a href="{{ url($user->username) }}">{{ $user->name }}</a> - {{ $user->location->city->name or '' }}</li>
-                            @endforeach
-                        </ul>
-                        @if(sizeof($users) == 0)
-                            <h2>No result found</h2>
-                        @endif
                     </div>
-                    {!! $users->appends($request)->render() !!}
+                </div>
+                <p class="clearfix">&nbsp;</p>
+                <div class="row">
+                    @foreach($users as $user)
+                        <div class="col-sm-6">
+                            <div class="row" style="padding-bottom: 10px;">
+                                <div class="col-sm-3">
+                                    <img src="{{ $user->profile_image or 'http://www.gravatar.com/avatar/' . md5(strtolower(trim( $user->email ))) . '?d=monsterid&s=100' }}" style="width: 100px; height: 100px;" alt=""/>
+                                </div>
+                                <div class="col-sm-9">
+                                    <div style="font-size: 1.2em;"><a href="{{ url($user->username) }}">{{ $user->name }}</a> {{ $user->gender }} <i style="" class="fa {{ $user->gender == "" ? ('fa-circle-thin') : ( $user->gender == 'male' ? 'fa-mars' : 'fa-venus' )}}"></i></div>
+                                    @if($user->status)
+                                        <div style="font-size: 0.9em;">
+                                            <i class="fa {{ $user->status->title == 'Working' ? 'fa-briefcase' : 'fa-graduation-cap' }}"></i> {{ $user->status->title }} {{ $user->status->title == 'Working' ? "at" : "in" }} {{ $user->course_work }}
+                                        </div>
+                                    @endif
+                                    @if($user->location && $user->location->city)
+                                        <div style="font-size: 0.9em; font-style: italic;">
+                                            <i class="fa fa-map-marker"></i> {{ $user->location->city->name or '' }}
+                                        </div>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                    @if(sizeof($users) == 0)
+                        <div class="col-sm-12"><h2>No result found</h2></div>
+                    @endif
+                </div>
+                <div class="row">
+                    <div class="col-sm-12" align="center">
+                        {!! $users->appends($request)->render() !!}
+                    </div>
                 </div>
             </div>
         </div>
