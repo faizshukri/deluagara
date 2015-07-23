@@ -21,7 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('gender', 7)->nullable();
             $table->string('phone')->nullable();
             $table->integer('user_status_id')->nullable();
-            $table->string('course')->nullable();
+            $table->string('course_work')->nullable();
             $table->integer('sponsor_id')->nullable();
             $table->text('about_me')->nullable();
             $table->string('website')->nullable();
