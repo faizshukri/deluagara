@@ -76,7 +76,7 @@
                                     <img src="{{ $user->profile_image or 'http://www.gravatar.com/avatar/' . md5(strtolower(trim( $user->email ))) . '?d=monsterid&s=100' }}" style="width: 100px; height: 100px;" alt=""/>
                                 </div>
                                 <div class="col-sm-9">
-                                    <div style="font-size: 1.2em;"><a href="{{ url($user->username) }}">{{ $user->name }}</a> {{ $user->gender }} <i style="" class="fa {{ $user->gender == "" ? ('fa-circle-thin') : ( $user->gender == 'male' ? 'fa-mars' : 'fa-venus' )}}"></i></div>
+                                    <div style="font-size: 1.2em;"><a href="{{ url($user->username) }}">{{ $user->name }}</a> <i style="" class="fa {{ $user->gender == "" ? ('fa-circle-thin') : ( $user->gender == 'male' ? 'fa-mars' : 'fa-venus' )}}"></i></div>
                                     @if($user->status)
                                         <div style="font-size: 0.9em;">
                                             <i class="fa {{ $user->status->title == 'Working' ? 'fa-briefcase' : 'fa-graduation-cap' }}"></i> {{ $user->status->title }} {{ $user->status->title == 'Working' ? "at" : "in" }} {{ $user->course_work }}
