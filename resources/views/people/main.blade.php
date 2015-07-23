@@ -72,27 +72,43 @@
                     @if($i%2 == 0)
                         <div class="row">
                             @foreach($users->slice($i, 2) as $j => $user)
-                                <div class="col-sm-6">
-                                    <div class="row" style="padding-bottom: 10px;">
+                                <div class="col-sm-6" style="padding-top: 10px; padding-bottom: 10px;">
+                                    <div class="row">
                                         <div class="col-sm-3">
                                             <img src="{{ $user->profile_image or 'http://www.gravatar.com/avatar/' . md5(strtolower(trim( $user->email ))) . '?d=monsterid&s=100' }}" style="width: 100px; height: 100px;" alt=""/>
                                         </div>
                                         <div class="col-sm-9">
                                             <div style="font-size: 1.2em;"><a href="{{ url($user->username) }}">{{ $user->name }}</a> <i style="" class="fa {{ $user->gender == "" ? ('fa-circle-thin') : ( $user->gender == 'male' ? 'fa-mars' : 'fa-venus' )}}"></i></div>
+
                                             @if($user->status)
-                                                <div style="font-size: 0.9em;">
-                                                    <i class="fa {{ $user->status->title == 'Working' ? 'fa-briefcase' : 'fa-graduation-cap' }}"></i> {{ $user->status->title }} {{ $user->status->title == 'Working' ? "at" : "in" }} {{ $user->course_work }}
+                                            <div class="row">
+                                                <div class="col-xs-1">
+                                                    <i class="fa {{ $user->status->title == 'Working' ? 'fa-briefcase' : 'fa-graduation-cap' }}"></i>
                                                 </div>
-                                            @endif
-                                            @if($user->location && $user->location->city)
-                                                <div style="font-size: 0.9em; font-style: italic;">
-                                                    <i class="fa fa-map-marker"></i> {{ $user->location->city->name or '' }}
+                                                <div class="col-xs-10" style="font-size: 0.9em;">
+                                                    {{ $user->status->title }} {{ $user->status->title == 'Working' ? "at" : "in" }} {{ $user->course_work }}
                                                 </div>
+                                            </div>
                                             @endif
                                             @if($user->sponsor)
-                                                <div style="font-style: 0.9em;">
-                                                    <i class="fa fa-building"></i> {{ $user->sponsor->title }}
+                                            <div class="row">
+                                                <div class="col-xs-1">
+                                                    <i class="fa fa-building"></i>
                                                 </div>
+                                                <div class="col-xs-10" style="font-size: 0.9em;">
+                                                    {{ $user->sponsor->title }}
+                                                </div>
+                                            </div>
+                                            @endif
+                                            @if($user->location && $user->location->city)
+                                            <div class="row">
+                                                <div class="col-xs-1">
+                                                    <i class="fa fa-map-marker"></i>
+                                                </div>
+                                                <div class="col-xs-10" style="font-size: 0.9em; font-style: italic">
+                                                    {{ $user->location->city->name or '' }}
+                                                </div>
+                                            </div>
                                             @endif
                                         </div>
                                     </div>
@@ -104,10 +120,11 @@
                 @if(sizeof($users) == 0)
                     <div class="col-sm-12"><h2>No result found</h2></div>
                 @endif
-                <div class="row">
-                    <div class="col-sm-12" align="center">
-                        {!! $users->appends($request)->render() !!}
-                    </div>
+
+            </div>
+            <div class="row">
+                <div class="col-sm-12" align="center">
+                    {!! $users->appends($request)->render() !!}
                 </div>
             </div>
         </div>

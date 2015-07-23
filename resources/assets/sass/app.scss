@@ -104,4 +104,19 @@ footer {
     font-family: inherit;
   }
 
+  .mini-info {
+    i {
+      color: #E02020;
+    }
+  }
+
+  .pagination {
+    li {
+      background-color: white;
+      a {
+        background-color: inherit;
+      }
+    }
+  }
+
 }
