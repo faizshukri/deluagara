@@ -85,7 +85,7 @@ class AuthController extends Controller
             $m->to($user->email, $user->name)->subject('Verify your email address');
         });
 
-        $this->request->session()->flash('confirmation', 'Thanks for signing up! Please check your email.');
+        flash()->success('Thanks for signing up! Please check your email.');
 
         return $user;
     }
@@ -108,7 +108,7 @@ class AuthController extends Controller
         $user->save();
         $progress->updateProgress($user);
 
-        flash()->success('You have successfully verified your account');
+        flash()->success('You have successfully verified your email.');
         return redirect()->route('home');
     }
 }

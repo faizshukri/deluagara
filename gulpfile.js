@@ -43,6 +43,7 @@ elixir(function(mix) {
             'public/css/vendor.css',
             './public'
         )
+        .styles(['email.css'], 'public/css/email.css')
         .scripts(
             [
                 paths.jquery + '/dist/jquery.min.js',
