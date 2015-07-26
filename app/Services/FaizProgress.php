@@ -129,7 +129,7 @@ class FaizProgress implements Progress{
             'validate_email' => [
                 'point' => 10,
                 'condition' => function() {
-                    return false;
+                    return $this->user->confirmed == intVal(1);
                 }
             ],
             'share'          => [

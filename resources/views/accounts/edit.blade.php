@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('content')
-    @inject('progress', 'App\Contracts\Progress')
+    @inject('progress', 'Katsitu\Contracts\Progress')
 
     <p class="clearfix">&nbsp;</p>
     <div class="row">

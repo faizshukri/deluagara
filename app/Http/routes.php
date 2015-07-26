@@ -21,6 +21,10 @@ Route::get('logout', [ 'as' => 'auth.logout', 'uses' => 'Auth\AuthController@get
 // Registration routes...
 Route::get('register', [ 'as' => 'auth.register', 'uses' => 'Auth\AuthController@getRegister']);
 Route::post('register', 'Auth\AuthController@postRegister');
+Route::get('register/verify/{confirmationCode}', [
+    'as' => 'auth.confirm',
+    'uses' => 'Auth\AuthController@confirmEmail'
+]);
 
 // Profile images
 Route::get('profile_image/{profile_image}', function($profile_image, \Katsitu\Contracts\ImageHandler $imageHandler){
