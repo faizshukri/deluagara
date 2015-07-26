@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace Katsitu\Http\Controllers;
 
-use App\Contracts\GeoIP;
-use App\Http\Controllers\Controller;
-use App\Location;
+use Katsitu\Contracts\GeoIP;
+use Katsitu\Http\Controllers\Controller;
+use Katsitu\Location;
 
 class HomeController extends Controller
 {

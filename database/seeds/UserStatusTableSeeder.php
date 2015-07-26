@@ -13,7 +13,7 @@ class UserStatusTableSeeder extends Seeder
     {
         // Statuses
         foreach(['Undergraduate', 'Postgraduate', 'Working'] as $status) {
-            factory('App\UserStatus')->create([ 'title' => $status ]);
+            factory('Katsitu\UserStatus')->create([ 'title' => $status ]);
         }
     }
 }

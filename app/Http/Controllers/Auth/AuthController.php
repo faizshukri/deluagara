@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace Katsitu\Http\Controllers\Auth;
 
-use App\User;
+use Katsitu\User;
 use Validator;
-use App\Http\Controllers\Controller;
+use Katsitu\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
 class AuthController extends Controller

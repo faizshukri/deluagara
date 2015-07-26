@@ -1,20 +1,20 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace Katsitu\Http\Controllers;
 
-use App\City;
-use App\Contracts\GeoIP;
-use App\Contracts\HashID;
-use App\Contracts\ImageHandler;
-use App\Contracts\Progress;
-use App\Sponsor;
-use App\User;
-use App\UserStatus;
+use Katsitu\City;
+use Katsitu\Contracts\GeoIP;
+use Katsitu\Contracts\HashID;
+use Katsitu\Contracts\ImageHandler;
+use Katsitu\Contracts\Progress;
+use Katsitu\Sponsor;
+use Katsitu\User;
+use Katsitu\UserStatus;
 use Illuminate\Http\Request;
 use Storage;
 
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
+use Katsitu\Http\Requests;
+use Katsitu\Http\Controllers\Controller;
 
 class AccountController extends Controller
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace Katsitu;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -12,6 +12,6 @@ class UserStatus extends Model
 
     public function users()
     {
-        return $this->hasMany('App\User');
+        return $this->hasMany('Katsitu\User');
     }
 }

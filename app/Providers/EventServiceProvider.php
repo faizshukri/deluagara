@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Providers;
+namespace Katsitu\Providers;
 
 use Illuminate\Contracts\Events\Dispatcher as DispatcherContract;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -13,11 +13,11 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        'App\Events\SomeEvent' => [
-            'App\Listeners\EventListener',
+        'Katsitu\Events\SomeEvent' => [
+            'Katsitu\Listeners\EventListener',
         ],
         'auth.login' => [
-            'App\Listeners\AuthLoginListener',
+            'Katsitu\Listeners\AuthLoginListener',
         ],
     ];
 

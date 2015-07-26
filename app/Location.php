@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace Katsitu;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -12,11 +12,11 @@ class Location extends Model
 
     public function user()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo('Katsitu\User');
     }
 
     public function city()
     {
-        return $this->belongsTo('App\City');
+        return $this->belongsTo('Katsitu\City');
     }
 }

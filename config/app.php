@@ -142,11 +142,12 @@ return [
         /*
          * Application Service Providers...
          */
-        App\Providers\AppServiceProvider::class,
-        App\Providers\EventServiceProvider::class,
-        App\Providers\RouteServiceProvider::class,
-        App\Providers\HelperServiceProvider::class,
-        App\Providers\HashIDServiceProvider::class,
+        Katsitu\Providers\AppServiceProvider::class,
+        Katsitu\Providers\EventServiceProvider::class,
+        Katsitu\Providers\RouteServiceProvider::class,
+        Katsitu\Providers\HelperServiceProvider::class,
+        Katsitu\Providers\HashIDServiceProvider::class,
+        Katsitu\Providers\BladeServiceProvider::class,
 
         Collective\Html\HtmlServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,

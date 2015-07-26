@@ -1,10 +1,10 @@
 <?php
 
 
-namespace App\Services;
+namespace Katsitu\Services;
 
 
-use App\Contracts\GeoIP;
+use Katsitu\Contracts\GeoIP;
 use Illuminate\Http\Request;
 
 class FaizGeoIP implements GeoIP

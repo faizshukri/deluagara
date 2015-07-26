@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace Katsitu\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
+use Katsitu\Http\Requests;
+use Katsitu\Http\Controllers\Controller;
 
 class EventController extends Controller
 {

@@ -1,10 +1,10 @@
 <?php
 
 
-namespace App\Services;
+namespace Katsitu\Services;
 
 
-use App\Contracts\ImageHandler;
+use Katsitu\Contracts\ImageHandler;
 use Intervention\Image\Facades\Image;
 
 

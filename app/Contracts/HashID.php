@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Contracts;
+namespace Katsitu\Contracts;
 
 
 interface HashID {

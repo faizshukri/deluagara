@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Events;
+namespace Katsitu\Events;
 
 abstract class Event
 {

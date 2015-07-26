@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Providers;
+namespace Katsitu\Providers;
 
 use Illuminate\Auth\Guard;
 use Illuminate\Support\ServiceProvider;
@@ -28,9 +28,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind(\App\Contracts\GeoIP::class, \App\Services\FaizGeoIP::class);
-        $this->app->bind(\App\Contracts\Progress::class, \App\Services\FaizProgress::class);
-        $this->app->bind(\App\Contracts\ImageHandler::class, \App\Services\InterventionImageHandler::class);
+        $this->app->bind(\Katsitu\Contracts\GeoIP::class, \Katsitu\Services\FaizGeoIP::class);
+        $this->app->bind(\Katsitu\Contracts\Progress::class, \Katsitu\Services\FaizProgress::class);
+        $this->app->bind(\Katsitu\Contracts\ImageHandler::class, \Katsitu\Services\InterventionImageHandler::class);
 
         // Development service provider
         if($this->app->environment('local'))

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Contracts;
+namespace Katsitu\Contracts;
 
 interface GeoIP {
     public function getLocation();

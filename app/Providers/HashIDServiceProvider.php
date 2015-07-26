@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Providers;
+namespace Katsitu\Providers;
 
-use App\User;
-use App\Contracts\HashID;
+use Katsitu\User;
+use Katsitu\Contracts\HashID;
 use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
 use Jenssegers\Optimus\Optimus;
@@ -29,6 +29,6 @@ class HashIDServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind(\App\Contracts\HashID::class, \App\Services\OptimusHashID::class);
+        $this->app->bind(\Katsitu\Contracts\HashID::class, \Katsitu\Services\OptimusHashID::class);
     }
 }

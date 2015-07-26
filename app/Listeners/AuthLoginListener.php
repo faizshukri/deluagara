@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Listeners;
+namespace Katsitu\Listeners;
 
-use App\Contracts\Progress;
-use App\User;
+use Katsitu\Contracts\Progress;
+use Katsitu\User;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 

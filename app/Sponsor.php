@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace Katsitu;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -8,6 +8,6 @@ class Sponsor extends Model
 {
     public function users()
     {
-        return $this->hasMany('App\User');
+        return $this->hasMany('Katsitu\User');
     }
 }

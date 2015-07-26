@@ -1,11 +1,11 @@
 <?php
 
 
-namespace App\Services;
+namespace Katsitu\Services;
 
-use App\Contracts\HashID;
-use App\Contracts\Progress;
-use App\User;
+use Katsitu\Contracts\HashID;
+use Katsitu\Contracts\Progress;
+use Katsitu\User;
 use Illuminate\Http\Request;
 
 class FaizProgress implements Progress{

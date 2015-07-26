@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Providers;
+namespace Katsitu\Providers;
 
-use App\User;
+use Katsitu\User;
 use Illuminate\Routing\Router;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
@@ -15,7 +15,7 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    protected $namespace = 'App\Http\Controllers';
+    protected $namespace = 'Katsitu\Http\Controllers';
 
     /**
      * Define your route model bindings, pattern filters, etc.
@@ -35,7 +35,7 @@ class RouteServiceProvider extends ServiceProvider
             return $user;
         });
 
-        $router->model('user', 'App\User');
+        $router->model('user', 'Katsitu\User');
     }
 
     /**

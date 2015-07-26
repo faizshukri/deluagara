@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace Katsitu;
 
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
@@ -38,17 +38,17 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 
     public function location()
     {
-        return $this->hasOne('App\Location');
+        return $this->hasOne('Katsitu\Location');
     }
 
     public function status()
     {
-        return $this->belongsTo('App\UserStatus', 'user_status_id');
+        return $this->belongsTo('Katsitu\UserStatus', 'user_status_id');
     }
 
     public function sponsor()
     {
-        return $this->belongsTo('App\Sponsor', 'sponsor_id');
+        return $this->belongsTo('Katsitu\Sponsor', 'sponsor_id');
     }
 
 }

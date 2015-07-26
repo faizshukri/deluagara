@@ -1,18 +1,18 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace Katsitu\Http\Controllers;
 
-use App\Contracts\GeoIP;
-use App\Sponsor;
-use App\User;
-use App\Location;
-use App\City;
-use App\UserStatus;
+use Katsitu\Contracts\GeoIP;
+use Katsitu\Sponsor;
+use Katsitu\User;
+use Katsitu\Location;
+use Katsitu\City;
+use Katsitu\UserStatus;
 use Illuminate\Http\Request;
 
 use DB;
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
+use Katsitu\Http\Requests;
+use Katsitu\Http\Controllers\Controller;
 
 class PeopleController extends Controller
 {

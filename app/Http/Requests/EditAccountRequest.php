@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Requests;
+namespace Katsitu\Http\Requests;
 
-use App\Http\Requests\Request;
+use Katsitu\Http\Requests\Request;
 
 class EditAccountRequest extends Request
 {

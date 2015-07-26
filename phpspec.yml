@@ -1,5 +1,5 @@
 suites:
     main:
-        namespace: App
-        psr4_prefix: App
+        namespace: Katsitu
+        psr4_prefix: Katsitu
         src_path: app

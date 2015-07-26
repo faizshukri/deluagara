@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Api\V1;
+namespace Katsitu\Http\Controllers\Api\V1;
 
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
-use App\Institute;
-use App\City;
+use Katsitu\Http\Requests;
+use Katsitu\Http\Controllers\Controller;
+use Katsitu\Institute;
+use Katsitu\City;
 
 class Select2SourceController extends Controller
 {
@@ -41,7 +41,7 @@ class Select2SourceController extends Controller
 
     private function getModelInstance($model_name)
     {
-        $model_name = 'App\\' . $model_name;
+        $model_name = 'Katsitu\\' . $model_name;
         return new $model_name;
 
     }

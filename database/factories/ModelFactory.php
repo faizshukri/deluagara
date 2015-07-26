@@ -14,10 +14,10 @@ $statuses = false;
 $sponsors = false;
 $cities = false;
 
-$factory->define(App\User::class, function ($faker) use (&$statuses, &$sponsors) {
+$factory->define(Katsitu\User::class, function ($faker) use (&$statuses, &$sponsors) {
 
-    if(!$statuses) $statuses = App\UserStatus::all()->lists('id')->toArray();
-    if(!$sponsors) $sponsors = App\Sponsor::all()->lists('id')->toArray();
+    if(!$statuses) $statuses = Katsitu\UserStatus::all()->lists('id')->toArray();
+    if(!$sponsors) $sponsors = Katsitu\Sponsor::all()->lists('id')->toArray();
 
     $faker->addProvider(new Faker\Provider\en_GB\PhoneNumber($faker));
 
@@ -41,21 +41,21 @@ $factory->define(App\User::class, function ($faker) use (&$statuses, &$sponsors)
     ];
 });
 
-$factory->define(App\UserStatus::class, function($faker){
+$factory->define(Katsitu\UserStatus::class, function($faker){
     return [
         'title' => $faker->sentence(2),
     ];
 });
 
-$factory->define(App\Sponsor::class, function($faker){
+$factory->define(Katsitu\Sponsor::class, function($faker){
     return [
         'title' => $faker->sentence(2),
     ];
 });
 
-$factory->define(App\Location::class, function($faker) use (&$cities) {
+$factory->define(Katsitu\Location::class, function($faker) use (&$cities) {
 
-    if(!$cities) $cities = App\City::all()->lists('id')->toArray();
+    if(!$cities) $cities = Katsitu\City::all()->lists('id')->toArray();
 
     $faker->addProvider(new Faker\Provider\en_GB\Address($faker));
 
@@ -70,13 +70,13 @@ $factory->define(App\Location::class, function($faker) use (&$cities) {
     ];
 });
 
-$factory->define(App\Institute::class, function($faker){
+$factory->define(Katsitu\Institute::class, function($faker){
     return [
         'name' => $faker->company
     ];
 });
 
-$factory->define(App\City::class, function($faker){
+$factory->define(Katsitu\City::class, function($faker){
     return [
         'name' => $faker->city
     ];

@@ -23,7 +23,7 @@ Route::get('register', [ 'as' => 'auth.register', 'uses' => 'Auth\AuthController
 Route::post('register', 'Auth\AuthController@postRegister');
 
 // Profile images
-Route::get('profile_image/{profile_image}', function($profile_image, \App\Contracts\ImageHandler $imageHandler){
+Route::get('profile_image/{profile_image}', function($profile_image, \Katsitu\Contracts\ImageHandler $imageHandler){
     return $imageHandler->make( storage_path('app/profile_images/' . $profile_image) )->response();
 });
 

@@ -1,10 +1,10 @@
 <?php
 
 
-namespace App\Services;
+namespace Katsitu\Services;
 
 
-use App\Contracts\HashID;
+use Katsitu\Contracts\HashID;
 use Jenssegers\Optimus\Optimus;
 
 class OptimusHashID implements HashID{

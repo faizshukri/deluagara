@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Api\V1;
+namespace Katsitu\Http\Controllers\Api\V1;
 
-use App\Location;
+use Katsitu\Location;
 use Illuminate\Http\Request;
 
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
+use Katsitu\Http\Requests;
+use Katsitu\Http\Controllers\Controller;
 
 class LocationController extends Controller
 {
