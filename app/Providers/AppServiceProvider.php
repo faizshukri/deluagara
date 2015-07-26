@@ -4,6 +4,7 @@ namespace Katsitu\Providers;
 
 use Illuminate\Auth\Guard;
 use Illuminate\Support\ServiceProvider;
+use Laracasts\Flash\Flash;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -12,10 +13,15 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot(Guard $auth)
+    public function boot(Guard $auth, Flash $flash)
     {
-        view()->composer('*', function($view) use ($auth){
-            $view->with('currentUser', $auth->user());
+        view()->composer('*', function($view) use ($auth, $flash){
+            $user = $auth->user();
+            $view->with('currentUser', $user);
+
+            if($user && !$user->confirmed){
+                flash()->warning("Your email $user->email is not verified. Please check your email.");
+            }
         });
 
         view()->share('hideNavbar', false);

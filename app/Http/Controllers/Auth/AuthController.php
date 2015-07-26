@@ -108,7 +108,7 @@ class AuthController extends Controller
         $user->save();
         $progress->updateProgress($user);
 
-        $this->request->session()->flash('confirmation', 'You have successfully verified your account');
+        flash()->success('You have successfully verified your account');
         return redirect()->route('home');
     }
 }

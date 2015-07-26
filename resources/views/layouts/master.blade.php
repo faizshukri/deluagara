@@ -17,6 +17,8 @@
             @include('layouts.navbar')
         @endunless
 
+        @include('partials.flash')
+
         @yield('map-front')
 
         <div class="container" id="deluagara">
