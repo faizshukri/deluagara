@@ -7,6 +7,7 @@ use Katsitu\Contracts\GeoIP;
 use Katsitu\Contracts\HashID;
 use Katsitu\Contracts\ImageHandler;
 use Katsitu\Contracts\Progress;
+use Katsitu\Services\FaizMailer;
 use Katsitu\Sponsor;
 use Katsitu\User;
 use Katsitu\UserStatus;
@@ -56,8 +57,8 @@ class AccountController extends Controller
         return view('accounts/edit', compact('user', 'sponsors', 'statuses', 'user_coord', 'city_id'));
     }
 
-    public function update( Requests\EditAccountRequest $request, HashID $hashID, ImageHandler $image,
-                            UserStatus $status, Sponsor $sponsor, City $city )
+    public function update( Requests\EditAccountRequest $request, FaizMailer $mailer, HashID $hashID,
+                            ImageHandler $image, UserStatus $status, Sponsor $sponsor, City $city )
     {
         $data = $request->all();
 
@@ -95,6 +96,7 @@ class AccountController extends Controller
         }
 
         $this->user->fill($data);
+        $resend_verification_email = array_key_exists('email', $this->user->getDirty());
 
         // If user location is not set
         if(!$this->user->location) {
@@ -121,6 +123,15 @@ class AccountController extends Controller
         $this->user->sponsor()->associate( $sponsor->find( array_get($data, 'sponsor.id') ) );
 
         $this->user->save();
+
+        if($resend_verification_email) {
+            $this->user->confirmed = 0;
+            $this->user->confirmation_code = str_random(32);
+            $this->user->save();
+
+            $mailer->sendVerificationEmail($this->user);
+        }
+
         $this->progress->updateProgress($this->user->fresh());
         return redirect()->route('profile', [$this->user->username]);
     }

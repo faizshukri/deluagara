@@ -3,6 +3,7 @@
 namespace Katsitu\Http\Controllers\Auth;
 
 use Katsitu\Contracts\Progress;
+use Katsitu\Services\FaizMailer;
 use Katsitu\User;
 use Illuminate\Http\Request;
 use Mail;
@@ -80,7 +81,7 @@ class AuthController extends Controller
             'confirmation_code' => str_random(32)
         ]);
 
-        $this->sendVerification($user, false);
+        $this->sendVerification($user, new FaizMailer, false);
 
         flash()->success('Thanks for signing up! Please check your email.');
 
@@ -109,14 +110,11 @@ class AuthController extends Controller
         return redirect()->route('home');
     }
 
-    public function sendVerification(User $user, $redirect = true)
+    public function sendVerification(User $user, FaizMailer $mailer, $redirect = true)
     {
         if(!$user->exists) $user = $this->request->user();
 
-        Mail::send('email.verify', ['user'=>$user], function($m) use ($user) {
-            $m->from(config('katsitu.emails.noreply.address'), config('katsitu.emails.noreply.name'));
-            $m->to($user->email, $user->name)->subject('Verify your email address');
-        });
+        $mailer->sendVerificationEmail($user);
 
         if($redirect) {
             flash()->message('Your verification email has been resend. Please check your email.');
