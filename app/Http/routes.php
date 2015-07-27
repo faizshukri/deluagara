@@ -21,6 +21,7 @@ Route::get('logout', [ 'as' => 'auth.logout', 'uses' => 'Auth\AuthController@get
 // Registration routes...
 Route::get('register', [ 'as' => 'auth.register', 'uses' => 'Auth\AuthController@getRegister']);
 Route::post('register', 'Auth\AuthController@postRegister');
+Route::get('register/verify/resend', [ 'as' => 'auth.resendverify', 'uses' => 'Auth\AuthController@sendVerification', 'middleware' => 'auth' ]);
 Route::get('register/verify/{confirmationCode}', [
     'as' => 'auth.confirm',
     'uses' => 'Auth\AuthController@confirmEmail'

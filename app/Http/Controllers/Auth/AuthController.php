@@ -42,7 +42,7 @@ class AuthController extends Controller
      */
     public function __construct(Request $request, Mail $mail)
     {
-        $this->middleware('guest', ['except' => ['getLogout', 'confirmEmail']]);
+        $this->middleware('guest', ['except' => ['getLogout', 'confirmEmail', 'sendVerification']]);
         $this->request = $request;
         $this->mail = $mail;
     }
@@ -80,10 +80,7 @@ class AuthController extends Controller
             'confirmation_code' => str_random(32)
         ]);
 
-        Mail::send('email.verify', ['user'=>$user], function($m) use ($user) {
-            $m->from(config('katsitu.emails.noreply.address'), config('katsitu.emails.noreply.name'));
-            $m->to($user->email, $user->name)->subject('Verify your email address');
-        });
+        $this->sendVerification($user, false);
 
         flash()->success('Thanks for signing up! Please check your email.');
 
@@ -100,7 +97,7 @@ class AuthController extends Controller
         $user = $user->where('confirmation_code', $confirmationCode)->first();
 
         if (!$user) {
-            throw new \Exception;
+            abort(404);
         }
 
         $user->confirmed = 1;
@@ -110,5 +107,20 @@ class AuthController extends Controller
 
         flash()->success('You have successfully verified your email.');
         return redirect()->route('home');
+    }
+
+    public function sendVerification(User $user, $redirect = true)
+    {
+        if(!$user->exists) $user = $this->request->user();
+
+        Mail::send('email.verify', ['user'=>$user], function($m) use ($user) {
+            $m->from(config('katsitu.emails.noreply.address'), config('katsitu.emails.noreply.name'));
+            $m->to($user->email, $user->name)->subject('Verify your email address');
+        });
+
+        if($redirect) {
+            flash()->message('Your verification email has been resend. Please check your email.');
+            return redirect()->back();
+        }
     }
 }

@@ -3,6 +3,7 @@
 namespace Katsitu\Providers;
 
 use Illuminate\Auth\Guard;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\ServiceProvider;
 use Laracasts\Flash\Flash;
 
@@ -19,8 +20,8 @@ class AppServiceProvider extends ServiceProvider
             $user = $auth->user();
             $view->with('currentUser', $user);
 
-            if($user && !$user->confirmed){
-                flash()->warning("Your email $user->email is not verified. Please check your email.");
+            if($user && !$user->confirmed && !Session::has('flash_notification.message')){
+                flash()->warning("Your email $user->email is not verified. Please check your email. <a style='color: white; font-weight: bold;' href='".route('auth.resendverify')."'>Resend</a>");
             }
         });
 
