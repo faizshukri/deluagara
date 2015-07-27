@@ -13,7 +13,7 @@ class SponsorTableSeeder extends Seeder
     {
         // Scholarship
         foreach(['MARA', 'JPA', 'PTPTN'] as $sponsor) {
-            factory('Katsitu\Sponsor')->create([ 'title' => $sponsor ]);
+            Katsitu\Sponsor::create(['title' => $sponsor]);
         }
     }
 }

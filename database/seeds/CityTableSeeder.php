@@ -21,7 +21,7 @@ class CityTableSeeder extends Seeder
         }
 
         foreach($uk_cities as $city) {
-            factory('Katsitu\City')->create([ 'name' => $city ]);
+            Katsitu\City::create(['name' => $city]);
         }
     }
 }

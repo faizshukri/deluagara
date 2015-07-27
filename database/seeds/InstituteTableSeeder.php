@@ -21,7 +21,7 @@ class InstituteTableSeeder extends Seeder
         }
 
         foreach ($institutes as $institute) {
-            factory('Katsitu\Institute')->create(['name' => $institute]);
+            Katsitu\Institute::create(['name' => $institute]);
         }
     }
 }
