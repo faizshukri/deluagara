@@ -81,10 +81,10 @@
                             @foreach($users->slice($i, 2) as $j => $user)
                                 <div class="col-sm-6" style="padding-top: 10px; padding-bottom: 10px;">
                                     <div class="row">
-                                        <div class="col-sm-3">
-                                            <img src="{{ $user->profile_image or 'http://www.gravatar.com/avatar/' . md5(strtolower(trim( $user->email ))) . '?d=monsterid&s=100' }}" style="width: 100px; height: 100px;" alt=""/>
+                                        <div class="col-xs-3" style="padding-right: 0px;">
+                                            <img src="{{ $user->profile_image or 'http://www.gravatar.com/avatar/' . md5(strtolower(trim( $user->email ))) . '?d=monsterid&s=100' }}" style="width: 100%; max-width: 100px; height: 100%; max-height: 100px;" alt=""/>
                                         </div>
-                                        <div class="col-sm-9">
+                                        <div class="col-xs-9">
                                             <div style="font-size: 1.2em;"><a href="{{ url($user->username) }}">{{ $user->name }}</a> <i style="" class="fa {{ $user->gender == "" ? ('fa-circle-thin') : ( $user->gender == 'male' ? 'fa-mars' : 'fa-venus' )}}"></i></div>
 
                                             @if($user->status)
