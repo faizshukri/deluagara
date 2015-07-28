@@ -16,8 +16,8 @@ class CreateLocationsTable extends Migration
             $table->increments('id');
             $table->string('street')->nullable();
             $table->string('postcode')->nullable();
-            $table->integer('latitude')->nullable();
-            $table->integer('longitude')->nullable();
+            $table->float('latitude')->nullable();
+            $table->float('longitude')->nullable();
             $table->date('lastDate')->nullable();
             $table->integer('city_id')->nullable();
             $table->integer('user_id')->unsigned();
