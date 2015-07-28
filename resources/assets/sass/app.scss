@@ -105,8 +105,28 @@ footer {
   }
 
   .mini-info {
-    i {
-      color: #E02020;
+    .mini-info-icon {
+      float: left;
+      margin-right: 8px;
+
+      i {
+        color: #E02020;
+      }
+    }
+
+    .mini-info-content {
+      @media(min-width: $screen-sm-min) {
+        & {
+          float: left;
+        }
+      }
+      margin-right: 20px;
+    }
+
+    @media(min-width: $screen-sm-min) {
+      p.clearfix {
+        display: none;
+      }
     }
   }
 

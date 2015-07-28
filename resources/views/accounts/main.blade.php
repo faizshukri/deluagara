@@ -13,10 +13,10 @@
                 @endif
                 
                 <div class="row">
-                    <div class="col-sm-3">
+                    <div class="col-sm-3 col-xs-4" style="padding-right: 0px;">
                         <img src="{{ $user->profile_image or 'http://www.gravatar.com/avatar/' . md5(strtolower(trim( $user->email ))) . '?d=monsterid&s=250' }}" alt="{{ $user->name }}" style="width: 100%; max-width: 500px; padding: 3px; border: 1px solid #ddd;"/>
                     </div>
-                    <div class="col-sm-9">
+                    <div class="col-sm-9 col-xs-8">
                         <h1 style="font-weight: normal; margin-bottom: 0px; margin-top: 0px;">{{ $user->name }} <i style="font-size: 0.8em; color: gray;" class="fa {{ $user->gender ? ( $user->gender == 'male' ? 'fa-mars' : 'fa-venus') : ('') }}"></i></h1>
                         <h3 style="margin-top: 0px;">{{ $user->location->city->name or '' }}</h3>
 
@@ -45,22 +45,22 @@
                                     <div class="col-sm-12 mini-info">
 
                                         @if(isset($user->status->title) && !empty($user->status->title))
-                                            <div style="float: left; margin-right: 8px;"><i style="" class="fa fa-user"></i></div>
-                                            <div style="float: left; margin-right: 20px;">
+                                            <div class="mini-info-icon"><i class="fa fa-user"></i></div>
+                                            <div class="mini-info-content">
                                                 {{ $user->status->title }}
                                             </div>
                                         @endif
-
+                                        <p class="clearfix"></p>
                                         @if(isset($user->course_work) && !empty($user->course_work))
-                                            <div style="float: left; margin-right: 8px;"><i style="" class="fa {{ $user->status->title == 'Working' ? 'fa-briefcase' : 'fa-graduation-cap' }}"></i></div>
-                                            <div style="float: left; margin-right: 20px;">
+                                            <div class="mini-info-icon"><i class="fa {{ $user->status->title == 'Working' ? 'fa-briefcase' : 'fa-graduation-cap' }}"></i></div>
+                                            <div class="mini-info-content">
                                                 {{ $user->course_work }}
                                             </div>
                                         @endif
-
+                                        <p class="clearfix"></p>
                                         @if(isset($user->sponsor->title) && !empty($user->sponsor->title))
-                                            <div style="float: left; margin-right: 8px;"><i style="" class="fa fa-building"></i></div>
-                                            <div style="float: left; margin-right: 20px;">
+                                            <div class="mini-info-icon"><i class="fa fa-building"></i></div>
+                                            <div class="mini-info-content">
                                                 {{ $user->sponsor->title }}
                                             </div>
                                         @endif
