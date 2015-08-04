@@ -26,6 +26,33 @@ footer {
   bottom: 10px;
   height: 50px;
   position: absolute;
+
+  #developer {
+    position: absolute;
+    left: 0;
+    right: 0;
+  }
+
+  #siteseal {
+    position: relative;
+    z-index: 2;
+    margin-top: -6px;
+  }
+  
+  @media (max-width: $screen-xs-max) {
+    bottom: 35px;
+
+    #developer {
+      position: relative;
+    }
+
+    #siteseal {
+      float: none !important;
+      display: block;
+      padding: 10px 0px;
+      text-align: center;
+    }
+  }
 }
 
 .navbar {
