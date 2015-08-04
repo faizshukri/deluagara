@@ -8,7 +8,7 @@ set('shared_files', ['.env']);
 
 set('writable_dirs', ['storage', 'vendor']);
 
-set('repository', 'git@github.com:faizshukri/deluagara.git');
+set('repository', 'git@github.com:faizshukri/katsitu.git');
 
 server('prod', 'katsitu.com', 22)
     ->user('root')
