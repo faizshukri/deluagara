@@ -82,7 +82,7 @@
                             <div class="col-sm-10">
                                 {!! Form::file('profile_image', ['class'=>'form-control']) !!}
                                 <br/>
-                                <img id="profile_image_preview" src="{{ $user->profile_image or 'http://www.gravatar.com/avatar/' . md5(strtolower(trim( $user->email ))) . '?d=monsterid&s=250' }}" style="width: 150px; height: 150px; border: 1px solid #ddd; padding: 2px; cursor: pointer;" />
+                                <img id="profile_image_preview" src="{{ $user->profile_image or '//www.gravatar.com/avatar/' . md5(strtolower(trim( $user->email ))) . '?d=monsterid&s=250' }}" style="width: 150px; height: 150px; border: 1px solid #ddd; padding: 2px; cursor: pointer;" />
                                 <span class="badge distribution-count">+{{ $progress->getPointPercentage('profile_image') }}</span>
                                 @if ($errors->has('profile_image')) <p class="help-block">{{ $errors->first('profile_image') }}</p> @endif
                             </div>

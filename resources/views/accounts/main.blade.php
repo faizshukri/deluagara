@@ -14,7 +14,7 @@
                 
                 <div class="row">
                     <div class="col-sm-3 col-xs-4" style="padding-right: 0px;">
-                        <img src="{{ $user->profile_image or 'http://www.gravatar.com/avatar/' . md5(strtolower(trim( $user->email ))) . '?d=monsterid&s=250' }}" alt="{{ $user->name }}" style="width: 100%; max-width: 500px; padding: 3px; border: 1px solid #ddd;"/>
+                        <img src="{{ $user->profile_image or '//www.gravatar.com/avatar/' . md5(strtolower(trim( $user->email ))) . '?d=monsterid&s=250' }}" alt="{{ $user->name }}" style="width: 100%; max-width: 500px; padding: 3px; border: 1px solid #ddd;"/>
                     </div>
                     <div class="col-sm-9 col-xs-8">
                         <h1 style="font-weight: normal; margin-bottom: 0px; margin-top: 0px;">{{ $user->name }} <i style="font-size: 0.8em; color: gray;" class="fa {{ $user->gender ? ( $user->gender == 'male' ? 'fa-mars' : 'fa-venus') : ('') }}"></i></h1>
