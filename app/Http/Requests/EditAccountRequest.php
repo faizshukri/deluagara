@@ -34,7 +34,7 @@ class EditAccountRequest extends Request
             'gender' => 'required',
 //            'status' => 'required',
 //            'sponsor' => 'required',
-            'end_date' => 'after:-1year|before:+15years',
+            'end_date' => 'date|after:-1year|before:+15years',
             'location.street' => 'required_with:location.postcode,location.city.id',
             'location.postcode' => 'required_with:location.street,location.city.id',
             'location.city.id' => 'required_with:location.postcode,location.street',
