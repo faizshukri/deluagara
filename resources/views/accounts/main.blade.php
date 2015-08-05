@@ -6,7 +6,7 @@
     <p class="clearfix">&nbsp;</p>
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
-            <div class="panel-wrapper">
+            <div class="panel-wrapper user_profile">
 
                 @if( $currentUser !== null && $currentUser->id == $user->id )
                     <a id="btnEditAccount" class="button-edit btn btn-primary" href="{{ route('account.edit') }}"><i class="fa fa-pencil-square-o"></i></a>
@@ -17,8 +17,8 @@
                         <img src="{{ $user->profile_image or '//www.gravatar.com/avatar/' . md5(strtolower(trim( $user->email ))) . '?d=monsterid&s=250' }}" alt="{{ $user->name }}" style="width: 100%; max-width: 500px; padding: 3px; border: 1px solid #ddd;"/>
                     </div>
                     <div class="col-sm-9 col-xs-8">
-                        <h1 style="font-weight: normal; margin-bottom: 0px; margin-top: 0px;">{{ $user->name }} <i style="font-size: 0.8em; color: gray;" class="fa {{ $user->gender ? ( $user->gender == 'male' ? 'fa-mars' : 'fa-venus') : ('') }}"></i></h1>
-                        <h3 style="margin-top: 0px;">{{ $user->location->city->name or '' }}</h3>
+                        <h1 class="user_name">{{ $user->name }} <i style="font-size: 0.8em; color: gray;" class="fa {{ $user->gender == "" ? ('fa-circle-thin') : ( $user->gender == 'male' ? 'fa-mars' : 'fa-venus' )}}"></i></h1>
+                        <h3 class="user_city">{{ $user->location->city->name or '' }}</h3>
 
                         <p><i>{{ $user->about_me }}</i></p>
                         <p style="font-size: 1.7em;">
@@ -29,7 +29,7 @@
                                 <a href="{{ url('http://twitter.com/') . $user->twitter_url }}" target="_blank"><i class="fa fa-twitter" style="color: #22c7ff;"></i></a>&nbsp;
                             @endif
                             @if($user->website)
-                                <a href="{{ $user->website }}" target="_blank"><i class="fa fa-external-link"></i></a>
+                                <a href="{{ preg_match('/^https?\:\/\//', $user->website) == 0 ? 'http://' . $user->website : $user->website }}" target="_blank"><i class="fa fa-external-link"></i></a>
                             @endif
                         </p>
                     </div>

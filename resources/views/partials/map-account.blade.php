@@ -1,3 +1,8 @@
+@if(!$user->location)
+    <div align="center" class="alert alert-info">
+        User didn't create his/her location yet
+    </div>
+@endif
 <div id='map-account' style="width: 100%; height: 200px; border: 1px solid #aaa;"></div>
 
 @section('header')

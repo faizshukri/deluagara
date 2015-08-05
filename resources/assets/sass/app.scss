@@ -158,6 +158,29 @@ footer {
     }
   }
 
+  // Style in user profile page
+  .user_profile {
+    .user_name {
+      font-weight: normal;
+      margin-bottom: 0px;
+      margin-top: 0px;
+    }
+
+    .user_city {
+      margin-top: 0px;
+    }
+
+    @media(max-width: $screen-xs-max) {
+      .user_name {
+        font-size: 30px;
+      }
+
+      .user_city {
+        font-size: 23px;
+      }
+    }
+  }
+
   .pagination {
     li {
       background-color: white;
