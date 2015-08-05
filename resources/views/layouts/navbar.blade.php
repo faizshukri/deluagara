@@ -16,11 +16,11 @@
             <ul class="nav navbar-nav">
                 @if ( $currentUser )
                     <li class="{{ set_active('people') }}"><a href="{{ route('people.index') }}">People</a></li>
-                    <li class="{{ set_active('event') }}"><a href="{{ route('event.index') }}">Event</a></li>
-                    <li class="{{ set_active('host') }}"><a href="#">Accomodation</a></li>
-                    <li class="{{ set_active('mybay') }}"><a href="#">MyBay</a></li>
-                    <li class="{{ set_active('blog') }}"><a href="#">Blog</a></li>
-                    <li class="{{ set_active('Group') }}"><a href="#">Group</a></li>
+                    {{--<li class="{{ set_active('event') }}"><a href="{{ route('event.index') }}">Event</a></li>--}}
+                    {{--<li class="{{ set_active('host') }}"><a href="#">Accomodation</a></li>--}}
+                    {{--<li class="{{ set_active('mybay') }}"><a href="#">MyBay</a></li>--}}
+                    {{--<li class="{{ set_active('blog') }}"><a href="#">Blog</a></li>--}}
+                    {{--<li class="{{ set_active('Group') }}"><a href="#">Group</a></li>--}}
                 @endif
             </ul>
             <ul class="nav navbar-nav navbar-right">
