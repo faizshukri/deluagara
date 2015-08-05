@@ -21,8 +21,9 @@ class CreateUsersTable extends Migration
             $table->string('gender', 7)->nullable();
             $table->string('phone')->nullable();
             $table->integer('user_status_id')->nullable();
-            $table->string('course_work')->nullable();
             $table->integer('sponsor_id')->nullable();
+            $table->string('course_work')->nullable();
+            $table->date('end_date')->nullable();
             $table->text('about_me')->nullable();
             $table->string('website')->nullable();
             $table->string('facebook_url')->nullable();
@@ -31,8 +32,8 @@ class CreateUsersTable extends Migration
             $table->boolean('confirmed')->default(0);
             $table->string('confirmation_code')->nullable();
             $table->string('activity')->nullable();
-            $table->rememberToken();
             $table->dateTime('last_login')->nullable();
+            $table->rememberToken();
             $table->timestamps();
         });
     }

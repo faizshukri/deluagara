@@ -25,7 +25,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
      * @var array
      */
     protected $fillable = [ 'name', 'username', 'email', 'password', 'gender', 'user_status_id', 'sponsor_id', 'course_work',
-        'phone', 'about_me', 'website', 'facebook_url', 'twitter_url', 'profile_image', 'confirmation_code','activity' ];
+        'end_date', 'phone', 'about_me', 'website', 'facebook_url', 'twitter_url', 'profile_image', 'confirmation_code','activity' ];
 
     protected $guarded = [ 'id', 'password' ];
 

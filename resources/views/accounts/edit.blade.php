@@ -133,6 +133,15 @@
                                 @if ($errors->has('course_work')) <p class="help-block">{{ $errors->first('course_work') }}</p> @endif
                             </div>
                         </div>
+
+                        {{-- End Date --}}
+                        <div class="form-group @if ($errors->has('end_date')) has-error @endif">
+                            {!! Form::label('end_date', 'End Date', ['class'=>'control-label col-sm-2']) !!}
+                            <div class="col-sm-10">
+                                {!! Form::date('end_date', null, ['class'=>'form-control']) !!}
+                                @if ($errors->has('end_date')) <p class="help-block">{{ $errors->first('end_date') }}</p> @endif
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="panel panel-default">
