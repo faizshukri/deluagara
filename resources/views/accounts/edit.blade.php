@@ -289,6 +289,29 @@
                     reader.readAsDataURL(this.files[0]);
                 }
             });
+
+            // Toggle sponsor when user status changed to working
+            var working_id = 3;
+
+            var toggleSponsor = function(){
+                if($('input[name="status[id]"]:checked').val() == working_id){
+                    $('input[name="sponsor[id]"]').prop('disabled', true);
+                    $('input[name="sponsor[id]"]').closest('.form-group').hide();
+                } else {
+                    $('input[name="sponsor[id]"]').prop('disabled', false);
+                    $('input[name="sponsor[id]"]').closest('.form-group').show();
+                }
+            };
+
+            // Start toggleSponsr for first time
+            toggleSponsor();
+
+            // Hide sponsor if working is selected
+            $('input[name="status[id]"]').on('change', function(){
+                console.log('status change ', $('input[name="status[id]"]:checked').val());
+                toggleSponsor();
+            });
+
         })();
     </script>
 @endsection

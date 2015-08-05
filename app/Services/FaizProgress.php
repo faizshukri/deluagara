@@ -135,13 +135,13 @@ class FaizProgress implements Progress{
             'share'          => [
                 'point' => 10,
                 'condition' => function() {
-                    return false;
+                    return true;
                 }
             ],
             'education' => [
                 'point' => 20,
                 'condition' => function() {
-                    return !empty($this->user->user_status_id) && !empty($this->user->sponsor_id) && !empty($this->user->course_work);
+                    return !empty($this->user->user_status_id) && !empty($this->user->course_work);
                 }
             ]
         ];
