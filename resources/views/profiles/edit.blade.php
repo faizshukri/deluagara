@@ -26,24 +26,6 @@
                             </div>
                         </div>
 
-                        {{-- Username --}}
-                        <div class="form-group @if ($errors->has('username')) has-error @endif">
-                            {!! Form::label('username', 'Username', ['class'=>'control-label col-sm-2']) !!}
-                            <div class="col-sm-10">
-                                {!! Form::text('username', null, ['class'=>'form-control']) !!}
-                                @if ($errors->has('username')) <p class="help-block">{{ $errors->first('username') }}</p> @endif
-                            </div>
-                        </div>
-
-                        {{-- Email --}}
-                        <div class="form-group @if ($errors->has('email')) has-error @endif">
-                            {!! Form::label('email', 'Email', ['class'=>'control-label col-sm-2']) !!}
-                            <div class="col-sm-10">
-                                {!! Form::text('email', null, ['class'=>'form-control']) !!}
-                                @if ($errors->has('email')) <p class="help-block">{{ $errors->first('email') }}</p> @endif
-                            </div>
-                        </div>
-
                         {{-- Phone --}}
                         <div class="form-group @if ($errors->has('phone')) has-error @endif">
                             {!! Form::label('phone', 'Phone', ['class'=>'control-label col-sm-2']) !!}

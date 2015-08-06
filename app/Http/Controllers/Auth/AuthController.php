@@ -72,6 +72,7 @@ class AuthController extends Controller
      */
     protected function create(array $data)
     {
+        User::unguard();
         $user = User::create([
             'name' => $data['name'],
             'username' => $data['username'],
@@ -80,6 +81,7 @@ class AuthController extends Controller
             'activity' => serialize(['register']),
             'confirmation_code' => str_random(32)
         ]);
+        User::reguard();
 
         $this->sendVerification($user, new FaizMailer, false);
 

@@ -147,6 +147,7 @@ return [
         Katsitu\Providers\RouteServiceProvider::class,
         Katsitu\Providers\HelperServiceProvider::class,
         Katsitu\Providers\HashIDServiceProvider::class,
+        Katsitu\Providers\ValidatorServiceProvider::class,
 
         Collective\Html\HtmlServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,

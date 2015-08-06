@@ -28,7 +28,9 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ $currentUser->name }} <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="{{ url($currentUser->username) }}">My Profile</a></li>
+                            <li><a href="{{ route('profile', $currentUser->username) }}">My Profile</a></li>
+                            <li><a href="{{ route('profile.edit') }}">Edit Profile</a></li>
+                            <li><a href="{{ route('account.edit') }}">Edit Account</a></li>
                             <li><a href="{{ route('auth.logout') }}">Logout</a></li>
                         </ul>
                     </li>
