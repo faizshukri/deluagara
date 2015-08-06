@@ -16,7 +16,7 @@
             <div class="panel-wrapper user_profile">
 
                 @if( $currentUser !== null && $currentUser->id == $user->id )
-                    <a id="btnEditAccount" class="button-edit btn btn-primary" href="{{ route('account.edit') }}"><i class="fa fa-pencil-square-o"></i></a>
+                    <a id="btnEditAccount" class="button-edit btn btn-primary" href="{{ route('profile.edit') }}"><i class="fa fa-pencil-square-o"></i></a>
                 @endif
                 
                 <div class="row">
@@ -96,7 +96,7 @@
                                             {{ $progress }}%
                                         </div>
                                     </div>
-                                    <a href="{{ route('account.edit') }}">Complete your Profile &gt;</a>
+                                    <a href="{{ route('profile.edit') }}">Complete your Profile &gt;</a>
                                 </div>
                             </div>
                         </div>

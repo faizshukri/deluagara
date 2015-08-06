@@ -17,7 +17,7 @@ use Storage;
 use Katsitu\Http\Requests;
 use Katsitu\Http\Controllers\Controller;
 
-class AccountController extends Controller
+class ProfileController extends Controller
 {
 
     private $user;
@@ -47,7 +47,7 @@ class AccountController extends Controller
     }
 
     // Handle /{username}
-    public function user( User $user )
+    public function profile( User $user )
     {
         $user_coord = $this->geoip->getLocation();
         $progress = $this->user ? $this->progress->getProgress() : null;

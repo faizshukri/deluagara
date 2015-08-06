@@ -7,7 +7,7 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <h2>Edit Profile</h2>
-            {!! Form::model($user, ['route' => ['account.update'], 'class' => 'form-horizontal', 'files' => 'true' ]) !!}
+            {!! Form::model($user, ['route' => ['profile.update'], 'class' => 'form-horizontal', 'files' => 'true' ]) !!}
                 {!! Form::token() !!}
                 <div class="panel panel-default">
                     <div class="panel-heading">
@@ -228,7 +228,7 @@
 
                     </div>
                     <div class="panel-footer">
-                        <a href="{{ route('account.index') }}" class="btn btn-default">Cancel</a>
+                        <a href="{{ route('profile.index') }}" class="btn btn-default">Cancel</a>
                         <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
                         <input type="submit" class="btn btn-primary" value="Save" />
                     </div>
