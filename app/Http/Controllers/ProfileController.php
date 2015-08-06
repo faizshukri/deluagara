@@ -52,7 +52,7 @@ class ProfileController extends Controller
         $user_coord = $this->geoip->getLocation();
         $progress = $this->user ? $this->progress->getProgress() : null;
 
-        return view('accounts/main', compact('user', 'user_coord', 'progress'));
+        return view('profiles/main', compact('user', 'user_coord', 'progress'));
     }
 
     public function edit(Sponsor $sponsor, UserStatus $status)
@@ -63,10 +63,10 @@ class ProfileController extends Controller
         $user_coord = $this->geoip->getLocation();
         $city_id = $this->get_city_id($user);
 
-        return view('accounts/edit', compact('user', 'sponsors', 'statuses', 'user_coord', 'city_id'));
+        return view('profiles/edit', compact('user', 'sponsors', 'statuses', 'user_coord', 'city_id'));
     }
 
-    public function update( Requests\EditAccountRequest $request, FaizMailer $mailer, HashID $hashID,
+    public function update( Requests\EditProfileRequest $request, FaizMailer $mailer, HashID $hashID,
                             ImageHandler $image, UserStatus $status, Sponsor $sponsor, City $city )
     {
         $data = $request->all();

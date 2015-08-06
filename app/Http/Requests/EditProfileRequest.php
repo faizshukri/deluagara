@@ -4,7 +4,7 @@ namespace Katsitu\Http\Requests;
 
 use Katsitu\Http\Requests\Request;
 
-class EditAccountRequest extends Request
+class EditProfileRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -21,29 +21,17 @@ class EditAccountRequest extends Request
      *
      * @return array
      */
-    public function rules(\Illuminate\Http\Request $request)
+    public function rules()
     {
-//        dd($request->input());
-        $user = $request->user();
         return [
             'name' => 'required',
-            'username' => 'required|min:3|unique:users,username,'.$user->id,
-            'email' => 'required|email|unique:users,email,'.$user->id,
-//            'phone' => 'required',
             'about_me' => 'min:20',
             'gender' => 'required',
-//            'status' => 'required',
-//            'sponsor' => 'required',
             'end_date' => 'date|after:-1year|before:+15years',
             'location.street' => 'required_with:location.postcode,location.city.id',
             'location.postcode' => 'required_with:location.street,location.city.id',
             'location.city.id' => 'required_with:location.postcode,location.street',
             'profile_image' => 'image|max:5120',
-//            'location.postcode' => 'required|max:10',
-//            'location.city.id' => 'required',
-//            'website' => 'required',
-//            'facebook_url' => 'required',
-//            'twitter_url' => 'required'
         ];
     }
 
