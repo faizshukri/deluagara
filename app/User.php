@@ -65,7 +65,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
                 'marker-color' => '#548cba',
                 'marker-symbol' => 'building',
                 'title' => $this->name,
-                'description' => $this->name
+                'description' => $this->location->city->name
             ]
         ] : [];
     }
