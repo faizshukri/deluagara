@@ -4,7 +4,7 @@ namespace Katsitu;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ResetPassword extends Model
+class PasswordReset extends Model
 {
     public function user()
     {

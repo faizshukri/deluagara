@@ -8,7 +8,7 @@
             <div class="panel-wrapper">
                 {!! Form::open(array('route' => 'auth.forgotpassword', 'method' => 'post')) !!}
 
-                <h2>Reset Password</h2>
+                <h2>Password Reset</h2>
                 <hr class="colorgraph">
                 <p>Enter your email address. We will send an email with a reset link to you.</p>
                 <div class="form-group @if ($errors->has('email')) has-error @endif">

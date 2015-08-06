@@ -4,8 +4,8 @@ namespace Katsitu\Http\Controllers\Auth;
 
 use Katsitu\Contracts\Progress;
 use Katsitu\Http\Requests\ForgotPasswordRequest;
-use Katsitu\Http\Requests\ResetPasswordRequest;
-use Katsitu\ResetPassword;
+use Katsitu\Http\Requests\PasswordResetRequest;
+use Katsitu\PasswordReset;
 use Katsitu\Services\FaizMailer;
 use Katsitu\User;
 use Illuminate\Http\Request;
@@ -134,7 +134,7 @@ class AuthController extends Controller
     }
 
     // Process their email
-    public function postForgotPassword(ForgotPasswordRequest $request, FaizMailer $mailer, User $user, ResetPassword $resetPassword)
+    public function postForgotPassword(ForgotPasswordRequest $request, FaizMailer $mailer, User $user, PasswordReset $passwordReset)
     {
         $data = $request->all();
 
@@ -142,44 +142,44 @@ class AuthController extends Controller
         $user = $user->where('email', $data['email'])->firstOrFail();
 
         // Check if the user has reset token already, and delete if it has
-        if($user->resetPassword)
-            $user->resetPassword->delete();
+        if($user->passwordReset)
+            $user->passwordReset->delete();
 
         // Generate new reset token
-        $resetPassword->reset_token = str_random(16);
+        $passwordReset->token = str_random(16);
 
         // Save to token
-        $user->resetPassword()->save($resetPassword);
+        $user->passwordReset()->save($passwordReset);
 
         // Send email
-        $mailer->sendResetPassword($user->fresh());
+        $mailer->sendPasswordReset($user->fresh());
 
         return view('auth/sentforgotpassword');
     }
 
     // Allow user to change their password
-    public function resetPassword(ResetPassword $resetPassword)
+    public function passwordReset(PasswordReset $passwordReset)
     {
-        $date = $resetPassword->created_at;
+        $date = $passwordReset->created_at;
 
-        // If resetpassword token is 3 days old, delete it and return not found
+        // If passwordreset token is 3 days old, delete it and return not found
         if($date->diffInDays($date->now(), false) > 3) {
-            $resetPassword->delete();
+            $passwordReset->delete();
             abort(404);
         }
 
-        return view('auth/resetpassword', compact('resetPassword'));
+        return view('auth/passwordreset', compact('passwordReset'));
     }
 
-    public function postResetPassword(ResetPasswordRequest $request, ResetPassword $resetPassword)
+    public function postPasswordReset(PasswordResetRequest $request, PasswordReset $passwordReset)
     {
-        $user = $resetPassword->user;
+        $user = $passwordReset->user;
         $user->password = bcrypt( $request->get('password') );
         $user->save();
 
-        // Remove resetpassword
-        $resetPassword->delete();
+        // Remove passwordreset
+        $passwordReset->delete();
 
-        return view('auth/successresetpassword');
+        return view('auth/successpasswordreset');
     }
 }

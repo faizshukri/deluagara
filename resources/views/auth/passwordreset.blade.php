@@ -6,9 +6,9 @@
         <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
             <p class="clearfix">&nbsp;</p>
             <div class="panel-wrapper">
-                {!! Form::open(array('route' => ['auth.resetpassword', $resetPassword->reset_token], 'method' => 'post')) !!}
+                {!! Form::open(array('route' => ['auth.passwordreset', $passwordReset->token], 'method' => 'post')) !!}
 
-                <h2>Reset Password</h2>
+                <h2>Password Reset</h2>
                 <hr class="colorgraph">
                 <p>Enter new password.</p>
                 <div class="row">

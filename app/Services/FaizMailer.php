@@ -17,11 +17,11 @@ class FaizMailer {
         });
     }
 
-    public function sendResetPassword(User $user)
+    public function sendPasswordReset(User $user)
     {
-        Mail::send('email.resetpassword', ['user' => $user], function($m) use ($user) {
+        Mail::send('email.passwordreset', ['user' => $user], function($m) use ($user) {
             $m->from(config('katsitu.emails.noreply.address'), config('katsitu.emails.noreply.name'));
-            $m->to($user->email, $user->name)->subject('Reset password at Katsitu.Com');
+            $m->to($user->email, $user->name)->subject('Password Reset at Katsitu.Com');
         });
     }
 }

@@ -4,7 +4,7 @@ namespace Katsitu\Http\Requests;
 
 use Katsitu\Http\Requests\Request;
 
-class ResetPasswordRequest extends Request
+class PasswordResetRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.

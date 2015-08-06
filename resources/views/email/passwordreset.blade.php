@@ -10,7 +10,7 @@
 
         <p>To reset the password please click the following link -</p>
 
-        <p><a href="{{ url('resetpassword/' . $user->resetPassword->reset_token) }}">{{ url('resetpassword/' . $user->resetPassword->reset_token) }}</a></p>
+        <p><a href="{{ route('auth.passwordreset', $user->passwordReset->token) }}">{{ route('auth.passwordreset', $user->passwordReset->token) }}</a></p>
 
         <p>Kindly ignore this email if this process was not initiated from your end.</p>
 
