@@ -41,6 +41,11 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         return $this->hasOne('Katsitu\Location');
     }
 
+    public function resetPassword()
+    {
+        return $this->hasOne('Katsitu\ResetPassword');
+    }
+
     public function status()
     {
         return $this->belongsTo('Katsitu\UserStatus', 'user_status_id');

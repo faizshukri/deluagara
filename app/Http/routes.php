@@ -17,6 +17,10 @@ Route::get('/', [ 'as' => 'home', 'uses' => 'HomeController@main'] );
 Route::get('login', [ 'as' => 'auth.login', 'uses' => 'Auth\AuthController@getLogin' ]);
 Route::post('login', 'Auth\AuthController@postLogin');
 Route::get('logout', [ 'as' => 'auth.logout', 'uses' => 'Auth\AuthController@getLogout']);
+Route::get('forgotpassword', ['as' => 'auth.forgotpassword', 'uses' => 'Auth\AuthController@getForgotPassword']);
+Route::post('forgotpassword', 'Auth\AuthController@postForgotPassword');
+Route::get('resetpassword/{reset_token}', [ 'as' => 'auth.resetpassword', 'uses' => 'Auth\AuthController@resetPassword']);
+Route::post('resetpassword/{reset_token}', 'Auth\AuthController@postResetPassword');
 
 // Registration routes...
 Route::get('register', [ 'as' => 'auth.register', 'uses' => 'Auth\AuthController@getRegister']);

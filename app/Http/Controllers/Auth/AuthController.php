@@ -3,6 +3,9 @@
 namespace Katsitu\Http\Controllers\Auth;
 
 use Katsitu\Contracts\Progress;
+use Katsitu\Http\Requests\ForgotPasswordRequest;
+use Katsitu\Http\Requests\ResetPasswordRequest;
+use Katsitu\ResetPassword;
 use Katsitu\Services\FaizMailer;
 use Katsitu\User;
 use Illuminate\Http\Request;
@@ -122,5 +125,61 @@ class AuthController extends Controller
             flash()->message('Your verification email has been resend. Please check your email.');
             return redirect()->back();
         }
+    }
+
+    // Ask user to put their email
+    public function getForgotPassword()
+    {
+        return view('auth/forgotpassword');
+    }
+
+    // Process their email
+    public function postForgotPassword(ForgotPasswordRequest $request, FaizMailer $mailer, User $user, ResetPassword $resetPassword)
+    {
+        $data = $request->all();
+
+        // Get user of the email
+        $user = $user->where('email', $data['email'])->firstOrFail();
+
+        // Check if the user has reset token already, and delete if it has
+        if($user->resetPassword)
+            $user->resetPassword->delete();
+
+        // Generate new reset token
+        $resetPassword->reset_token = str_random(16);
+
+        // Save to token
+        $user->resetPassword()->save($resetPassword);
+
+        // Send email
+        $mailer->sendResetPassword($user->fresh());
+
+        return view('auth/sentforgotpassword');
+    }
+
+    // Allow user to change their password
+    public function resetPassword(ResetPassword $resetPassword)
+    {
+        $date = $resetPassword->created_at;
+
+        // If resetpassword token is 3 days old, delete it and return not found
+        if($date->diffInDays($date->now(), false) > 3) {
+            $resetPassword->delete();
+            abort(404);
+        }
+
+        return view('auth/resetpassword', compact('resetPassword'));
+    }
+
+    public function postResetPassword(ResetPasswordRequest $request, ResetPassword $resetPassword)
+    {
+        $user = $resetPassword->user;
+        $user->password = bcrypt( $request->get('password') );
+        $user->save();
+
+        // Remove resetpassword
+        $resetPassword->delete();
+
+        return view('auth/successresetpassword');
     }
 }

@@ -19,10 +19,19 @@
                         {!! Form::password('password', ['class' => 'form-control input-lg', 'placeholder' => 'Password']) !!}
                         @if ($errors->has('password')) <p class="help-block">{{ $errors->first('password') }}</p> @endif
                     </div>
-                    <div class="checkbox">
-                        <label>
-                            {!! Form::checkbox('remember', 1, false, [ 'style' => 'font-size: 16px' ]) !!}  Remember me
-                        </label>
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <div class="checkbox" style="margin-top: 0px; margin-bottom: 0px; font-size: 13px;">
+                                <label>
+                                    {!! Form::checkbox('remember', 1, false, [ 'style' => 'font-size: 16px' ]) !!}  Remember me
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-xs-6">
+                            <div class="pull-right" style="margin-top: 0px; margin-bottom: 0px; font-size: 13px;">
+                                <a href="{{ route('auth.forgotpassword') }}">Forgot password?</a>
+                            </div>
+                        </div>
                     </div>
 
                     <hr class="colorgraph">

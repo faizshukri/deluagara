@@ -2,6 +2,7 @@
 
 namespace Katsitu\Providers;
 
+use Katsitu\ResetPassword;
 use Katsitu\User;
 use Illuminate\Routing\Router;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
@@ -33,6 +34,12 @@ class RouteServiceProvider extends ServiceProvider
             $user = User::where('username', $username)->first();
             if(!$user) abort(404);
             return $user;
+        });
+
+        $router->bind('reset_token', function($reset_token){
+            $resetPassword = ResetPassword::where('reset_token', $reset_token)->first();
+            if(!$resetPassword) abort(404);
+            return $resetPassword;
         });
 
         $router->model('user', 'Katsitu\User');
