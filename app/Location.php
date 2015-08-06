@@ -10,7 +10,7 @@ class Location extends Model
 
     protected $hidden = [ 'user_id', 'street', 'postcode' ];
 
-    protected $visible = [ 'latitude', 'longitude' ];
+    protected $visible = [ 'latitude', 'longitude', 'city' ];
 
     public function user()
     {
