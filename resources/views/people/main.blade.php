@@ -1,7 +1,12 @@
 @extends('layouts/master')
 
 @section('content')
-    <p class="clearfix">&nbsp;</p>
+    <div class="row">
+        <br/>
+        <div class="breadcrumb-wrapper">
+            {!! Breadcrumbs::render('people') !!}
+        </div>
+    </div>
     <div class="row">
         <div class="col-sm-3">
             <div class="panel-wrapper">

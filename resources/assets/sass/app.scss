@@ -190,4 +190,29 @@ footer {
     }
   }
 
+  // Breadcrumb wrapper if put below row
+  .breadcrumb-wrapper {
+    margin-left: 15px;
+    margin-right: 15px;
+
+    @media (min-width: $screen-sm-min){
+      margin-left: 6px;
+      margin-right: 6px;
+    }
+  }
+
+  // Breadcrumb wrapper if put below row > col
+  .breadcrumb-wrapper-col {
+    @media (min-width: $screen-sm-min){
+      margin-left: -8px;
+      margin-right: -8px;
+    }
+  }
+
+  // Breadcrumb
+  .breadcrumb {
+    background-color: #fff;
+    font-size: 11px;
+    margin-bottom: 12px;
+  }
 }

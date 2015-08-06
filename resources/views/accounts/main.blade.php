@@ -3,7 +3,14 @@
 @section('title', 'My Account')
 
 @section('content')
-    <p class="clearfix">&nbsp;</p>
+    <div class="row">
+        <br/>
+        <div class="col-md-8 col-md-offset-2">
+            <div class="breadcrumb-wrapper-col">
+                {!! Breadcrumbs::render('person', $user) !!}
+            </div>
+        </div>
+    </div>
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel-wrapper user_profile">
