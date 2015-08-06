@@ -37,9 +37,14 @@ class AccountController extends Controller
     }
 
     // Handle /account
-    public function index( User $user = null )
+    public function index()
     {
-        if( !$user->exists ) $user = $this->user;
+        return redirect()->route('profile', $this->user->username);
+    }
+
+    // Handle /{username}
+    public function user( User $user )
+    {
         $user_coord = $this->geoip->getLocation();
         $progress = $this->user ? $this->progress->getProgress() : null;
 
@@ -136,12 +141,6 @@ class AccountController extends Controller
 
         flash()->success('Your profile has been updated.');
         return redirect()->route('profile', [$this->user->username]);
-    }
-
-    // Handle /{username}
-    public function user( User $user )
-    {
-        return $this->index($user);
     }
 
     private function get_city_id($user)
