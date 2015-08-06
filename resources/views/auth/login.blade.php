@@ -7,30 +7,31 @@
         <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
             <p class="clearfix">&nbsp;</p>
             <div class="panel-wrapper">
-                <form role="form" method="POST" action="{{ route('auth.login') }}">
-                    {!! csrf_field() !!}
+                {!! Form::open(array('route' => 'auth.login', 'method' => 'post')) !!}
 
                     <h2>Login</h2>
                     <hr class="colorgraph">
                     <div class="form-group @if ($errors->has('email')) has-error @endif">
-                        <input autofocus type="email" name="email" value="{{ old('email') }}" id="email" class="form-control input-lg" placeholder="Email Address" tabindex="1">
+                        {!! Form::email('email', old('email'), ['class' => 'form-control input-lg', 'autofocus' => true, 'placeholder' => 'Email Address']) !!}
                         @if ($errors->has('email')) <p class="help-block">{{ $errors->first('email') }}</p> @endif
                     </div>
                     <div class="form-group @if ($errors->has('password')) has-error @endif">
-                        <input type="password" name="password" id="password" class="form-control input-lg" placeholder="Password" tabindex="2">
+                        {!! Form::password('password', ['class' => 'form-control input-lg', 'placeholder' => 'Password']) !!}
                         @if ($errors->has('password')) <p class="help-block">{{ $errors->first('password') }}</p> @endif
                     </div>
                     <div class="checkbox">
                         <label>
-                            <input type="checkbox" name="remember" tabindex="3" style="font-size: 16px;"> Remember me
+                            {!! Form::checkbox('remember', 1, false, [ 'style' => 'font-size: 16px' ]) !!}  Remember me
                         </label>
                     </div>
 
                     <hr class="colorgraph">
                     <div class="row">
-                        <div class="col-xs-12 col-md-6"><input type="submit" value="Login" class="btn btn-primary btn-block btn-lg" tabindex="4"></div>
+                        <div class="col-xs-12 col-md-6">
+                            {!! Form::submit('Login', ['class'=>'btn btn-primary btn-block btn-lg']) !!}
+                        </div>
                     </div>
-                </form>
+                {!! Form::close() !!}
             </div>
         </div>
     </div>

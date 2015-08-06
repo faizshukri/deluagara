@@ -7,48 +7,49 @@
         <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
             <p class="clearfix">&nbsp;</p>
             <div class="panel-wrapper">
-                <form role="form" method="POST" action="{{ route('auth.register') }}">
-                    {!! csrf_field() !!}
+                {!! Form::open(array('route' => 'auth.register', 'method' => 'post')) !!}
 
                     <h2>Please Sign Up <small>It's free and always will be.</small></h2>
                     <hr class="colorgraph">
                     <div class="row">
                         <div class="col-xs-12 col-sm-7">
                             <div class="form-group @if ($errors->has('name')) has-error @endif">
-                                <input autofocus type="text" name="name" value="{{ old('name') }}" id="name" class="form-control input-lg" placeholder="Full Name">
+                                {!! Form::text('name', old('name'), ['class' => 'form-control input-lg', 'autofocus' => true, 'placeholder' => 'Full Name']) !!}
                                 @if ($errors->has('name')) <p class="help-block">{{ $errors->first('name') }}</p> @endif
                             </div>
                         </div>
                         <div class="col-xs-12 col-sm-5">
                             <div class="form-group @if ($errors->has('username')) has-error @endif">
-                                <input autofocus type="text" name="username" value="{{ old('username') }}" id="username" class="form-control input-lg" placeholder="User Name">
+                                {!! Form::text('username', old('username'), ['class' => 'form-control input-lg', 'placeholder' => 'User Name']) !!}
                                 @if ($errors->has('username')) <p class="help-block">{{ $errors->first('username') }}</p> @endif
                             </div>
                         </div>
                     </div>
                     <div class="form-group @if ($errors->has('email')) has-error @endif">
-                        <input type="email" name="email" value="{{ old('email') }}" id="email" class="form-control input-lg" placeholder="Email Address">
+                        {!! Form::email('email', old('email'), ['class' => 'form-control input-lg', 'placeholder' => 'Email Address']) !!}
                         @if ($errors->has('email')) <p class="help-block">{{ $errors->first('email') }}</p> @endif
                     </div>
                     <div class="row">
                         <div class="col-xs-12 col-sm-6 col-md-6">
                             <div class="form-group @if ($errors->has('password')) has-error @endif">
-                                <input type="password" name="password" id="password" class="form-control input-lg" placeholder="Password">
+                                {!! Form::password('password', ['class' => 'form-control input-lg', 'placeholder' => 'Password']) !!}
                                 @if ($errors->has('password')) <p class="help-block">{{ $errors->first('password') }}</p> @endif
                             </div>
                         </div>
                         <div class="col-xs-12 col-sm-6 col-md-6">
                             <div class="form-group @if ($errors->has('password')) has-error @endif">
-                                <input type="password" name="password_confirmation" id="password_confirmation" class="form-control input-lg" placeholder="Confirm Password">
+                                {!! Form::password('password_confirmation', ['class' => 'form-control input-lg', 'placeholder' => 'Confirm Password']) !!}
                             </div>
                         </div>
                     </div>
 
                     <hr class="colorgraph">
                     <div class="row">
-                        <div class="col-xs-12 col-md-6"><input type="submit" value="Register" class="btn btn-primary btn-block btn-lg"></div>
+                        <div class="col-xs-12 col-md-6">
+                            {!! Form::submit('Register', ['class'=>'btn btn-primary btn-block btn-lg']) !!}
+                        </div>
                     </div>
-                </form>
+                {!! Form::close() !!}
             </div>
         </div>
     </div>
