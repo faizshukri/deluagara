@@ -51,4 +51,23 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         return $this->belongsTo('Katsitu\Sponsor', 'sponsor_id');
     }
 
+    public function getMarkerInfo()
+    {
+        $this->visible = [ 'name', 'profile_image', 'location' ];
+
+        return $this->location ? [
+            'type' => 'Feature',
+            'geometry' => [
+                'type' => 'Point',
+                'coordinates' => [ floatval($this->location->longitude), floatval($this->location->latitude) ]
+            ],
+            'properties' => [
+                'marker-color' => '#548cba',
+                'marker-symbol' => 'building',
+                'title' => $this->name,
+                'description' => $this->name
+            ]
+        ] : [];
+    }
+
 }
