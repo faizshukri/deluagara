@@ -39,6 +39,10 @@ class AccountController extends Controller
     // Handle /account
     public function index()
     {
+        if(session()->has('flash_notification.message')){
+            $level = session('flash_notification.level');
+            flash()->$level(session('flash_notification.message'));
+        }
         return redirect()->route('profile', $this->user->username);
     }
 
