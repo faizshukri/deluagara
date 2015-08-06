@@ -133,6 +133,8 @@ class AccountController extends Controller
         }
 
         $this->progress->updateProgress($this->user->fresh());
+
+        flash()->success('Your profile has been updated.');
         return redirect()->route('profile', [$this->user->username]);
     }
 
