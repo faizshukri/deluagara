@@ -11,8 +11,6 @@
     <script>
         (function(){
 
-            var locations = {!! $locations->toJson() !!};
-
             initMap();
 
             function initMap() {
@@ -27,6 +25,21 @@
                     .on('ready', function(e) {
                         var clusterGroup = new L.MarkerClusterGroup();
                         e.target.eachLayer(function(layer) {
+                            var content =
+                                '<div class="media">'+
+                                    '<div class="media-left">'+
+                                        '<a href="#">'+
+                                            '<img style="width: 55px;" class="media-object" src="'+ layer.feature.properties.profile_image +'" alt="'+layer.feature.properties.name+'">'+
+                                        '</a>'+
+                                    '</div>'+
+                                    '<div class="media-body">'+
+                                        '<h4 class="media-heading" style="font-weight: bold;">' +
+                                            '<a href="'+layer.feature.properties.username+'">'+layer.feature.properties.name+'</a>' +
+                                        '</h4>'+
+                                        layer.feature.properties.city +
+                                    '</div>'+
+                                '</div>';
+                            layer.bindPopup(content);
                             clusterGroup.addLayer(layer);
                         });
                         map.addLayer(clusterGroup);
