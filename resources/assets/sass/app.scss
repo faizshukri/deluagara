@@ -221,7 +221,21 @@ footer {
 
   .features-wrapper {
     img {
-      width: 150px;
+      width: 120px;
+
+      @media (max-width: $screen-xs-max){
+        width: 80px;
+      }
+    }
+
+    .row > div {
+      margin-bottom: 20px;
+
+      @media (max-width: $screen-xs-max) {
+        h2 {
+          font-size: 1.6em;
+        }
+      }
     }
   }
 }
