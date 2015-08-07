@@ -112,7 +112,7 @@ class AuthController extends Controller
         $progress->updateProgress($user);
 
         flash()->success('You have successfully verified your email.');
-        return redirect()->route('home');
+        return redirect()->route('profile', $user->username);
     }
 
     public function sendVerification(User $user, FaizMailer $mailer, $redirect = true)
