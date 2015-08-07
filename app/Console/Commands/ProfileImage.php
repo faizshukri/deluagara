@@ -7,7 +7,6 @@ use Illuminate\Filesystem\Filesystem;
 use Katsitu\Contracts\HashID;
 use Katsitu\Contracts\ImageHandler;
 use Katsitu\User;
-use Log;
 
 class ProfileImage extends Command
 {
