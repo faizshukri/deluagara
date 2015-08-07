@@ -10,7 +10,7 @@
     <p class="clearfix">&nbsp;</p>
     <div class="row">
         <div class="col-sm-12" align="center">
-            <h1>Katsitu is a public listing for Malaysian residing abroad</h1>
+            <h1>Katsitu is a public listing website for Malaysian community that were residing abroad</h1>
         </div>
         <p class="clearfix">&nbsp;</p>
         <div class="col-sm-12 features-wrapper">

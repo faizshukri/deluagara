@@ -8,7 +8,7 @@
             <div class="panel-wrapper">
                 <h2>Password Reset</h2>
                 <hr class="colorgraph">
-                <p>Your password has been change. You can now login using your new password.</p>
+                <p>Your password has been changed. You can now login using your new password.</p>
                 <a href="{{ route('auth.login') }}" class="btn btn-primary">Go to login</a>
                 <hr class="colorgraph">
             </div>

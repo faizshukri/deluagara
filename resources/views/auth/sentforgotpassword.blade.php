@@ -8,7 +8,7 @@
             <div class="panel-wrapper">
                 <h2>Email Sent</h2>
                 <hr class="colorgraph">
-                <p>We has sent a reset link to your email. Please use the link to reset your password.</p>
+                <p>We have sent a reset link to your email. Please use the link to reset your password.</p>
                 <hr class="colorgraph">
             </div>
         </div>
