@@ -41,9 +41,21 @@ class Handler extends ExceptionHandler
     public function render($request, Exception $e)
     {
         if( app()->environment('local') || config('app.debug') ) {
+
+            // Make all exception except 503 turn into stack trace
+            if($this->isHttpException($e) && $e->getStatusCode() == 503)
+                return parent::render($request, $e); // Default handler
+
+            // Response stack trace
             return (new SymfonyDisplayer(config('app.debug')))->createResponse($e);
         }
 
+        // If not http exception, return error page from view
+        if(!$this->isHttpException($e)) {
+            return response()->view('errors.500', [], 500);
+        }
+
+        // Default handler
         return parent::render($request, $e);
     }
 }
