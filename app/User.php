@@ -24,8 +24,8 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
      *
      * @var array
      */
-    protected $fillable = [ 'name', 'gender', 'user_status_id', 'sponsor_id', 'course_work',
-        'end_date', 'phone', 'about_me', 'website', 'facebook_url', 'twitter_url', 'profile_image', 'confirmation_code','activity' ];
+    protected $fillable = [ 'name', 'gender', 'user_status_id', 'sponsor_id', 'course_work', 'end_date', 'phone',
+        'about_me', 'website', 'facebook_url', 'twitter_url', 'profile_image', 'profile_image_sm', 'confirmation_code','activity' ];
 
     protected $guarded = [ 'id', 'password' ];
 
@@ -71,7 +71,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
                 'marker-symbol' => 'building',
                 'name' => $this->name,
                 'username' => $this->username,
-                'profile_image' => $this->profile_image,
+                'profile_image' => $this->profile_image_sm,
                 'city' => $this->location->city->name
             ]
         ] : [];

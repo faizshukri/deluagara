@@ -37,6 +37,7 @@ $factory->define(Katsitu\User::class, function ($faker) use (&$statuses, &$spons
         'facebook_url' => $faker->userName(),
         'twitter_url' => $faker->userName(),
         'profile_image' => $faker->imageUrl(200, 200, 'people'),
+        'profile_image_sm' => $faker->imageUrl(80, 80, 'people'),
         'activity' => serialize(['register']),
         'confirmation_code' => str_random(32)
     ];

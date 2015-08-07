@@ -38,7 +38,7 @@ class LocationController extends Controller
                         'marker-symbol' => 'building',
                         'name' => $loc->user->name,
                         'username' => $loc->user->username,
-                        'profile_image' => $loc->user->profile_image,
+                        'profile_image' => $loc->user->profile_image_sm,
                         'city' => $loc->city->name
                     ]
                 ];

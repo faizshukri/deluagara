@@ -14,6 +14,7 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         \Katsitu\Console\Commands\Inspire::class,
+        \Katsitu\Console\Commands\ProfileImage::class,
     ];
 
     /**
