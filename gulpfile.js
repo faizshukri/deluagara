@@ -30,6 +30,7 @@ var urls = {
 elixir(function(mix) {
     mix
         .sass('app.scss')
+        .sass('404.scss', 'public/css/404.css')
         .download(urls.bootstrap_yeti, paths.others)
         .styles(
             [
@@ -56,7 +57,7 @@ elixir(function(mix) {
             'public/js/vendor.js',
             './public'
         )
-        .version(['css/app.css', 'css/vendor.css', 'js/vendor.js'])
+        .version(['css/app.css', 'css/404.css', 'css/vendor.css', 'js/vendor.js'])
 
         .copy(paths.fontawesome + '/fonts', 'public/build/fonts')
         .copy(paths.bootstrap + '/fonts', 'public/build/fonts')

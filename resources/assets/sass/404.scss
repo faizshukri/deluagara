@@ -1,0 +1,32 @@
+@import '../../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/variables';
+
+.wrapper404 {
+  margin-bottom: 30px;
+
+  .content p{
+    margin: 18px 0px 45px 0px;
+  }
+  .content p{
+    font-family: "Century Gothic";
+    font-size:2em;
+    color:#666;
+    text-align:center;
+    @media (max-width: $screen-xs-max) {
+      font-size: 1.5em;
+    }
+  }
+
+  @media (max-width: $screen-xs-max) {
+    .content img {
+      width: 90%;
+    }
+  }
+
+  .content p span,.logo h1 a{
+    color:#e54040;
+  }
+  .content{
+    text-align:center;
+    padding:115px 0px 0px 0px;
+  }
+}

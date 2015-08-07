@@ -4,6 +4,7 @@ namespace Katsitu\Exceptions;
 
 use Exception;
 use Symfony\Component\HttpKernel\Exception\HttpException;
+use Symfony\Component\Debug\ExceptionHandler as SymfonyDisplayer;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
 class Handler extends ExceptionHandler
@@ -39,6 +40,10 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $e)
     {
+        if( app()->environment('local') || config('app.debug') ) {
+            return (new SymfonyDisplayer(config('app.debug')))->createResponse($e);
+        }
+
         return parent::render($request, $e);
     }
 }
