@@ -34,5 +34,7 @@
 
         @include('layouts.footer')
     </div>
+
+    @include('layouts.analytic')
 </body>
 </html>
