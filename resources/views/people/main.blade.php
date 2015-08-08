@@ -87,7 +87,7 @@
                                 <div class="col-sm-6" style="padding-top: 10px; padding-bottom: 10px;">
                                     <div class="row">
                                         <div class="col-xs-3" style="padding-right: 0px;">
-                                            <img src="{{ $user->profile_image or '//www.gravatar.com/avatar/' . md5(strtolower(trim( $user->email ))) . '?d=monsterid&s=100' }}" style="width: 100%; max-width: 100px; height: 100%; max-height: 100px;" alt=""/>
+                                            <img src="{{ $user->profile_image or '//www.gravatar.com/avatar/' . md5(strtolower(trim( $user->email ))) . '?d=monsterid&s=100' }}" style="width: 100%; max-width: 100px;" alt="{{$user->username}}"/>
                                         </div>
                                         <div class="col-xs-9">
                                             <div style="font-size: 1.2em;"><a href="{{ url($user->username) }}">{{ $user->name }}</a> <i style="" class="fa {{ $user->gender == "" ? ('fa-circle-thin') : ( $user->gender == 'male' ? 'fa-mars' : 'fa-venus' )}}"></i></div>
