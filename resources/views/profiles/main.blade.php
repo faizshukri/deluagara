@@ -1,6 +1,17 @@
 @extends('layouts.master')
 
-@section('title', 'My Account')
+@section('title', $user->name)
+
+@section('meta')
+    <meta property="og:description" content="{{ $user->about_me }}" />
+    <meta property="og:image" content="{{ $user->profile_image ? url($user->profile_image) : '//www.gravatar.com/avatar/' . md5(strtolower(trim( $user->email ))) . '?d=monsterid&s=250' }}" />
+    <meta property="og:type" content="profile" />
+    <meta property="profile:first_name" content="{{ $user->name }}" />
+    <meta property="profile:username" content="{{ $user->username }}" />
+    @if($user->facebook_url)
+        <meta property="fb:profile_id" content="{{ preg_match('/profile.php\?id=(.*)\&/', $user->facebook_url, $match) === 1 ? $match[1] : $user->facebook_url }}" />
+    @endif
+@endsection
 
 @section('content')
     <div class="row">
