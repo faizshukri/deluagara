@@ -3,12 +3,19 @@
 namespace Katsitu\Exceptions;
 
 use Exception;
+use Katsitu\Services\FaizMailer;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\Debug\ExceptionHandler as SymfonyDisplayer;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
 class Handler extends ExceptionHandler
 {
+    private $mailer;
+
+    public function __construct(FaizMailer $mailer)
+    {
+        $this->mailer = $mailer;
+    }
     /**
      * A list of the exception types that should not be reported.
      *
@@ -28,6 +35,7 @@ class Handler extends ExceptionHandler
      */
     public function report(Exception $e)
     {
+        $this->mailer->sendExceptionLog($e);
         return parent::report($e);
     }
 
