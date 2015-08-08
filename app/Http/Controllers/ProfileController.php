@@ -71,56 +71,8 @@ class ProfileController extends Controller
         $data = $request->all();
 
         if ($request->hasFile('profile_image')) {
-
-            // Construct the image name
-            $extension = $data['profile_image']->guessExtension();
-
-            $base_name = $hashID->encode($this->user->id) . '-' .
-                substr(md5($data['profile_image']->getClientOriginalName() . $data['profile_image']->getClientSize()), 0, 6);
-
-            $image_name = $base_name . '.' . $extension;
-            $image_name_sm = $base_name . '-sm.' . $extension;
-
-
-            // Move the image to storage folder
-            $data['profile_image']->move(
-                storage_path('app/profile_images'),
-                $image_name
-            );
-
-            // Resize image
-            $image->make(storage_path('app/profile_images/'.$image_name))
-                  ->fit(250)
-                  ->save();
-
-            // From the resized image, we make the small version of it
-            $image->make(storage_path('app/profile_images/'.$image_name))
-                  ->fit(80)
-                  ->save(storage_path('app/profile_images/'.$image_name_sm));
-
-            // Update the image path
-            $prefix = config('app.profile_image_prefix_url');
-            $data['profile_image'] = $prefix . $image_name;
-            $data['profile_image_sm'] = $prefix . $image_name_sm;
-
-            // Remove the current image
-            foreach([$this->user->profile_image, $this->user->profile_image_sm] as $image_path){
-
-                // Check if image path has prefix
-                if (substr($image_path, 0, strlen($prefix)) == $prefix) {
-
-                    // Get the image name after the prefix
-                    $old_image_name = substr($image_path, strlen($prefix));
-
-                    // Create new image path
-                    $old_image_path = 'profile_images' . '/' . $old_image_name;
-
-                    // Check in the storage, and delete if exist
-                    if($old_image_name != $image_name && Storage::exists($old_image_path)) {
-                        Storage::delete($old_image_path);
-                    }
-                }
-            }
+            // Process the profile image
+            $this->processImage($data, $hashID, $image);
         }
 
         $this->user->fill($data);
@@ -175,5 +127,65 @@ class ProfileController extends Controller
         }
 
         return $city_id;
+    }
+
+    /**
+     * Process the image
+     *
+     * @param $data Pass by reference
+     * @param HashID $hashID
+     * @param ImageHandler $image
+     */
+    private function processImage(&$data, HashID $hashID, ImageHandler $image)
+    {
+        // Construct the image name
+        $extension = $data['profile_image']->guessExtension();
+
+        $base_name = $hashID->encode($this->user->id) . '-' .
+            substr(md5($data['profile_image']->getClientOriginalName() . $data['profile_image']->getClientSize()), 0, 6);
+
+        $image_name = $base_name . '.' . $extension;
+        $image_name_sm = $base_name . '-sm.' . $extension;
+
+
+        // Move the image to storage folder
+        $data['profile_image']->move(
+            storage_path('app/profile_images'),
+            $image_name
+        );
+
+        // Resize image
+        $image->make(storage_path('app/profile_images/'.$image_name))
+            ->fit(250)
+            ->save();
+
+        // From the resized image, we make the small version of it
+        $image->make(storage_path('app/profile_images/'.$image_name))
+            ->fit(80)
+            ->save(storage_path('app/profile_images/'.$image_name_sm));
+
+        // Update the image path
+        $prefix = config('app.profile_image_prefix_url');
+        $data['profile_image'] = $prefix . $image_name;
+        $data['profile_image_sm'] = $prefix . $image_name_sm;
+
+        // Remove the current image
+        foreach([$this->user->profile_image, $this->user->profile_image_sm] as $image_path){
+
+            // Check if image path has prefix
+            if (substr($image_path, 0, strlen($prefix)) == $prefix) {
+
+                // Get the image name after the prefix
+                $old_image_name = substr($image_path, strlen($prefix));
+
+                // Create new image path
+                $old_image_path = 'profile_images' . '/' . $old_image_name;
+
+                // Check in the storage, and delete if exist
+                if($old_image_name != $image_name && Storage::exists($old_image_path)) {
+                    Storage::delete($old_image_path);
+                }
+            }
+        }
     }
 }
