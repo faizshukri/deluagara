@@ -8,7 +8,6 @@
     @yield('meta')
 
     {{-- Open graph --}}
-    <meta property="og:title" content="Katsitu.Com - @yield('title')" />
     <meta property="og:url" content="{{ Request::url() }}" />
 
     {{-- Stylesheet --}}

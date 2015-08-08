@@ -3,6 +3,7 @@
 @section('title', $user->name)
 
 @section('meta')
+    <meta property="og:title" content="{{ $user->location ? '' : 'Katsitu.Com - ' }}{{ $user->name }}{{ $user->location ? ' - ' . $user->location->city->name :  '' }}" />
     <meta property="og:description" content="{{ $user->about_me }}" />
     <meta property="og:image" content="{{ $user->profile_image ? url($user->profile_image) : '//www.gravatar.com/avatar/' . md5(strtolower(trim( $user->email ))) . '?d=monsterid&s=250' }}" />
     <meta property="og:type" content="profile" />
