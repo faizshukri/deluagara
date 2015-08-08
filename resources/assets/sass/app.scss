@@ -13,19 +13,26 @@ body {
 .main-wrapper {
   min-height: 100%;
   position: relative;
-  padding-bottom: 80px;
+  padding-bottom: 60px;
 }
 
 footer {
-  margin-top: 20px;
   padding: 15px;
   text-align: center;
   width: 100%;
   left: 0;
   right: 0;
-  bottom: 10px;
+  bottom: 5px;
   height: 50px;
   position: absolute;
+
+  .nav > li > a {
+    padding: 0px 15px;
+
+    &:hover, &:focus, &:active {
+      background-color: transparent;
+    }
+  }
 
   #developer {
     position: absolute;
@@ -38,6 +45,15 @@ footer {
     z-index: 2;
     margin-top: -6px;
   }
+
+  #nav-bottom {
+    position: relative;
+    z-index: 2;
+
+    ul li {
+      display: inline-block;
+    }
+  }
   
   @media (max-width: $screen-xs-max) {
     bottom: 35px;
@@ -49,10 +65,18 @@ footer {
     #siteseal {
       float: none !important;
       display: block;
-      padding: 10px 0px;
+      padding: 15px 0px 10px;
+      text-align: center;
+    }
+
+    #nav-bottom {
+      float: none !important;
+      display: block;
+      padding-top: 15px;
       text-align: center;
     }
   }
+
 }
 
 .navbar {
@@ -228,14 +252,38 @@ footer {
       }
     }
 
-    .row > div {
-      margin-bottom: 20px;
+    .row {
+      > div {
+        margin-bottom: 30px;
 
-      @media (max-width: $screen-xs-max) {
-        h2 {
-          font-size: 1.6em;
+        @media (max-width: $screen-xs-max) {
+          h2 {
+            font-size: 1.6em;
+          }
         }
       }
+
+      @media (max-width: $screen-xs-max) {
+        .sm-separator {
+          display: none;
+        }
+      }
+
+      @media (min-width: $screen-sm-min) {
+        .xs-separator {
+          display: none;
+        }
+      }
+    }
+  }
+
+  .comingsoon {
+    position: relative;
+    .label {
+      position: absolute;
+      right: 20px;
+      top: 40px;
+      font-size: 1em;
     }
   }
 }
