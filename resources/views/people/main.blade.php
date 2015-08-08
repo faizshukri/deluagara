@@ -1,7 +1,7 @@
 @extends('layouts/master')
 
 @section('meta')
-    <meta property="og:title" content="Katsitu.Com Members" />
+    <meta property="og:title" content="Katsitu Malaysian" />
     <meta property="og:type" content="website" />
     <meta property="og:description" content="Katsitu is a public listing website for Malaysian community residing in United Kingdom." />
     <meta property="og:image" content="{{ url('/images/map_screenshot.jpg') }}" />
