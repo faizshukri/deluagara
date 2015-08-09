@@ -28,24 +28,12 @@ class FaizMailer {
         });
     }
 
-    public function sendExceptionLog(Exception $log)
+    public function sendExceptionLog(Exception $error)
     {
-        $handler = new \Monolog\Handler\SwiftMailerHandler(
-            Mail::getSwiftMailer(),
-            \Swift_Message::newInstance('[Log] Exception at ' . date('Y-m-d H:i:s'))
-                ->setFrom(config('katsitu.emails.noreply.address'), config('katsitu.emails.noreply.name'))
-                ->setTo(config('katsitu.emails.admin.address'))
-                ->setContentType('text/html'),
-            Logger::ERROR, // set minimal log lvl for mail
-            true // bubble to next handler?
-        );
-
-        $formatter = new HtmlFormatter();
-
-        $handler->setFormatter($formatter);
-
-        Log::getMonolog()->pushHandler($handler);
-
-        Log::error($log);
+        Mail::send('email.exceptionlog', ['error' => $error->__toString()], function($m) {
+            $m->from(config('katsitu.emails.noreply.address'), config('katsitu.emails.noreply.name'));
+            $m->to(config('katsitu.emails.technician.address'), config('katsitu.emails.technician.name'))
+                ->subject('Katsitu Error Log at ' . date('Y-m-d H:i:s'));
+        });
     }
 }
