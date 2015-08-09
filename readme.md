@@ -1,27 +1,49 @@
-## Laravel PHP Framework
+# Katsitu.Com
 
-[![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
-[![Total Downloads](https://poser.pugx.org/laravel/framework/d/total.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Stable Version](https://poser.pugx.org/laravel/framework/v/stable.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Unstable Version](https://poser.pugx.org/laravel/framework/v/unstable.svg)](https://packagist.org/packages/laravel/framework)
-[![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)
+Katsitu.Com is a public listing website for Malaysian community residing in United Kingdom. 
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as authentication, routing, sessions, queueing, and caching.
+## Installation
 
-Laravel is accessible, yet powerful, providing powerful tools needed for large, robust applications. A superb inversion of control container, expressive migration system, and tightly integrated unit testing support give you the tools you need to build any application with which you are tasked.
+1. Clone this repository
 
-## Official Documentation
+        git clone https://github.com/faizshukri/katsitu.git
+        cd katsitu
 
-Documentation for the framework can be found on the [Laravel website](http://laravel.com/docs).
+2. Copy `.env.example` to `.env`. Setup a database and update the variables in file `.env` accordingly.
 
-## Contributing
+3. Install composer dependencies
+        
+        composer update
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
+4. Install npm dependencies
 
-## Security Vulnerabilities
+        npm install
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
+5. Install assets
 
-### License
+        bower install
 
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
+6. Build the assets
+        
+    ```bash
+    # For development
+    gulp
+
+    # For production
+    gulp --production
+    ```
+
+7. Run migration and seed.
+
+        php artisan migrate
+        php artisan db:seed
+
+    For `local`/`development` environment, the seed will populate cities only for Sheffield and Manchester. Some test users will also be created. You may use this account to login.
+    - Email: `faiz@example.com`
+    - Password: `password`
+
+8. Run the website with a webserver. If you want to use PHP's build in web server, you may use laravel's artisan command for it
+    
+        php artisan serve
+
+    and access the website using url `http://localhost:8000`
