@@ -10,7 +10,7 @@
     <meta property="profile:first_name" content="{{ $user->name }}" />
     <meta property="profile:username" content="{{ $user->username }}" />
     @if($user->facebook_url)
-        <meta property="fb:profile_id" content="{{ preg_match('/profile.php\?id=(.*)\&/', $user->facebook_url, $match) === 1 ? $match[1] : $user->facebook_url }}" />
+        <meta property="fb:profile_id" content="{{ preg_match('/profile.php\?id=(\w*)(?:\&|$)/', $user->facebook_url, $match) === 1 ? $match[1] : $user->facebook_url }}" />
     @endif
 @endsection
 
