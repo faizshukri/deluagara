@@ -38,7 +38,7 @@ class LocationController extends Controller
                         'marker-symbol' => 'building',
                         'name' => $loc->user->name,
                         'username' => $loc->user->username,
-                        'profile_image' => $loc->user->profile_image_sm,
+                        'profile_image' => $loc->user->profile_image_sm ?: '//www.gravatar.com/avatar/' . md5(strtolower(trim( $loc->user->email ))) . '?d=monsterid&s=80',
                         'city' => $loc->city->name
                     ]
                 ];

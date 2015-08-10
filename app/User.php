@@ -71,7 +71,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
                 'marker-symbol' => 'building',
                 'name' => $this->name,
                 'username' => $this->username,
-                'profile_image' => $this->profile_image_sm,
+                'profile_image' => $this->profile_image_sm ?: '//www.gravatar.com/avatar/' . md5(strtolower(trim( $this->email ))) . '?d=monsterid&s=80',
                 'city' => $this->location->city->name
             ]
         ] : [];
