@@ -277,6 +277,7 @@ footer {
     }
   }
 
+  // Coming soon label
   .comingsoon {
     position: relative;
     .label {
@@ -284,6 +285,23 @@ footer {
       right: 20px;
       top: 40px;
       font-size: 1em;
+    }
+  }
+
+
+  @media (max-width: $screen-xs-max) {
+    .share_profile br {
+      display: block;
+    }
+  }
+
+  @media (min-width: $screen-sm-min) {
+    .share_profile, .share_profile > p {
+      float: right;
+    }
+
+    .share_profile br {
+      display: none;
     }
   }
 }

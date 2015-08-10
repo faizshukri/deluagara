@@ -154,6 +154,7 @@ return [
         Laracasts\Flash\FlashServiceProvider::class,
         Fedeisas\LaravelMailCssInliner\LaravelMailCssInlinerServiceProvider::class,
         DaveJamesMiller\Breadcrumbs\ServiceProvider::class,
+        Chencha\Share\ShareServiceProvider::class
     ],
 
     /*
@@ -207,6 +208,7 @@ return [
         'Image' => Intervention\Image\Facades\Image::class,
         'Flash' => Laracasts\Flash\Flash::class,
         'Breadcrumbs' => DaveJamesMiller\Breadcrumbs\Facade::class,
+        'Share' => Chencha\Share\ShareFacade::class
 
     ],
 

@@ -40,17 +40,31 @@
                         <h3 class="user_city">{{ $user->location->city->name or '' }}</h3>
 
                         <p><i>{{ $user->about_me }}</i></p>
-                        <p style="font-size: 1.7em;">
-                            @if($user->facebook_url)
-                                <a href="{{ url('http://facebook.com/') . $user->facebook_url }}" target="_blank"><i class="fa fa-facebook-official" style="color: #45609d;"></i></a>&nbsp;
-                            @endif
-                            @if($user->twitter_url)
-                                <a href="{{ url('http://twitter.com/') . $user->twitter_url }}" target="_blank"><i class="fa fa-twitter" style="color: #22c7ff;"></i></a>&nbsp;
-                            @endif
-                            @if($user->website)
-                                <a href="{{ preg_match('/^https?\:\/\//', $user->website) == 0 ? 'http://' . $user->website : $user->website }}" target="_blank"><i class="fa fa-external-link"></i></a>
-                            @endif
-                        </p>
+                        <div class="row">
+                            <div class="col-sm-5">
+                                <p style="font-size: 1.7em;">
+                                    @if($user->facebook_url)
+                                        <a href="{{ url('http://facebook.com/') . $user->facebook_url }}" target="_blank"><i class="fa fa-facebook-official" style="color: #45609d;"></i></a>&nbsp;
+                                    @endif
+                                    @if($user->twitter_url)
+                                        <a href="{{ url('http://twitter.com/') . $user->twitter_url }}" target="_blank"><i class="fa fa-twitter" style="color: #22c7ff;"></i></a>&nbsp;
+                                    @endif
+                                    @if($user->website)
+                                        <a href="{{ preg_match('/^https?\:\/\//', $user->website) == 0 ? 'http://' . $user->website : $user->website }}" target="_blank"><i class="fa fa-external-link"></i></a>
+                                    @endif
+
+                                </p>
+                            </div>
+                            @inject('share', 'Chencha\Share\Share')
+                            <div class="col-sm-7 share_profile">
+                                <p style="">Share to:
+                                    <br />
+                                    <a class="btn btn-primary btn-xs" target="_blank" href="{{ $share->load(Request::url(), 'Hello, I\'m ' . $user->name . ($user->location ? ' and I live in ' . $user->location->city->name :  ''))->facebook() }}"><i class="fa fa-facebook-official"></i> Facebook</a>
+                                    <a class="btn btn-primary btn-xs" target="_blank" href="{{ $share->load(Request::url(), 'Hello, I\'m ' . $user->name . ($user->location ? ' and I live in ' . $user->location->city->name :  ''))->twitter() }}"><i class="fa fa-twitter"></i> Twitter</a>
+                                </p>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
                 <hr />
