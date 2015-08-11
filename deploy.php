@@ -10,7 +10,7 @@ set('writable_dirs', ['storage', 'vendor']);
 
 set('repository', 'git@github.com:faizshukri/katsitu.git');
 
-server('prod', 'katsitu.com', 22)
+server('prod', 'direct.katsitu.com', 22)
     ->user('root')
     ->forwardAgent()
     ->stage('production')
