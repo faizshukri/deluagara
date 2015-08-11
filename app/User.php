@@ -36,6 +36,8 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
      */
     protected $hidden = ['password', 'remember_token'];
 
+    protected $visible = ['name', 'username', 'profile_image', 'profile_image_sm', 'location'];
+
     public function location()
     {
         return $this->hasOne('Katsitu\Location');
