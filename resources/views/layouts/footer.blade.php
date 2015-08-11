@@ -11,7 +11,9 @@
                 </ul>
             </div>
             <div id="developer">Katsitu.Com &copy; 2015 | All rights reserved</div>
-            <span id="siteseal" class="pull-right"><script type="text/javascript" src="https://seal.godaddy.com/getSeal?sealID=b3d7rY5ImdZU7jt7tYhb4goMCWnWB5FiXEriT6oCtPHFryVm1bhbFat8OhNs"></script></span>
+            <span id="siteseal" class="pull-right">
+                <img style="cursor:pointer;cursor:hand" src="https://seal.godaddy.com/images/3/en/siteseal_gd_3_h_l_m.gif" onclick="window.open('https://seal.godaddy.com/verifySeal?sealID=b3d7rY5ImdZU7jt7tYhb4goMCWnWB5FiXEriT6oCtPHFryVm1bhbFat8OhNs', 'Secure Site by GoDaddy.com', 'height=460,width=600')" alt="SSL site seal - click to verify">
+            </span>
         </div>
     </div>
 </footer>
