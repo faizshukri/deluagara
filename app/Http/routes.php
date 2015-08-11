@@ -32,9 +32,7 @@ Route::get('register/verify/{confirmationCode}', [
 ]);
 
 // Profile images
-Route::get('profile_image/{profile_image}', function($profile_image, \Katsitu\Contracts\ImageHandler $imageHandler){
-    return $imageHandler->make( storage_path('app/profile_images/' . $profile_image) )->response();
-});
+Route::get('profile_image/{profile_image}', 'AssetController@profileImage');
 
 Route::group(['middleware' => 'auth'], function(){
 
