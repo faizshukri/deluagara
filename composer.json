@@ -13,7 +13,6 @@
         "laracasts/flash": "~1.3",
         "fedeisas/laravel-mail-css-inliner": "@dev",
         "davejamesmiller/laravel-breadcrumbs": "^3.0",
-        "iron-io/iron_mq": "^4.0",
         "chencha/share": "^5.0"
     },
     "require-dev": {

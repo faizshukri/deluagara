@@ -6,9 +6,6 @@ namespace Katsitu\Services;
 use Exception;
 use Illuminate\Support\Facades\Mail;
 use Katsitu\User;
-use Monolog\Formatter\HtmlFormatter;
-use Monolog\Logger;
-use Log;
 
 class FaizMailer {
 
